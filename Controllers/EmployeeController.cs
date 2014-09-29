@@ -159,5 +159,12 @@ namespace _99X_CBS.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // GET: /Employee/GeneratePDF
+        public ActionResult GeneratePDF(int id)
+        {
+            
+            return new Rotativa.ActionAsPdf("Details/"+id);
+        }
     }
 }

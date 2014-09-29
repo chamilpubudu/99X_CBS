@@ -182,4 +182,9 @@ p {
     #naviglinks {
         display :  none;
     }
+
+    #pdfbtn {
+        display :  none;
+    }
 }
+

@@ -71,9 +71,10 @@
             </tr>
             }
             <!-- Repeat -->
+
         </table>
-        <br />
-        <p class="ft2">You were entitled to got a bonus of Rs. 150000.00 -TODO</p>
+        <br />          
+        <p class="ft2">You were entitled to got a bonus of -TODO</p>
         <!-- Bonus Details End -->
         <br />
         <br />
@@ -445,7 +446,17 @@
     </div>
 </div>
 <input id="printbtn" type="button" onclick="window.print();" value="Print" />
+
+@{
+var pdfUrl = "window.open('/Employee/GeneratePDF/"+Model.cbs_employee.ID+"');";
+
+}
+<input id="pdfbtn" type="button" onclick=@pdfUrl value="PDF" />
+
+
 <p id="naviglinks">
     @Html.ActionLink("Edit", "Edit", new { id = Model.cbs_employee.ID }) |
     @Html.ActionLink("Back to List", "Index")
+
 </p>
+
