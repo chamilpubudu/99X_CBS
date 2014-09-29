@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="98c359bf545849798aa832214b97c718" Name="Diagram1" ShowGrid="true">
+        <EntityTypeShape EntityType="CBSModel.CBS_Employees" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="CBSModel.CBS_Attendances" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="CBSModel.CBS_Awards" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="CBSModel.CBS_Bonuses" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="CBSModel.CBS_CustomerFeedbackScore" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="CBSModel.CBS_EmployeeBillingUtilization" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CBSModel.CBS_Engagement" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CBSModel.CBS_FuelAllowances" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CBSModel.CBS_Increments" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CBSModel.CBS_MentorBuddy" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CBSModel.CBS_Promotions" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CBSModel.CBS_PublicAppearences" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CBSModel.CBS_TechnologyExposure" Width="1.5" PointX="8.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CBSModel.CBS_Trainings" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="CBSModel.CBS_Travels" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CBSModel.CBS_UniversitySessions" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CBSModel.CBS_ValueInnovations" Width="1.5" PointX="10.75" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

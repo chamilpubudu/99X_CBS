@@ -1,0 +1,185 @@
+﻿.ft0 {
+    font: 16px 'Meiryo';
+    line-height: 24px;
+}
+
+.ft1 {
+    font: 11px 'Meiryo';
+    text-decoration: underline;
+    line-height: 17px;
+}
+
+.ft2 {
+    font: 11px 'Meiryo';
+    line-height: 17px;
+}
+
+.ft3 {
+    font: 10px 'Meiryo';
+    line-height: 15px;
+}
+
+.ft4 {
+    font: 1px 'Meiryo';
+    line-height: 1px;
+}
+
+.ft5 {
+    font: 1px 'Meiryo';
+    line-height: 11px;
+}
+
+.ft6 {
+    font: 11px 'Meiryo';
+    line-height: 15px;
+}
+
+.ft7 {
+    font: 1px 'Meiryo';
+    line-height: 15px;
+}
+
+.ft8 {
+    font: 1px 'Meiryo';
+    line-height: 7px;
+}
+
+.ft9 {
+    font: 11px 'Meiryo';
+    line-height: 16px;
+}
+
+.ft10 {
+    font: 1px 'Meiryo';
+    line-height: 9px;
+}
+
+.ft11 {
+    font: 1px 'Meiryo';
+    line-height: 10px;
+}
+
+.ft12 {
+    font: 1px 'Meiryo';
+    line-height: 13px;
+}
+
+.ft13 {
+    font: 11px 'Meiryo';
+    line-height: 13px;
+}
+
+.ft14 {
+    font: 11px 'Meiryo';
+    line-height: 27px;
+}
+
+
+
+td {
+    border-right: #000000 1px solid;
+    border-left: #000000 1px solid;
+    border-top: #000000 1px solid;
+    border-bottom: #000000 1px solid;
+    padding: 2px;
+    margin: 0px;
+}
+
+.td1 {
+    border:none;
+    padding: 0px;
+    margin: 0px;
+    vertical-align: bottom;
+}
+
+.tr0 {
+    height: 20px;
+}
+
+.tr1 {
+    height: 21px;
+}
+
+.tr2 {
+    height: 18px;
+}
+
+.tr3 {
+    height: 19px;
+}
+
+.tr4 {
+    height: 22px;
+}
+
+.tr5 {
+    height: 43px;
+}
+
+.tr6 {
+    height: 11px;
+}
+
+.tr7 {
+    height: 15px;
+}
+
+.tr8 {
+    height: 25px;
+}
+
+.tr9 {
+    height: 7px;
+}
+
+.tr10 {
+    height: 16px;
+}
+
+.tr11 {
+    height: 9px;
+}
+
+.tr12 {
+    height: 17px;
+}
+
+.tr13 {
+    height: 10px;
+}
+
+.tr14 {
+    height: 32px;
+}
+
+.tr15 {
+    height: 27px;
+}
+
+.tr16 {
+    height: 6px;
+}
+
+.tr17 {
+    height: 13px;
+}
+
+.tr18 {
+    height: 8px;
+}
+
+p {
+    margin: 0;
+}
+
+.noBreak { page-break-inside: avoid;  }
+
+@media print {
+    #printbtn {
+        display :  none;
+    }
+
+    #naviglinks {
+        display :  none;
+    }
+}
