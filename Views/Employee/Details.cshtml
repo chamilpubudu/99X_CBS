@@ -6,7 +6,7 @@
 <link href="~/Content/CBS.css" rel="stylesheet" />
 <div id="cbs_data">
     <div class="noBreak">
-        <div id="dimg1" style="position:relative;left:3px;z-index:-1;width:155px;height:32px;">
+        <div id="dimg1" style="position: relative; left: 3px; z-index: -1; width: 155px; height: 32px;">
             <img src="~/Content/Images/logo-black.png" id="img1" style="width: 155px; height: 32px;">
         </div>
         <br />
@@ -21,84 +21,128 @@
         <br />
         <table>
             <tr>
-                <td class="tr0 td1"><p class="ft2">Employee Name</p></td>
-                <td class="tr0 td1"><p class=" ft2">: @Html.DisplayFor(model => model.cbs_employee.Employee_Name)</p></td>
+                <td class="tr0 td1">
+                    <p class="ft2">Employee Name</p>
+                </td>
+                <td class="tr0 td1">
+                    <p class=" ft2">: @Html.DisplayFor(model => model.cbs_employee.Employee_Name)</p>
+                </td>
             </tr>
             <tr>
-                <td class="tr0 td1"><p class=" ft2">Designation</p></td>
-                <td class="tr0 td1"><p class=" ft2">: @Html.DisplayFor(model => model.cbs_employee.Designation)</p></td>
+                <td class="tr0 td1">
+                    <p class=" ft2">Designation</p>
+                </td>
+                <td class="tr0 td1">
+                    <p class=" ft2">: @Html.DisplayFor(model => model.cbs_employee.Designation)</p>
+                </td>
             </tr>
             <tr>
-                <td class="tr0 td1"><p class=" ft2">Date Joined</p></td>
-                <td class="tr0 td1"><p class=" ft2">: <nobr>@Html.DisplayFor(model => model.cbs_employee.Date_Joined)</nobr></p></td>
+                <td class="tr0 td1">
+                    <p class=" ft2">Date Joined</p>
+                </td>
+                <td class="tr0 td1">
+                    <p class=" ft2">
+                        :
+                        <nobr>@Html.DisplayFor(model => model.cbs_employee.Date_Joined)</nobr>
+                    </p>
+                </td>
             </tr>
         </table>
         <table>
             <tr>
-                <td class="tr0 td1"><p class=" ft2">Total Years at 99XTechnology</p></td>
-                <td class="tr0 td1"><p class=" ft2">5 years - Calc</p></td>
+                <td class="tr0 td1">
+                    <p class=" ft2">Total Years at 99XTechnology</p>
+                </td>
+                <td class="tr0 td1">
+                    <p class=" ft2">5 years - Calc</p>
+                </td>
             </tr>
             <tr>
-                <td class="tr0 td1"><p class=" ft2">Total Experience</p></td>
-                <td class="tr0 td1"><p class=" ft2">5 years - Calc</p></td>
+                <td class="tr0 td1">
+                    <p class=" ft2">Total Experience</p>
+                </td>
+                <td class="tr0 td1">
+                    <p class=" ft2">5 years - Calc</p>
+                </td>
             </tr>
             <tr>
-                <td class="tr1 td1"><p class=" ft2">Appraisal Score</p></td>
-                <td class="tr1 td1"><p class=" ft2">@Html.DisplayFor(model => model.cbs_employee.Appraisal_Score)/100</p></td>
+                <td class="tr1 td1">
+                    <p class=" ft2">Appraisal Score</p>
+                </td>
+                <td class="tr1 td1">
+                    <p class=" ft2">@Html.DisplayFor(model => model.cbs_employee.Appraisal_Score)/100</p>
+                </td>
             </tr>
         </table>
         <!-- Employee Details End -->
         <br />
         <br />
-    </div> 
+    </div>
     <br />
-    <div>
-    @{
+    <div class="noBreak">
+        <!-- Promotion and Increments Details Start -->
+        <p class="ft1"><b>Promotion and Increments</b></p>
+        <br />
+        @{
         <!-- Repeat -->
         foreach (var promotion in Model.cbs_PromotionsList)
         {
-            <p class="ft1"><b>Promotion and Increments</b></p>
-            <br />
+
             <p class="ft2">You have been promoted to <b>@Html.Raw(promotion.Promoted_To)</b> from <b>@Html.Raw(promotion.Previous_Designation)</b> on <b>@Html.Raw(promotion.Date)</b>.</p>
         }
         foreach (var increment in Model.cbs_IncrementsList)
         {
-            <p class="ft2">You got an increment of <b>Rs. @Html.Raw(increment.Increment_Amount) </b>  on <b>@Html.Raw(increment.Effective_Date). </b></p>
+            <p class="ft2">You got an increment of <b>Rs. @Html.Raw(increment.Increment_Amount) </b>on <b>@Html.Raw(increment.Effective_Date). </b></p>
         }
        
 
     }
-    </div>  
-    <br />
-    <br /> 
-    <div class ="noBreak">
+        <!-- Promotion and Increments Details Start -->
+        <br />
+        <br />
+    </div>
+    <div class="noBreak">
         <!-- Bonus Details Start -->
         <p class="ft1"><b>Bonus Details</b></p>
         <br />
         <table>
-        @{
+            @{
             float totalBonusAmount = 0;
             <tr>
-                <td class="tr1 "><p class=" ft2">Bonus Date</p></td>
-                <td class="tr1 "><p class=" ft2">Bonus Type</p></td>
-                <td class="tr1 "><p class=" ft2">Bonus Amount</p></td>
+                <td class="tr1 ">
+                    <p class=" ft2">Bonus Date</p>
+                </td>
+                <td class="tr1 ">
+                    <p class=" ft2">Bonus Type</p>
+                </td>
+                <td class="tr1 ">
+                    <p class=" ft2">Bonus Amount</p>
+                </td>
             </tr>
             <!-- Repeat -->
             foreach (var bonus in Model.cbs_BonusesList)
             {
             totalBonusAmount = totalBonusAmount + @Html.Raw(bonus.Bonus_Amount).ToHtmlString().AsFloat();
             <tr>
-                <td class="tr2 "><p class=" ft2"><nobr>@Html.Raw(bonus.Date)</nobr></p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(bonus.Bonus_Type)</p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(bonus.Bonus_Amount)</p></td>
+                <td class="tr2 ">
+                    <p class=" ft2">
+                        <nobr>@Html.Raw(bonus.Date)</nobr>
+                    </p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(bonus.Bonus_Type)</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(bonus.Bonus_Amount)</p>
+                </td>
             </tr>
             }
             <!-- Repeat -->
-         }
+            }
         </table>
-        <br />         
+        <br />
         <p class="ft2">You were entitled to got a bonus of <b>@totalBonusAmount. Rs</b></p>
-       
+
         <!-- Bonus Details End -->
         <br />
         <br />
@@ -109,15 +153,25 @@
         <br />
         <table>
             <tr>
-                <td class="tr0 "><p class=" ft2">Date</p></td>
-                <td class="tr0 "><p class=" ft2">Award</p></td>
+                <td class="tr0 ">
+                    <p class=" ft2">Date</p>
+                </td>
+                <td class="tr0 ">
+                    <p class=" ft2">Award</p>
+                </td>
             </tr>
             <!-- Repeat -->
             @foreach (var award in Model.cbs_AwardsList)
             {
             <tr>
-                <td class="tr3 "><p class=" ft2"><nobr>@Html.Raw(award.Award_Date)</nobr></p></td>
-                <td class="tr3 "><p class=" ft2">@Html.Raw(award.Award)</p></td>
+                <td class="tr3 ">
+                    <p class=" ft2">
+                        <nobr>@Html.Raw(award.Award_Date)</nobr>
+                    </p>
+                </td>
+                <td class="tr3 ">
+                    <p class=" ft2">@Html.Raw(award.Award)</p>
+                </td>
 
             </tr>
             }
@@ -133,19 +187,39 @@
         <br />
         <table>
             <tr>
-                <td class="tr2 "><p class=" ft2">From</p></td>
-                <td class="tr2 "><p class=" ft2">To</p></td>
-                <td class="tr2 "><p class=" ft2">Project</p></td>
-                <td class="tr2 "><p class=" ft2">Billing Utilization</p></td>
+                <td class="tr2 ">
+                    <p class=" ft2">From</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">To</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">Project</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">Billing Utilization</p>
+                </td>
             </tr>
             <!-- Repeat -->
             @foreach (var bill in Model.cbs_EmployeeBillingUtilizationList)
             {
             <tr>
-                <td class="tr2 "><p class=" ft2"><nobr>@Html.Raw(bill.From_Date)</nobr></p></td>
-                <td class="tr2 "><p class=" ft2"><nobr>@Html.Raw(bill.To_Date)</nobr></p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(bill.Project)</p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(bill.Billing_Utilization)</p></td>
+                <td class="tr2 ">
+                    <p class=" ft2">
+                        <nobr>@Html.Raw(bill.From_Date)</nobr>
+                    </p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">
+                        <nobr>@Html.Raw(bill.To_Date)</nobr>
+                    </p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(bill.Project)</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(bill.Billing_Utilization)</p>
+                </td>
             </tr>
             }
             <!-- Repeat -->
@@ -162,19 +236,33 @@
         <!-- Customer Feedback Start -->
         <p class=" ft2">Customer Feedback</p>
         <br />
-        <table cellpadding=0 cellspacing=0>
+        <table cellpadding="0" cellspacing="0">
             <tr>
-                <td class="tr1 "><p class=" ft2">Date</p></td>
-                <td class="tr1 "><p class=" ft2">Rating</p></td>
-                <td class="tr1 "><p class=" ft2">Comments</p></td>
+                <td class="tr1 ">
+                    <p class=" ft2">Date</p>
+                </td>
+                <td class="tr1 ">
+                    <p class=" ft2">Rating</p>
+                </td>
+                <td class="tr1 ">
+                    <p class=" ft2">Comments</p>
+                </td>
             </tr>
             <!-- Repeat -->
             @foreach (var feedback in Model.cbs_CustomerFeedbackScoreList)
             {
             <tr>
-                <td class="tr2 "><p class=" ft2"><nobr>@Html.Raw(feedback.Feedback_Date)</nobr></p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(feedback.Score)/5</p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(feedback.Comments)</p></td>
+                <td class="tr2 ">
+                    <p class=" ft2">
+                        <nobr>@Html.Raw(feedback.Feedback_Date)</nobr>
+                    </p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(feedback.Score)/5</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(feedback.Comments)</p>
+                </td>
             </tr>
             }
             <!-- Repeat -->
@@ -186,23 +274,41 @@
     </div>
     <div class="noBreak">
         <!-- Career Development-Skills Start -->
-        <p class=" ft1"><b>Career <nobr>Development-Skills</nobr></b></p>
+        <p class=" ft1">
+            <b>Career
+            <nobr>Development-Skills</nobr>
+            </b>
+        </p>
         <br />
         <!-- Training Details Start -->
         <p class=" ft2">Training Details</p>
         <br />
-        <table cellpadding=0 cellspacing=0>
+        <table cellpadding="0" cellspacing="0">
             <tr>
-                <td class="tr1 "><p class=" ft2">Training Month</p></td>
-                <td class="tr1 "><p class=" ft2">Course Name</p></td>
-                <td class="tr1 "><p class=" ft2">Training Provider</p></td>
-                <td class="tr1 "><p class=" ft2">Training Category</p></td>
-                <td class="tr1 "><p class=" ft2">External/Internal</p></td>
-                <td class="tr1 "><p class=" ft2">Cost (Money Rs.)</p></td>
-                <td class="tr1 "><p class=" ft2">Cost (Time Hrs)</p></td>
+                <td class="tr1 ">
+                    <p class=" ft2">Training Month</p>
+                </td>
+                <td class="tr1 ">
+                    <p class=" ft2">Course Name</p>
+                </td>
+                <td class="tr1 ">
+                    <p class=" ft2">Training Provider</p>
+                </td>
+                <td class="tr1 ">
+                    <p class=" ft2">Training Category</p>
+                </td>
+                <td class="tr1 ">
+                    <p class=" ft2">External/Internal</p>
+                </td>
+                <td class="tr1 ">
+                    <p class=" ft2">Cost (Money Rs.)</p>
+                </td>
+                <td class="tr1 ">
+                    <p class=" ft2">Cost (Time Hrs)</p>
+                </td>
             </tr>
             <!-- Repeat -->
-        @{
+            @{
             int totalHours = 0 ;
             float totalCost = 0 ;
             foreach (var training in Model.cbs_TrainingsList)
@@ -210,17 +316,31 @@
                 totalHours = totalHours + @Html.Raw(training.Time_Duration).ToHtmlString().AsInt() ;
                 totalCost  = totalCost  + @Html.Raw(training.Cost_Money).ToHtmlString().AsFloat() ;
             <tr>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(training.Training_Month)</p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(training.Course_Name)</p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(training.Training_Provider)</p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(training.Category)</p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(training.External)</p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(training.Cost_Money)</p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(training.Time_Duration)</p></td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(training.Training_Month)</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(training.Course_Name)</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(training.Training_Provider)</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(training.Category)</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(training.External)</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(training.Cost_Money)</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(training.Time_Duration)</p>
+                </td>
             </tr>
             }
             <!-- Repeat -->
-        }
+            }
         </table>
         <br />
         <p class="ft2">You have participated <b>@totalHours</b> hours of Trainings Sessions with a cost of Rs. <b>@totalCost</b> </p>
@@ -232,31 +352,53 @@
         <!-- Travel Details Start -->
         <p class=" ft1"><b>Travel Details</b></p>
         <br />
-        <table cellpadding=0 cellspacing=0>
+        <table cellpadding="0" cellspacing="0">
 
             <tr>
-                <td class="tr2 "><p class=" ft2">Started Date</p></td>
-                <td class="tr2 "><p class=" ft2">Number of Days</p></td>
-                <td class="tr2 "><p class=" ft2">Country</p></td>
-                <td class="tr2 "><p class=" ft2">City</p></td>
-                <td class="tr2 "><p class=" ft2">Purpose</p></td>
+                <td class="tr2 ">
+                    <p class=" ft2">Started Date</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">Number of Days</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">Country</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">City</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">Purpose</p>
+                </td>
             </tr>
             @{
                 int numberOfTravelledTimes = 0 ;
                 int numberOfDays = 0 ;
                 <!-- Repeat -->
-                foreach (var travel in Model.cbs_TravelsList)
+            foreach (var travel in Model.cbs_TravelsList)
                 {
                  numberOfTravelledTimes ++ ;
                  numberOfDays = numberOfDays + @Html.Raw(travel.Number_Of_Days).ToHtmlString().AsInt() ;
                 <tr>
-                    <td class="tr2 "><p class=" ft2"><nobr>@Html.Raw(travel.Started_Date)</nobr></p></td>
-                    <td class="tr2 "><p class=" ft2">@Html.Raw(travel.Number_Of_Days)</p></td>
-                    <td class="tr2 "><p class=" ft2">@Html.Raw(travel.Country)</p></td>
-                    <td class="tr2 "><p class=" ft2">@Html.Raw(travel.City)</p></td>
-                    <td class="tr2 "><p class=" ft2">@Html.Raw(travel.Purpose)</p></td>
+                    <td class="tr2 ">
+                        <p class=" ft2">
+                            <nobr>@Html.Raw(travel.Started_Date)</nobr>
+                        </p>
+                    </td>
+                    <td class="tr2 ">
+                        <p class=" ft2">@Html.Raw(travel.Number_Of_Days)</p>
+                    </td>
+                    <td class="tr2 ">
+                        <p class=" ft2">@Html.Raw(travel.Country)</p>
+                    </td>
+                    <td class="tr2 ">
+                        <p class=" ft2">@Html.Raw(travel.City)</p>
+                    </td>
+                    <td class="tr2 ">
+                        <p class=" ft2">@Html.Raw(travel.Purpose)</p>
+                    </td>
                 </tr>
-                }
+            }
             <!-- Repeat -->
             }
         </table>
@@ -270,17 +412,25 @@
         <!-- Technology Exposure Start -->
         <p class=" ft1"><b>Technology Exposure</b></p>
         <br />
-        <table cellpadding=0 cellspacing=0>
+        <table cellpadding="0" cellspacing="0">
             <tr>
-                <td class="tr0 "><p class=" ft2">Engagement</p></td>
-                <td class="tr0 "><p class=" ft2">Technologies</p></td>
+                <td class="tr0 ">
+                    <p class=" ft2">Engagement</p>
+                </td>
+                <td class="tr0 ">
+                    <p class=" ft2">Technologies</p>
+                </td>
             </tr>
             <!-- Repeat -->
             @foreach (var technologyExposure in Model.cbs_TechnologyExposureList)
             {
             <tr>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(technologyExposure.Engagement)</p></td>
-                <td class="tr2 "><p class=" ft2">@Html.Raw(technologyExposure.Technologies)</p></td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(technologyExposure.Engagement)</p>
+                </td>
+                <td class="tr2 ">
+                    <p class=" ft2">@Html.Raw(technologyExposure.Technologies)</p>
+                </td>
             </tr>
             }
             <!-- Repeat -->
@@ -292,22 +442,34 @@
     </div>
     <div class="noBreak">
         <!-- Career Development-Team Building Start -->
-        <p class=" ft1"><b>Career <nobr>Development-Team</nobr> Building</b></p>
+        <p class=" ft1">
+            <b>Career
+            <nobr>Development-Team</nobr>
+                Building</b>
+        </p>
         <br />
         <!-- Mentor or Buddy Details Start -->
         <p class=" ft2">Mentor or Buddy Details</p>
         <br />
-        <table cellpadding=0 cellspacing=0>
+        <table cellpadding="0" cellspacing="0">
             <tr>
-                <td class="tr0 "><p class=" ft2">Type</p></td>
-                <td class="tr0 "><p class=" ft2">For</p></td>
+                <td class="tr0 ">
+                    <p class=" ft2">Type</p>
+                </td>
+                <td class="tr0 ">
+                    <p class=" ft2">For</p>
+                </td>
             </tr>
             <!-- Repeat -->
             @foreach (var mentorBuddy in Model.cbs_MentorBuddyList)
             {
             <tr>
-                <td class="tr3 "><p class="ft2">@Html.Raw(mentorBuddy.Mentor_or_Buddy_Type)</p></td>
-                <td class="tr3 "><p class="ft2">@Html.Raw(mentorBuddy.Mentor_or_Buddy)</p></td>
+                <td class="tr3 ">
+                    <p class="ft2">@Html.Raw(mentorBuddy.Mentor_or_Buddy_Type)</p>
+                </td>
+                <td class="tr3 ">
+                    <p class="ft2">@Html.Raw(mentorBuddy.Mentor_or_Buddy)</p>
+                </td>
             </tr>
             }
             <!-- Repeat -->
@@ -319,41 +481,67 @@
     </div>
     <div class="noBreak">
         <!-- Career Development-PR Start -->
-        <p class="ft1"><b>Career <nobr>Development-PR</nobr></b></p>
+        <p class="ft1">
+            <b>Career
+            <nobr>Development-PR</nobr>
+            </b>
+        </p>
         <br />
         <!-- Public Appearence Details Start -->
         <p class="ft2">Public Appearence Details</p>
         <br />
-        <table cellpadding=0 cellspacing=0>
+        <table cellpadding="0" cellspacing="0">
             <tr>
-                <td class="tr0 "><p class=" ft2">Date</p></td>
-                <td class="tr0 "><p class=" ft2">Location</p></td>
-                <td class="tr0 "><p class=" ft2">Event Name</p></td>
-                <td class="tr0 "><p class=" ft2">Session Topic</p></td>
-                <td class="tr0 "><p class=" ft2">Number of Participants</p></td>
+                <td class="tr0 ">
+                    <p class=" ft2">Date</p>
+                </td>
+                <td class="tr0 ">
+                    <p class=" ft2">Location</p>
+                </td>
+                <td class="tr0 ">
+                    <p class=" ft2">Event Name</p>
+                </td>
+                <td class="tr0 ">
+                    <p class=" ft2">Session Topic</p>
+                </td>
+                <td class="tr0 ">
+                    <p class=" ft2">Number of Participants</p>
+                </td>
             </tr>
             @{
                 int numberOfSessions = 0 ;
                 int numberOfParticipants = 0 ;
                 <!-- Repeat -->
-                foreach (var publicAppearence in Model.cbs_PublicAppearencesList)
+            foreach (var publicAppearence in Model.cbs_PublicAppearencesList)
                 {
                    
                    numberOfSessions ++ ;
                    numberOfParticipants = numberOfParticipants + @Html.Raw(publicAppearence.Number_Of_Participants).ToHtmlString().AsInt() ;
                 <tr>
-                    <td class="tr3"><p class=" ft2"><nobr>@Html.Raw(publicAppearence.Appearance_Date)</nobr></p></td>
-                    <td class="tr3"><p class=" ft2">@Html.Raw(publicAppearence.Location)</p></td>
-                    <td class="tr3"><p class=" ft2">@Html.Raw(publicAppearence.Event_Name)</p></td>
-                    <td class="tr3"><p class=" ft2">@Html.Raw(publicAppearence.Session_Topic)</p></td>
-                    <td class="tr3"><p class=" ft2">@Html.Raw(publicAppearence.Number_Of_Participants)</p></td>
+                    <td class="tr3">
+                        <p class=" ft2">
+                            <nobr>@Html.Raw(publicAppearence.Appearance_Date)</nobr>
+                        </p>
+                    </td>
+                    <td class="tr3">
+                        <p class=" ft2">@Html.Raw(publicAppearence.Location)</p>
+                    </td>
+                    <td class="tr3">
+                        <p class=" ft2">@Html.Raw(publicAppearence.Event_Name)</p>
+                    </td>
+                    <td class="tr3">
+                        <p class=" ft2">@Html.Raw(publicAppearence.Session_Topic)</p>
+                    </td>
+                    <td class="tr3">
+                        <p class=" ft2">@Html.Raw(publicAppearence.Number_Of_Participants)</p>
+                    </td>
                 </tr>
-                }
+            }
                 <!-- Repeat -->
             }
         </table>
         <br />
-        <p class="ft2">You have conducted <b>@numberOfSessions </b> session(s) to the public covering <b>@numberOfParticipants</b> of participants.</p>
+        <p class="ft2">You have conducted <b>@numberOfSessions </b>session(s) to the public covering <b>@numberOfParticipants</b> of participants.</p>
         <!-- Public Appearence Details End -->
         <br />
         <br />
@@ -362,36 +550,70 @@
         <!-- University Sessions Details Start -->
         <p class="ft1"><b>University Sessions Details</b></p>
         <br />
-        <table cellpadding=0 cellspacing=0>
+        <table cellpadding="0" cellspacing="0">
             <tr>
-                <td class="tr0 "><p class=" ft2">Session Date</p></td>
-                <td class="tr15 "><p class=" ft2">Location</p></td>
-                <td class="tr0 "><p class=" ft2">Session Type</p></td>
-                <td class="tr0 "><p class=" ft2">Session Initiated By</p></td>
-                <td class="tr15 "><p class=" ft2">Session Name</p></td>
-                <td class="tr0 "><p class=" ft2">Session Participants</p></td>
-                <td class="tr0 "><p class="ft2">Number of Participants</p></td>
-                <td class="tr0"><p class="ft2">Time Duration</p></td>
+                <td class="tr0 ">
+                    <p class=" ft2">Session Date</p>
+                </td>
+                <td class="tr15 ">
+                    <p class=" ft2">Location</p>
+                </td>
+                <td class="tr0 ">
+                    <p class=" ft2">Session Type</p>
+                </td>
+                <td class="tr0 ">
+                    <p class=" ft2">Session Initiated By</p>
+                </td>
+                <td class="tr15 ">
+                    <p class=" ft2">Session Name</p>
+                </td>
+                <td class="tr0 ">
+                    <p class=" ft2">Session Participants</p>
+                </td>
+                <td class="tr0 ">
+                    <p class="ft2">Number of Participants</p>
+                </td>
+                <td class="tr0">
+                    <p class="ft2">Time Duration</p>
+                </td>
             </tr>
             @{
                 int numberOfHours = 0 ;
                 int numberOfParticipantsForUniSessions = 0 ;
                 <!-- Repeat -->
-                foreach (var universitySession in Model.cbs_UniversitySessionsList)
+            foreach (var universitySession in Model.cbs_UniversitySessionsList)
                 {
                     numberOfHours = numberOfHours + @Html.Raw(universitySession.Time_Duration).ToHtmlString().AsInt() ;
                     numberOfParticipantsForUniSessions = numberOfParticipantsForUniSessions + @Html.Raw(universitySession.Number_Of_Participants).ToHtmlString().AsInt();
                 <tr>
-                    <td class="tr3"><p class=" ft2"><nobr>@Html.Raw(universitySession.Session_Date)</nobr></p></td>
-                    <td class="tr3"><p class=" ft2">@Html.Raw(universitySession.Location)</p></td>
-                    <td class="tr3"><p class=" ft2">@Html.Raw(universitySession.Session_Type)</p></td>
-                    <td class="tr3"><p class=" ft2">@Html.Raw(universitySession.Initiated_By)</p></td>
-                    <td class="tr3"><p class=" ft2">@Html.Raw(universitySession.Topic)</p></td>
-                    <td class="tr3"><p class=" ft2">@Html.Raw(universitySession.Participants)</p></td>
-                    <td class="tr3"><p class=" ft2">@Html.Raw(universitySession.Number_Of_Participants)</p></td>
-                    <td class="tr3"><p class=" ft2">@Html.Raw(universitySession.Time_Duration)</p></td>
+                    <td class="tr3">
+                        <p class=" ft2">
+                            <nobr>@Html.Raw(universitySession.Session_Date)</nobr>
+                        </p>
+                    </td>
+                    <td class="tr3">
+                        <p class=" ft2">@Html.Raw(universitySession.Location)</p>
+                    </td>
+                    <td class="tr3">
+                        <p class=" ft2">@Html.Raw(universitySession.Session_Type)</p>
+                    </td>
+                    <td class="tr3">
+                        <p class=" ft2">@Html.Raw(universitySession.Initiated_By)</p>
+                    </td>
+                    <td class="tr3">
+                        <p class=" ft2">@Html.Raw(universitySession.Topic)</p>
+                    </td>
+                    <td class="tr3">
+                        <p class=" ft2">@Html.Raw(universitySession.Participants)</p>
+                    </td>
+                    <td class="tr3">
+                        <p class=" ft2">@Html.Raw(universitySession.Number_Of_Participants)</p>
+                    </td>
+                    <td class="tr3">
+                        <p class=" ft2">@Html.Raw(universitySession.Time_Duration)</p>
+                    </td>
                 </tr>
-                }
+            }
                 <!-- Repeat -->
             }
         </table>
@@ -405,17 +627,27 @@
         <!-- Engagements Start -->
         <p class="ft1"><b>Engagements</b></p>
         <br />
-        <table cellpadding=0 cellspacing=0>
+        <table cellpadding="0" cellspacing="0">
             <tr>
-                <td class="tr0"><p class="ft2">Date</p></td>
-                <td class="tr0"><p class="ft2">Event</p></td>
+                <td class="tr0">
+                    <p class="ft2">Date</p>
+                </td>
+                <td class="tr0">
+                    <p class="ft2">Event</p>
+                </td>
             </tr>
             <!-- Repeat -->
             @foreach (var engagement in Model.cbs_EngagementList)
             {
             <tr>
-                <td class="tr3"><p class="ft2"><nobr>@Html.Raw(engagement.Date)</nobr></p></td>
-                <td class="tr3"><p class="ft2">@Html.Raw(engagement.Event)</p></td>
+                <td class="tr3">
+                    <p class="ft2">
+                        <nobr>@Html.Raw(engagement.Date)</nobr>
+                    </p>
+                </td>
+                <td class="tr3">
+                    <p class="ft2">@Html.Raw(engagement.Event)</p>
+                </td>
             </tr>
             }
             <!-- Repeat -->
@@ -427,27 +659,41 @@
     </div>
     <div class="noBreak">
         <!-- Career Development-Value Innovations Start -->
-        <p class="ft1"><b>Career <nobr>Development-Value Innovations</nobr></b></p>
+        <p class="ft1">
+            <b>Career
+            <nobr>Development-Value Innovations</nobr>
+            </b>
+        </p>
         <br />
         <!-- Value Innovations Start -->
         <p class="ft2">Value Innovations</p>
         <br />
-        <table cellpadding=0 cellspacing=0>
+        <table cellpadding="0" cellspacing="0">
             <tr>
-                <td class="tr0"><p class="ft2">Date</p></td>
-                <td class="tr0"><p class="ft2">Innovation </p></td>
+                <td class="tr0">
+                    <p class="ft2">Date</p>
+                </td>
+                <td class="tr0">
+                    <p class="ft2">Innovation </p>
+                </td>
             </tr>
             @{
                 int numberOfInnovations = 0 ;
                 <!-- Repeat -->
-                foreach (var valueInovation in Model.cbs_ValueInnovationsList)
+            foreach (var valueInovation in Model.cbs_ValueInnovationsList)
                 {
                     numberOfInnovations ++ ;
                     <tr>
-                        <td class="tr3"><p class="ft2"><nobr>@Html.Raw(valueInovation.Innovation_Date)</nobr></p></td>
-                        <td class="tr3"><p class="ft2">@Html.Raw(valueInovation.Value_Innovation)</p></td>
+                        <td class="tr3">
+                            <p class="ft2">
+                                <nobr>@Html.Raw(valueInovation.Innovation_Date)</nobr>
+                            </p>
+                        </td>
+                        <td class="tr3">
+                            <p class="ft2">@Html.Raw(valueInovation.Value_Innovation)</p>
+                        </td>
                     </tr>
-                }
+            }
                 <!-- Repeat -->
             }
         </table>
@@ -460,34 +706,86 @@
     </div>
     <div class="noBreak">
         <!-- Process Compliance Start -->
-        <p class="ft1"><b>Career <nobr>Process Compliance </nobr></b></p>
+        <p class="ft1">
+            <b>Career
+            <nobr>Process Compliance </nobr>
+            </b>
+        </p>
         <br />
         <!-- Attendance Details Start -->
         <p class="ft2">Attendance Details</p>
         <br />
-        <table cellpadding=0 cellspacing=0>
+        <table cellpadding="0" cellspacing="0">
             <tr>
-                <td class="tr0"><p class="ft2">Average In Time</p></td>
-                <td class="tr0"><p class="ft2">Average Out Time</p></td>
-                <td class="tr0"><p class="ft2">Weekends Worked</p></td>
-                <td class="tr0"><p class="ft2">Medical Leaves Taken</p></td>
-                <td class="tr0"><p class="ft2">Annual Leaves Taken</p></td>
-                <td class="tr0"><p class="ft2">Casual Leaves Taken</p></td>
-                <td class="tr0"><p class="ft2">Lieu Leaves Taken</p></td>
-                <td class="tr0"><p class="ft2">Days Reported to Work</p></td>
+                <td class="tr0">
+                    <p class="ft2">Average In Time</p>
+                </td>
+                <td class="tr0">
+                    <p class="ft2">Average Out Time</p>
+                </td>
+                <td class="tr0">
+                    <p class="ft2">Weekends Worked</p>
+                </td>
+                <td class="tr0">
+                    <p class="ft2">Medical Leaves Taken</p>
+                </td>
+                <td class="tr0">
+                    <p class="ft2">Annual Leaves Taken</p>
+                </td>
+                <td class="tr0">
+                    <p class="ft2">Casual Leaves Taken</p>
+                </td>
+                <td class="tr0">
+                    <p class="ft2">Lieu Leaves Taken</p>
+                </td>
+                <td class="tr0">
+                    <p class="ft2">Days Reported to Work</p>
+                </td>
             </tr>
             <!-- Repeat -->
             @foreach (var attendance in Model.cbs_AttendancesList)
             {
                 <tr>
-                    <td class="tr3"><p class="ft2"><nobr>@Html.Raw(attendance.Average_InTime)</nobr></p></td>
-                    <td class="tr3"><p class="ft2"><nobr>@Html.Raw(attendance.Average_OutTime)</nobr></p></td>
-                    <td class="tr3"><p class="ft2"><nobr>@Html.Raw(attendance.Weekends_Worked)</nobr></p></td>
-                    <td class="tr3"><p class="ft2"><nobr>@Html.Raw(attendance.Medical_Leaves_Taken)</nobr></p></td>
-                    <td class="tr3"><p class="ft2"><nobr>@Html.Raw(attendance.Annual_Leaves_Taken)</nobr></p></td>
-                    <td class="tr3"><p class="ft2"><nobr>@Html.Raw(attendance.Casual_Leaves_Taken)</nobr></p></td>
-                    <td class="tr3"><p class="ft2"><nobr>@Html.Raw(attendance.Lieu_Leaves_Taken)</nobr></p></td>
-                    <td class="tr3"><p class="ft2"><nobr>@Html.Raw(attendance.Number_of_Days_Reported_to_Work)</nobr></p></td>
+                    <td class="tr3">
+                        <p class="ft2">
+                            <nobr>@Html.Raw(attendance.Average_InTime)</nobr>
+                        </p>
+                    </td>
+                    <td class="tr3">
+                        <p class="ft2">
+                            <nobr>@Html.Raw(attendance.Average_OutTime)</nobr>
+                        </p>
+                    </td>
+                    <td class="tr3">
+                        <p class="ft2">
+                            <nobr>@Html.Raw(attendance.Weekends_Worked)</nobr>
+                        </p>
+                    </td>
+                    <td class="tr3">
+                        <p class="ft2">
+                            <nobr>@Html.Raw(attendance.Medical_Leaves_Taken)</nobr>
+                        </p>
+                    </td>
+                    <td class="tr3">
+                        <p class="ft2">
+                            <nobr>@Html.Raw(attendance.Annual_Leaves_Taken)</nobr>
+                        </p>
+                    </td>
+                    <td class="tr3">
+                        <p class="ft2">
+                            <nobr>@Html.Raw(attendance.Casual_Leaves_Taken)</nobr>
+                        </p>
+                    </td>
+                    <td class="tr3">
+                        <p class="ft2">
+                            <nobr>@Html.Raw(attendance.Lieu_Leaves_Taken)</nobr>
+                        </p>
+                    </td>
+                    <td class="tr3">
+                        <p class="ft2">
+                            <nobr>@Html.Raw(attendance.Number_of_Days_Reported_to_Work)</nobr>
+                        </p>
+                    </td>
                 </tr>
             }
             <!-- Repeat -->
@@ -504,7 +802,7 @@
 var pdfUrl = "window.open('/Employee/GeneratePDF/"+Model.cbs_employee.ID+"');";
 
 }
-<input id="pdfbtn" type="button" onclick=@pdfUrl value="PDF" />
+<input id="pdfbtn" type="button" onclick="@pdfUrl" value="PDF" />
 
 
 <p id="naviglinks">
