@@ -132,3 +132,13 @@ C:\Users\saleemm\Documents\Visual Studio 2013\Projects\99X\99X_CBS\bin\Microsoft
 C:\Users\saleemm\Documents\Visual Studio 2013\Projects\99X\99X_CBS\obj\Debug\99X_CBS.dll
 C:\Users\saleemm\Documents\Visual Studio 2013\Projects\99X\99X_CBS\obj\Debug\99X_CBS.pdb
 C:\Users\saleemm\Documents\Visual Studio 2013\Projects\99X\99X_CBS\bin\Rotativa.dll
+E:\WORK\99X_CBS\bin\99X_CBS.dll.config
+E:\WORK\99X_CBS\bin\99X_CBS.dll
+E:\WORK\99X_CBS\bin\99X_CBS.pdb
+E:\WORK\99X_CBS\bin\Microsoft.Web.Infrastructure.dll
+E:\WORK\99X_CBS\bin\Newtonsoft.Json.dll
+E:\WORK\99X_CBS\bin\Rotativa.dll
+E:\WORK\99X_CBS\bin\Microsoft.Web.Infrastructure.xml
+E:\WORK\99X_CBS\obj\Debug\99X_CBS.csprojResolveAssemblyReference.cache
+E:\WORK\99X_CBS\obj\Debug\99X_CBS.dll
+E:\WORK\99X_CBS\obj\Debug\99X_CBS.pdb

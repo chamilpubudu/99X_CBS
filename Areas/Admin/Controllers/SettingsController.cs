@@ -14,5 +14,17 @@ namespace _99X_CBS.Areas.Admin.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult UploadPhoto(String systemName,HttpPostedFileBase photo )
+        {
+           
+
+            if (photo != null) {
+                string path = HttpContext.Server.MapPath(@"\Content\Images\" + photo.FileName);
+                photo.SaveAs(path);
+            }
+            return RedirectToAction("Index", "Settings", new { area = "Admin" });
+        }
 	}
 }
