@@ -42,5 +42,6 @@ namespace _99X_CBS.Models
         public virtual DbSet<CBS_Travels> CBS_Travels { get; set; }
         public virtual DbSet<CBS_UniversitySessions> CBS_UniversitySessions { get; set; }
         public virtual DbSet<CBS_ValueInnovations> CBS_ValueInnovations { get; set; }
+        public virtual DbSet<CBS_ReportFormat> CBS_ReportFormat { get; set; }
     }
 }

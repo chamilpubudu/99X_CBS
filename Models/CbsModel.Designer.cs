@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\chamilg\documents\visual studio 2013\Projects\99x_CBS\99X_CBS\Models\CbsModel.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\WORK\99X_CBS\Models\CbsModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

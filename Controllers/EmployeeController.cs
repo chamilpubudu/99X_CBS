@@ -28,6 +28,10 @@ namespace _99X_CBS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             CBS_Employees cbs_employees                                             = db.CBS_Employees.Find(id);
+            if (cbs_employees == null)
+            {
+                return HttpNotFound();
+            }
             List<CBS_Promotions> cbs_PromotionsList                                 = db.CBS_Promotions.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
             List<CBS_Increments> cbs_IncrementsList                                 = db.CBS_Increments.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
             List<CBS_Bonuses> cbs_BonusesList                                       = db.CBS_Bonuses.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
@@ -44,11 +48,8 @@ namespace _99X_CBS.Controllers
             List<CBS_ValueInnovations> cbs_ValueInnovationsList                     = db.CBS_ValueInnovations.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
             List<CBS_Attendances> cbs_AttendancesList                               = db.CBS_Attendances.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
             List<CBS_FuelAllowances> cbs_FuelAllowancesList                         = db.CBS_FuelAllowances.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
+            List<CBS_ReportFormat> cbs_ReportFormatList                             = db.CBS_ReportFormat.ToList();
 
-            if (cbs_employees == null)
-            {
-                return HttpNotFound();
-            }
             CBS_DTO cbs_dto = new CBS_DTO();
             cbs_dto.cbs_employee                        = cbs_employees;
             cbs_dto.cbs_PromotionsList                  = cbs_PromotionsList;
@@ -67,6 +68,7 @@ namespace _99X_CBS.Controllers
             cbs_dto.cbs_ValueInnovationsList            = cbs_ValueInnovationsList;
             cbs_dto.cbs_AttendancesList                 = cbs_AttendancesList;
             cbs_dto.cbs_FuelAllowancesList              = cbs_FuelAllowancesList;
+            cbs_dto.cbs_ReportFormatList                = cbs_ReportFormatList;
 
             return View(cbs_dto);
         }

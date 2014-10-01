@@ -5,6 +5,7 @@
 }
 <link href="~/Content/CBS.css" rel="stylesheet" />
 <div id="cbs_data">
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Employees")).Enabled){
     <div class="noBreak">
         <div id="dimg1" style="position: relative; left: 3px; z-index: -1; width: 155px; height: 32px;">
             <img src="~/Content/Images/logo-black.png" id="img1" style="width: 155px; height: 32px;">
@@ -78,29 +79,37 @@
         <br />
         <br />
     </div>
-    <br />
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Promotions")).Enabled||Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Increments")).Enabled){
     <div class="noBreak">
         <!-- Promotion and Increments Details Start -->
         <p class="ft1"><b>Promotion and Increments</b></p>
         <br />
         @{
+        if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Promotions")).Enabled){
         <!-- Repeat -->
         foreach (var promotion in Model.cbs_PromotionsList)
         {
 
             <p class="ft2">You have been promoted to <b>@Html.Raw(promotion.Promoted_To)</b> from <b>@Html.Raw(promotion.Previous_Designation)</b> on <b>@Html.Raw(promotion.Date)</b>.</p>
         }
+        <!-- Repeat -->
+        }
+        if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Increments")).Enabled){
+        <!-- Repeat -->
         foreach (var increment in Model.cbs_IncrementsList)
         {
             <p class="ft2">You got an increment of <b>Rs. @Html.Raw(increment.Increment_Amount) </b>on <b>@Html.Raw(increment.Effective_Date). </b></p>
+        }      
+        <!-- Repeat -->
         }
-       
-
     }
         <!-- Promotion and Increments Details Start -->
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Bonuses")).Enabled){
     <div class="noBreak">
         <!-- Bonus Details Start -->
         <p class="ft1"><b>Bonus Details</b></p>
@@ -147,6 +156,8 @@
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Awards")).Enabled){
     <div class="noBreak">
         <!-- Awards Start -->
         <p class="ft1"><b>Awards</b></p>
@@ -181,6 +192,8 @@
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_EmployeeBillingUtilization")).Enabled){
     <div class="noBreak">
         <!-- Billing Utilization - Summary Start -->
         <p class="ft1"><b>Billing Utilization - Summary</b></p>
@@ -229,6 +242,8 @@
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_CustomerFeedbackScore")).Enabled){
     <div class="noBreak">
         <!-- Project Work Results Details Start -->
         <p class=" ft1"><b>Project Work Results</b></p>
@@ -272,6 +287,8 @@
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Trainings")).Enabled){
     <div class="noBreak">
         <!-- Career Development-Skills Start -->
         <p class=" ft1">
@@ -348,6 +365,8 @@
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Travels")).Enabled){
     <div class="noBreak">
         <!-- Travel Details Start -->
         <p class=" ft1"><b>Travel Details</b></p>
@@ -408,6 +427,8 @@
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_TechnologyExposure")).Enabled){
     <div class="noBreak">
         <!-- Technology Exposure Start -->
         <p class=" ft1"><b>Technology Exposure</b></p>
@@ -440,6 +461,8 @@
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_MentorBuddy")).Enabled){
     <div class="noBreak">
         <!-- Career Development-Team Building Start -->
         <p class=" ft1">
@@ -479,6 +502,8 @@
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_PublicAppearences")).Enabled){
     <div class="noBreak">
         <!-- Career Development-PR Start -->
         <p class="ft1">
@@ -546,6 +571,8 @@
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_UniversitySessions")).Enabled){
     <div class="noBreak">
         <!-- University Sessions Details Start -->
         <p class="ft1"><b>University Sessions Details</b></p>
@@ -623,6 +650,8 @@
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Engagement")).Enabled){
     <div class="noBreak">
         <!-- Engagements Start -->
         <p class="ft1"><b>Engagements</b></p>
@@ -657,6 +686,8 @@
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_ValueInnovations")).Enabled){
     <div class="noBreak">
         <!-- Career Development-Value Innovations Start -->
         <p class="ft1">
@@ -704,6 +735,8 @@
         <br />
         <br />
     </div>
+    }
+    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Attendances")).Enabled){
     <div class="noBreak">
         <!-- Process Compliance Start -->
         <p class="ft1">
@@ -795,15 +828,16 @@
         <br />
         <br />
     </div>
+    }
 </div>
 <input id="printbtn" type="button" onclick="window.print();" value="Print" />
 
 @{
 var pdfUrl = "window.open('/Employee/GeneratePDF/"+Model.cbs_employee.ID+"');";
 
-}
-<input id="pdfbtn" type="button" onclick="@pdfUrl" value="PDF" />
+<input id="pdfbtn" type="button" onclick='@pdfUrl' value="PDF" />
 
+}
 
 <p id="naviglinks">
     @Html.ActionLink("Edit", "Edit", new { id = Model.cbs_employee.ID }) |

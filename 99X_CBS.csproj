@@ -165,6 +165,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReportSettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\CBS\CBSAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -224,6 +225,9 @@
       <DependentUpon>CbsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CBS_PublicAppearences.cs">
+      <DependentUpon>CbsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CBS_ReportFormat.cs">
       <DependentUpon>CbsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CBS_TechnologyExposure.cs">
@@ -290,6 +294,13 @@
     <Content Include="Areas\Admin\Views\Settings\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\index.cshtml" />
     <Content Include="Content\jasny-bootstrap.css.map" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\ReportSettings\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ReportSettings\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ReportSettings\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ReportSettings\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ReportSettings\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jasny-bootstrap.js" />
     <Content Include="Scripts\jasny-bootstrap.min.js" />
@@ -340,7 +351,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\CBS\Controllers\" />
     <Folder Include="Areas\CBS\Models\" />
     <Folder Include="Areas\CBS\Views\Shared\" />

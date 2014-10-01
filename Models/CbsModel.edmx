@@ -130,6 +130,15 @@
           <Property Name="Number Of Participants" Type="varchar" MaxLength="50" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <EntityType Name="CBS_ReportFormat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Section" Type="nvarchar" MaxLength="50" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="SectionCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="CBS_TechnologyExposure">
           <Key>
             <PropertyRef Name="ID" />
@@ -204,6 +213,7 @@
           <EntitySet Name="CBS_MentorBuddy" EntityType="Self.CBS_MentorBuddy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CBS_Promotions" EntityType="Self.CBS_Promotions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CBS_PublicAppearences" EntityType="Self.CBS_PublicAppearences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CBS_ReportFormat" EntityType="Self.CBS_ReportFormat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CBS_TechnologyExposure" EntityType="Self.CBS_TechnologyExposure" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CBS_Trainings" EntityType="Self.CBS_Trainings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CBS_Travels" EntityType="Self.CBS_Travels" Schema="dbo" store:Type="Tables" />
@@ -243,6 +253,7 @@
           <EntitySet Name="CBS_Travels" EntityType="CBSModel.CBS_Travels" />
           <EntitySet Name="CBS_UniversitySessions" EntityType="CBSModel.CBS_UniversitySessions" />
           <EntitySet Name="CBS_ValueInnovations" EntityType="CBSModel.CBS_ValueInnovations" />
+          <EntitySet Name="CBS_ReportFormat" EntityType="CBSModel.CBS_ReportFormat" />
         </EntityContainer>
         <EntityType Name="CBS_Attendances">
           <Key>
@@ -418,6 +429,15 @@
           <Property Name="Innovation_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Value_Innovation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="CBS_ReportFormat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Section" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="SectionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -625,6 +645,16 @@
                 <ScalarProperty Name="Value_Innovation" ColumnName="Value Innovation" />
                 <ScalarProperty Name="Innovation_Date" ColumnName="Innovation Date" />
                 <ScalarProperty Name="Employee_Name" ColumnName="Employee Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CBS_ReportFormat">
+            <EntityTypeMapping TypeName="CBSModel.CBS_ReportFormat">
+              <MappingFragment StoreEntitySet="CBS_ReportFormat">
+                <ScalarProperty Name="SectionCode" ColumnName="SectionCode" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

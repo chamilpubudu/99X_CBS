@@ -24,6 +24,7 @@ namespace _99X_CBS.Models
         public List<CBS_ValueInnovations> cbs_ValueInnovationsList { get; set; }
         public List<CBS_Attendances> cbs_AttendancesList { get; set; }
         public List<CBS_FuelAllowances> cbs_FuelAllowancesList { get; set; }
+        public List<CBS_ReportFormat> cbs_ReportFormatList { get; set; }
 
     }
 }

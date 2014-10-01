@@ -1,0 +1,68 @@
+﻿@model IEnumerable<_99X_CBS.Models.CBS_ReportFormat>
+
+<!--@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>-->
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        function submitRow(element) {
+            var form = element.form;
+            form.submit();
+        }
+        $(document).ready(function () {
+            $('tr').click(function (event) {
+                if (event.target.type !== 'checkbox') {
+                    $(':checkbox', this).trigger('click');
+                }
+            });
+        });
+    </script>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enabled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SectionCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+using (Html.BeginForm())
+{
+    @Html.HiddenFor(modelItem => item.ID, new { @id = "ID", @Name = "ID" })
+    @Html.HiddenFor(modelItem => item.Section, new { @id = "Section", @Name = "Section" })
+    @Html.HiddenFor(modelItem => item.SectionCode, new { @id = "SectionCode", @Name = "SectionCode" })
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section)
+        </td>
+        <td>
+            @Html.CheckBoxFor(modelItem => item.Enabled, new { @id = "Enabled", @Name = "Enabled", @onClick = "submitRow(this);"})
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SectionCode)
+        </td>
+        <!--<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>-->
+        <!--<td>
+            <input type="submit" value="Save" class="btn btn-default" />
+        </td>-->        
+    </tr>
+    }
+}
+
+</table>

@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Employee_Name)
@@ -30,7 +30,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr onclick="document.location = '/Employee/Details/@item.ID';">
         <td>
             @Html.DisplayFor(modelItem => item.Employee_Name)
         </td>
@@ -47,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.Appraisal_Score)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+<!--            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |-->
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+           <!-- @Html.ActionLink("Delete", "Delete", new { id=item.ID })-->
         </td>
     </tr>
 }
