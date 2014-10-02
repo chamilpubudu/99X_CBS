@@ -357,6 +357,7 @@
     <Folder Include="Areas\CBS\Models\" />
     <Folder Include="Areas\CBS\Views\Shared\" />
     <Folder Include="Content\ExcelTemplates\" />
+    <Folder Include="Content\UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
