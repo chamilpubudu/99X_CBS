@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Excel Templates";
+}
+
+<h2>Excel Templates</h2>
+@using (Html.BeginForm("Index","DataUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+<div class="tr19">
+<input type="file" name="file" />
+<br />
+<button class="btn btn-primary" type="submit" value="OK" > Upload </button>
+</div>
+<br />
+<table class="table">
+    <tr>
+        <th>
+           <a href="~/Content/ExcelTemplates/CBS_Attendances.xlsx" download="Attendances">Download Attendances Template</a> 
+        </th>      
+    </tr>
+
+    <tr>
+        <th>
+           <a href="~/Content/ExcelTemplates/CBS_Awards.xlsx" download="Awards">Download Awards Template</a> 
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_CustomerFeedbackScore.xlsx" download="CustomerFeedbackScore">Download Customer Feedbackscore Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_EmployeeBillingUtilization.xlsx" download="EmployeeBillingUtilization">Download Employee Billing Utilization Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_Employees.xlsx" download="Employees">Download Employee Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_Engagement.xlsx" download="Engagement">Download Engagement Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_FuelAllowances.xlsx" download="FuelAllowances">Download FuelAllowances Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_Increments.xlsx" download="Increments">Download Increments Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_MentorBuddy.xlsx" download="MentorBuddy">Download MentorBuddy Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_Promotions.xlsx" download="Promotions">Download Promotions Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_PublicAppearences.xlsx" download="PublicAppearences">Download PublicAppearences Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_TechnologyExposure.xlsx" download="TechnologyExposure">Download TechnologyExposure Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_Trainings.xlsx" download="Trainings">Download Trainings Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_Travels.xlsx" download="Travels">Download Travels Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_UniversitySessions.xlsx" download="UniversitySessions">Download UniversitySessions Template</a>
+        </th>
+    </tr>
+
+        <tr>
+        <th>
+            <a href="~/Content/ExcelTemplates/CBS_ValueInnovations.xlsx" download="ValueInnovations">Download ValueInnovations Template</a>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+
+        </th>
+    </tr>
+</table>
+<link href="~/Content/CBS.css" rel="stylesheet" />
+@Scripts.Render("~/bundles/bootstrap")
+
+}

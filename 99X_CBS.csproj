@@ -165,6 +165,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DataUploadController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReportSettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\CBS\CBSAreaRegistration.cs" />
@@ -301,6 +302,7 @@
     <Content Include="Areas\Admin\Views\ReportSettings\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ReportSettings\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ReportSettings\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DataUpload\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jasny-bootstrap.js" />
     <Content Include="Scripts\jasny-bootstrap.min.js" />
@@ -354,6 +356,7 @@
     <Folder Include="Areas\CBS\Controllers\" />
     <Folder Include="Areas\CBS\Models\" />
     <Folder Include="Areas\CBS\Views\Shared\" />
+    <Folder Include="Content\ExcelTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
