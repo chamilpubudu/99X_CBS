@@ -5,6 +5,9 @@
 }
 <link href="~/Content/CBS.css" rel="stylesheet" />
 <div id="cbs_data">
+    @{
+        List<string> summary = new List<string>();  
+    }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Employees")).Enabled){
     <div class="noBreak">
         <div id="dimg1" style="position: relative; left: 3px; z-index: -1; width: 155px; height: 32px;">
@@ -151,7 +154,10 @@
         </table>
         <br />
         <p class="ft2">You were entitled to got a bonus of <b>@totalBonusAmount. Rs</b></p>
-
+        @{
+            summary.Add("You were entitled to got a bonus of <b>"+totalBonusAmount+". Rs</b>");
+        
+        }
         <!-- Bonus Details End -->
         <br />
         <br />
@@ -361,6 +367,11 @@
         </table>
         <br />
         <p class="ft2">You have participated <b>@totalHours</b> hours of Trainings Sessions with a cost of Rs. <b>@totalCost</b> </p>
+
+        @{
+            summary.Add("You have participated <b>"+totalHours+"</b> hours of Trainings Sessions with a cost of Rs. <b>"+totalCost+"</b>");
+        
+        }
         <!-- Training Details End -->
         <br />
         <br />
@@ -423,6 +434,10 @@
         </table>
         <br />
         <p class=" ft2">You have Travelled <b>@numberOfTravelledTimes</b> time(s) for <b>@numberOfDays</b> days.</p>
+         @{
+            summary.Add("You have Travelled <b>"+numberOfTravelledTimes+"</b> time(s) for <b>"+numberOfDays+"</b> days.");
+        
+        }
         <!-- Travel Details End -->
         <br />
         <br />
@@ -567,6 +582,10 @@
         </table>
         <br />
         <p class="ft2">You have conducted <b>@numberOfSessions </b>session(s) to the public covering <b>@numberOfParticipants</b> of participants.</p>
+        @{
+            summary.Add("You have conducted <b>"+numberOfSessions+" </b>session(s) to the public covering <b>"+numberOfParticipants+"</b> of participants.");
+        
+        }
         <!-- Public Appearence Details End -->
         <br />
         <br />
@@ -646,6 +665,10 @@
         </table>
         <br />
         <p class="ft2">You have conducted <b>@numberOfHours</b> hours of University Sessions covering <b>@numberOfParticipantsForUniSessions</b> of students.</p>
+        @{
+            summary.Add("You have conducted <b>"+numberOfHours+"</b> hours of University Sessions covering <b>"+numberOfParticipantsForUniSessions+"</b> of students.");
+        
+        }
         <!-- University Sessions Details End -->
         <br />
         <br />
@@ -730,6 +753,10 @@
         </table>
         <br />
         <p class="ft2">You have made <b>@numberOfInnovations</b> Value Innovations.</p>
+        @{
+            summary.Add("You have made <b>"+numberOfInnovations+"</b> Value Innovations.");
+        
+        }
         <!-- Value Innovations End -->
         <!-- Career Development-Value Innovations End -->
         <br />
@@ -829,6 +856,16 @@
         <br />
     </div>
     }
+    <div class="noBreak">
+        <p class="ft1">
+            <b>Summary</b>
+        </p>
+        <br />
+        @foreach(var item in summary){
+             <p class="ft2">@Html.Raw(item)</p>
+        }
+        <br />
+    </div>
 </div>
 <input id="printbtn" type="button" onclick="window.print();" value="Print" />
 
