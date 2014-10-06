@@ -30,7 +30,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr onclick="document.location = '/Employee/Details/@item.ID';">
+    <tr onclick="document.location = '/CBS/Employee/Details/@item.ID';">
         <td>
             @Html.DisplayFor(modelItem => item.Employee_Name)
         </td>

@@ -170,7 +170,7 @@
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\CBS\CBSAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\CBS\Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -303,6 +303,8 @@
     <Content Include="Areas\Admin\Views\ReportSettings\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ReportSettings\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DataUpload\Index.cshtml" />
+    <Content Include="Areas\CBS\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\CBS\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jasny-bootstrap.js" />
     <Content Include="Scripts\jasny-bootstrap.min.js" />
@@ -344,18 +346,16 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Employee\Create.cshtml" />
-    <Content Include="Views\Employee\Delete.cshtml" />
-    <Content Include="Views\Employee\Details.cshtml" />
-    <Content Include="Views\Employee\Edit.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Areas\CBS\Views\Employee\Create.cshtml" />
+    <Content Include="Areas\CBS\Views\Employee\Delete.cshtml" />
+    <Content Include="Areas\CBS\Views\Employee\Details.cshtml" />
+    <Content Include="Areas\CBS\Views\Employee\Edit.cshtml" />
+    <Content Include="Areas\CBS\Views\Employee\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\CBS\Controllers\" />
     <Folder Include="Areas\CBS\Models\" />
-    <Folder Include="Areas\CBS\Views\Shared\" />
     <Folder Include="Content\ExcelTemplates\" />
     <Folder Include="Content\UploadedFiles\" />
   </ItemGroup>

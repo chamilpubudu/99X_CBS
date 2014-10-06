@@ -3,10 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 99X CBS Application</title>
+    <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,31 +15,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("99X CBS", "Index", "Home", null, new { @class = "navbar-brand" })
+                <!--@Html.ActionLink("Application name", "Index", "Home", null, new { @class = "navbar-brand" })-->
+                <a class="navbar-brand" href="/Home">CBS</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <!--
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Admin", "Settings", "Admin")</li>
-                    -->
-                    <li><a href="/Home">Home</a></li>
-<!--                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
-                    <li><a href="/CBS/Employee">CBS Reports</a></li>
-                    <li><a href="/Admin/DataUpload">Bulk Data Upload</a></li>
-                    <li><a href="/Admin/ReportSettings">Report Settings</a></li>
-                    <li><a href="/Admin/Settings">System Settings</a></li>
-
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />

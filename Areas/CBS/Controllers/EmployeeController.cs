@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using _99X_CBS.Models;
 
-namespace _99X_CBS.Controllers
+namespace _99X_CBS.Areas.CBS.Controllers
 {
     public class EmployeeController : Controller
     {
