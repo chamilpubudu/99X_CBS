@@ -17,7 +17,7 @@ namespace _99X_CBS.Areas.CBS.Controllers
         // GET: /Employee/
         public ActionResult Index()
         {
-            return View(db.CBS_Employees.ToList());
+           return View(db.CBS_Employees.ToList());
         }
 
         // GET: /Employee/Details/5
