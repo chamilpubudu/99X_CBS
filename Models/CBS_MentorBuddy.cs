@@ -15,8 +15,10 @@ namespace _99X_CBS.Models
     public partial class CBS_MentorBuddy
     {
         public string Employee_Name { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public string Mentor_or_Buddy_Type { get; set; }
         public string Mentor_or_Buddy { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

@@ -15,9 +15,10 @@ namespace _99X_CBS.Models
     public partial class CBS_Promotions
     {
         public string Employee_Name { get; set; }
-        public string Date { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public string Promoted_To { get; set; }
         public string Previous_Designation { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

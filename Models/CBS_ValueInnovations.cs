@@ -15,8 +15,9 @@ namespace _99X_CBS.Models
     public partial class CBS_ValueInnovations
     {
         public string Employee_Name { get; set; }
-        public string Innovation_Date { get; set; }
+        public Nullable<System.DateTime> Innovation_Date { get; set; }
         public string Value_Innovation { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

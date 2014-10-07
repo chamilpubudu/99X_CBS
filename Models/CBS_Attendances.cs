@@ -15,6 +15,7 @@ namespace _99X_CBS.Models
     public partial class CBS_Attendances
     {
         public string Employee_Name { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public string Average_InTime { get; set; }
         public string Average_OutTime { get; set; }
         public string Weekends_Worked { get; set; }
@@ -23,6 +24,7 @@ namespace _99X_CBS.Models
         public string Annual_Leaves_Taken { get; set; }
         public string Lieu_Leaves_Taken { get; set; }
         public string Number_of_Days_Reported_to_Work { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

@@ -15,10 +15,11 @@ namespace _99X_CBS.Models
     public partial class CBS_EmployeeBillingUtilization
     {
         public string Employee_Name { get; set; }
-        public string From_Date { get; set; }
-        public string To_Date { get; set; }
+        public Nullable<System.DateTime> From_Date { get; set; }
+        public Nullable<System.DateTime> To_Date { get; set; }
         public string Project { get; set; }
         public string Billing_Utilization { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

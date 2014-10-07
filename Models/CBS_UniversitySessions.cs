@@ -15,7 +15,7 @@ namespace _99X_CBS.Models
     public partial class CBS_UniversitySessions
     {
         public string Employee_Name { get; set; }
-        public string Session_Date { get; set; }
+        public Nullable<System.DateTime> Session_Date { get; set; }
         public string Initiated_By { get; set; }
         public string Location { get; set; }
         public string Number_Of_Participants { get; set; }
@@ -24,6 +24,7 @@ namespace _99X_CBS.Models
         public string Time_Duration { get; set; }
         public string Topic { get; set; }
         public string To_the_University { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

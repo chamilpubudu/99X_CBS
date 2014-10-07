@@ -25,23 +25,23 @@ namespace _99X_CBS.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CBS_Employees> CBS_Employees { get; set; }
         public virtual DbSet<CBS_Attendances> CBS_Attendances { get; set; }
         public virtual DbSet<CBS_Awards> CBS_Awards { get; set; }
         public virtual DbSet<CBS_Bonuses> CBS_Bonuses { get; set; }
         public virtual DbSet<CBS_CustomerFeedbackScore> CBS_CustomerFeedbackScore { get; set; }
         public virtual DbSet<CBS_EmployeeBillingUtilization> CBS_EmployeeBillingUtilization { get; set; }
+        public virtual DbSet<CBS_Employees> CBS_Employees { get; set; }
         public virtual DbSet<CBS_Engagement> CBS_Engagement { get; set; }
         public virtual DbSet<CBS_FuelAllowances> CBS_FuelAllowances { get; set; }
         public virtual DbSet<CBS_Increments> CBS_Increments { get; set; }
         public virtual DbSet<CBS_MentorBuddy> CBS_MentorBuddy { get; set; }
         public virtual DbSet<CBS_Promotions> CBS_Promotions { get; set; }
         public virtual DbSet<CBS_PublicAppearences> CBS_PublicAppearences { get; set; }
+        public virtual DbSet<CBS_ReportFormat> CBS_ReportFormat { get; set; }
         public virtual DbSet<CBS_TechnologyExposure> CBS_TechnologyExposure { get; set; }
         public virtual DbSet<CBS_Trainings> CBS_Trainings { get; set; }
         public virtual DbSet<CBS_Travels> CBS_Travels { get; set; }
         public virtual DbSet<CBS_UniversitySessions> CBS_UniversitySessions { get; set; }
         public virtual DbSet<CBS_ValueInnovations> CBS_ValueInnovations { get; set; }
-        public virtual DbSet<CBS_ReportFormat> CBS_ReportFormat { get; set; }
     }
 }

@@ -15,9 +15,10 @@ namespace _99X_CBS.Models
     public partial class CBS_CustomerFeedbackScore
     {
         public string Employee_Name { get; set; }
-        public string Feedback_Date { get; set; }
+        public Nullable<System.DateTime> Feedback_Date { get; set; }
         public string Score { get; set; }
         public string Comments { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

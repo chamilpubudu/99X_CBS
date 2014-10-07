@@ -15,9 +15,10 @@ namespace _99X_CBS.Models
     public partial class CBS_FuelAllowances
     {
         public string Employee_Name { get; set; }
-        public string Fueling_Date { get; set; }
+        public Nullable<System.DateTime> Fueling_Date { get; set; }
         public string Number_Of_Liters { get; set; }
         public string Amount { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

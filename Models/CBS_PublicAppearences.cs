@@ -15,11 +15,12 @@ namespace _99X_CBS.Models
     public partial class CBS_PublicAppearences
     {
         public string Employee_Name { get; set; }
-        public string Appearance_Date { get; set; }
+        public Nullable<System.DateTime> Appearance_Date { get; set; }
         public string Location { get; set; }
         public string Event_Name { get; set; }
         public string Session_Topic { get; set; }
         public string Number_Of_Participants { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

@@ -15,12 +15,13 @@ namespace _99X_CBS.Models
     public partial class CBS_Travels
     {
         public string Employee_Name { get; set; }
-        public string Started_Date { get; set; }
+        public Nullable<System.DateTime> Started_Date { get; set; }
         public string Number_Of_Days { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
         public string Allowance_In_SLR { get; set; }
         public string Purpose { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

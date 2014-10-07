@@ -18,5 +18,6 @@ namespace _99X_CBS.Models
         public string Section { get; set; }
         public bool Enabled { get; set; }
         public string SectionCode { get; set; }
+        public Nullable<int> PriviledgeLevel { get; set; }
     }
 }

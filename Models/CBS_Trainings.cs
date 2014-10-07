@@ -15,6 +15,7 @@ namespace _99X_CBS.Models
     public partial class CBS_Trainings
     {
         public string Employee_Name { get; set; }
+        public string Year { get; set; }
         public string Course_Name { get; set; }
         public string Training_Provider { get; set; }
         public string External { get; set; }
@@ -22,6 +23,7 @@ namespace _99X_CBS.Models
         public string Training_Month { get; set; }
         public string Time_Duration { get; set; }
         public string Cost_Money { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

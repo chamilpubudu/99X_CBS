@@ -15,8 +15,9 @@ namespace _99X_CBS.Models
     public partial class CBS_Increments
     {
         public string Employee_Name { get; set; }
-        public string Effective_Date { get; set; }
+        public Nullable<System.DateTime> Effective_Date { get; set; }
         public string Increment_Amount { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

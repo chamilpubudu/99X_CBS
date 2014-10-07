@@ -15,8 +15,9 @@ namespace _99X_CBS.Models
     public partial class CBS_Awards
     {
         public string Employee_Name { get; set; }
-        public string Award_Date { get; set; }
+        public Nullable<System.DateTime> Award_Date { get; set; }
         public string Award { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

@@ -15,9 +15,10 @@ namespace _99X_CBS.Models
     public partial class CBS_Bonuses
     {
         public string Employee_Name { get; set; }
-        public string Date { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public string Bonus_Type { get; set; }
         public string Bonus_Amount { get; set; }
+        public string EmpID { get; set; }
         public int ID { get; set; }
     }
 }

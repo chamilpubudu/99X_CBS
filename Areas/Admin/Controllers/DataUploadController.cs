@@ -106,8 +106,9 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                         {
                             cbs_awards.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_awards.Award_Date = ds.Tables[0].Rows[i][1].ToString();
+                            cbs_awards.Award_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                             cbs_awards.Award = ds.Tables[0].Rows[i][2].ToString();
+                            cbs_awards.EmpID = ds.Tables[0].Rows[i][3].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -124,23 +125,53 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("Attendances.xlsx") || Request.Files["file"].FileName.Equals("Attendances.xls"))
                     {
-                        CBS_Attendances cbs_attendances = new CBS_Attendances();
+                     
+                            CBS_Attendances cbs_attendances = new CBS_Attendances();
+                            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                            {
+                            
+                               cbs_attendances.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
+                               cbs_attendances.Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
+                               cbs_attendances.Average_InTime = ds.Tables[0].Rows[i][2].ToString();
+                               cbs_attendances.Average_OutTime = ds.Tables[0].Rows[i][3].ToString();
+                               cbs_attendances.Weekends_Worked = ds.Tables[0].Rows[i][4].ToString();
+                               cbs_attendances.Medical_Leaves_Taken = ds.Tables[0].Rows[i][5].ToString();
+                               cbs_attendances.Casual_Leaves_Taken = ds.Tables[0].Rows[i][6].ToString();
+                               cbs_attendances.Annual_Leaves_Taken = ds.Tables[0].Rows[i][7].ToString();
+                               cbs_attendances.Lieu_Leaves_Taken = ds.Tables[0].Rows[i][8].ToString();
+                               cbs_attendances.Number_of_Days_Reported_to_Work = ds.Tables[0].Rows[i][9].ToString();
+                               cbs_attendances.EmpID = ds.Tables[0].Rows[i][10].ToString();
+
+                               if (ModelState.IsValid)
+                               {
+                                  db.CBS_Attendances.Add(cbs_attendances);
+                                  db.SaveChanges();
+                                  if (i == (ds.Tables[0].Rows.Count - 1))
+                                  {
+                                     Response.Write(@"<script language='javascript'>alert('Details saved successfully')</script>");
+                                  }
+                               }
+                           }
+                            
+
+                    }
+
+                    else if (Request.Files["file"].FileName.Equals("Bonuses.xlsx") || Request.Files["file"].FileName.Equals("Bonuses.xls"))
+                    {
+                        CBS_Bonuses cbs_bonuses = new CBS_Bonuses();
                         for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                         {
 
-                            cbs_attendances.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_attendances.Average_InTime = ds.Tables[0].Rows[i][1].ToString();
-                            cbs_attendances.Average_OutTime = ds.Tables[0].Rows[i][2].ToString();
-                            cbs_attendances.Weekends_Worked = ds.Tables[0].Rows[i][3].ToString();
-                            cbs_attendances.Medical_Leaves_Taken = ds.Tables[0].Rows[i][4].ToString();
-                            cbs_attendances.Casual_Leaves_Taken = ds.Tables[0].Rows[i][5].ToString();
-                            cbs_attendances.Annual_Leaves_Taken = ds.Tables[0].Rows[i][6].ToString();
-                            cbs_attendances.Lieu_Leaves_Taken = ds.Tables[0].Rows[i][7].ToString();
-                            cbs_attendances.Number_of_Days_Reported_to_Work = ds.Tables[0].Rows[i][8].ToString();
+                            cbs_bonuses.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
+                            cbs_bonuses.Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
+                            cbs_bonuses.Bonus_Type = ds.Tables[0].Rows[i][2].ToString();
+                            cbs_bonuses.Bonus_Amount = ds.Tables[0].Rows[i][3].ToString();
+                            cbs_bonuses.EmpID = ds.Tables[0].Rows[i][4].ToString();
+
 
                             if (ModelState.IsValid)
                             {
-                                db.CBS_Attendances.Add(cbs_attendances);
+                                db.CBS_Bonuses.Add(cbs_bonuses);
                                 db.SaveChanges();
                                 if (i == (ds.Tables[0].Rows.Count - 1))
                                 {
@@ -148,6 +179,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 }
                             }
                         }
+
 
                     }
 
@@ -158,9 +190,11 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_customerfeedbackscore.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_customerfeedbackscore.Feedback_Date = ds.Tables[0].Rows[i][1].ToString();
+                            cbs_customerfeedbackscore.Feedback_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                             cbs_customerfeedbackscore.Score = ds.Tables[0].Rows[i][2].ToString();
                             cbs_customerfeedbackscore.Comments = ds.Tables[0].Rows[i][3].ToString();
+                            cbs_customerfeedbackscore.EmpID = ds.Tables[0].Rows[i][4].ToString();
+
 
                             if (ModelState.IsValid)
                             {
@@ -183,10 +217,11 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_employeebillingutilization.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_employeebillingutilization.From_Date = ds.Tables[0].Rows[i][1].ToString();
-                            cbs_employeebillingutilization.To_Date = ds.Tables[0].Rows[i][2].ToString();
+                            cbs_employeebillingutilization.From_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
+                            cbs_employeebillingutilization.To_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][2].ToString());
                             cbs_employeebillingutilization.Project = ds.Tables[0].Rows[i][3].ToString();
                             cbs_employeebillingutilization.Billing_Utilization = ds.Tables[0].Rows[i][4].ToString();
+                            cbs_employeebillingutilization.EmpID = ds.Tables[0].Rows[i][5].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -209,9 +244,10 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                             cbs_employees.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
                             cbs_employees.Designation = ds.Tables[0].Rows[i][1].ToString();
-                            cbs_employees.Date_Joined = ds.Tables[0].Rows[i][2].ToString();
+                            cbs_employees.Date_Joined = Convert.ToDateTime(ds.Tables[0].Rows[i][2].ToString());
                             cbs_employees.Career_Started_On = ds.Tables[0].Rows[i][3].ToString();
                             cbs_employees.Appraisal_Score = ds.Tables[0].Rows[i][4].ToString();
+                            cbs_employees.EmpID = ds.Tables[0].Rows[i][5].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -232,8 +268,9 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_engagement.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_engagement.Date = ds.Tables[0].Rows[i][1].ToString();
+                            cbs_engagement.Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                             cbs_engagement.Event = ds.Tables[0].Rows[i][2].ToString();
+                            cbs_engagement.EmpID = ds.Tables[0].Rows[i][3].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -254,9 +291,10 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_fuelallowances.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_fuelallowances.Fueling_Date = ds.Tables[0].Rows[i][1].ToString();
+                            cbs_fuelallowances.Fueling_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                             cbs_fuelallowances.Number_Of_Liters = ds.Tables[0].Rows[i][2].ToString();
                             cbs_fuelallowances.Amount = ds.Tables[0].Rows[i][3].ToString();
+                            cbs_fuelallowances.EmpID = ds.Tables[0].Rows[i][4].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -277,8 +315,9 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_increments.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_increments.Effective_Date = ds.Tables[0].Rows[i][1].ToString();
+                            cbs_increments.Effective_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                             cbs_increments.Increment_Amount = ds.Tables[0].Rows[i][2].ToString();
+                            cbs_increments.EmpID = ds.Tables[0].Rows[i][3].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -299,8 +338,10 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_mentorbuddy.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_mentorbuddy.Mentor_or_Buddy_Type = ds.Tables[0].Rows[i][1].ToString();
-                            cbs_mentorbuddy.Mentor_or_Buddy = ds.Tables[0].Rows[i][2].ToString();
+                            cbs_mentorbuddy.Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
+                            cbs_mentorbuddy.Mentor_or_Buddy_Type = ds.Tables[0].Rows[i][2].ToString();
+                            cbs_mentorbuddy.Mentor_or_Buddy = ds.Tables[0].Rows[i][3].ToString();
+                            cbs_mentorbuddy.EmpID = ds.Tables[0].Rows[i][4].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -321,9 +362,10 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_promotions.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_promotions.Date = ds.Tables[0].Rows[i][1].ToString();
+                            cbs_promotions.Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                             cbs_promotions.Promoted_To = ds.Tables[0].Rows[i][2].ToString();
                             cbs_promotions.Previous_Designation = ds.Tables[0].Rows[i][3].ToString();
+                            cbs_promotions.EmpID = ds.Tables[0].Rows[i][4].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -344,11 +386,12 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_publicappearance.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_publicappearance.Appearance_Date = ds.Tables[0].Rows[i][1].ToString();
+                            cbs_publicappearance.Appearance_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                             cbs_publicappearance.Location = ds.Tables[0].Rows[i][2].ToString();
                             cbs_publicappearance.Event_Name = ds.Tables[0].Rows[i][3].ToString();
                             cbs_publicappearance.Session_Topic = ds.Tables[0].Rows[i][4].ToString();
                             cbs_publicappearance.Number_Of_Participants = ds.Tables[0].Rows[i][5].ToString();
+                            cbs_publicappearance.EmpID = ds.Tables[0].Rows[i][6].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -369,8 +412,10 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_technologyexposure.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_technologyexposure.Engagement = ds.Tables[0].Rows[i][1].ToString();
-                            cbs_technologyexposure.Technologies = ds.Tables[0].Rows[i][2].ToString();
+                            cbs_technologyexposure.Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
+                            cbs_technologyexposure.Engagement = ds.Tables[0].Rows[i][2].ToString();
+                            cbs_technologyexposure.Technologies = ds.Tables[0].Rows[i][3].ToString();
+                            cbs_technologyexposure.EmpID = ds.Tables[0].Rows[i][4].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -391,13 +436,15 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_trainings.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_trainings.Course_Name = ds.Tables[0].Rows[i][1].ToString();
-                            cbs_trainings.Training_Provider = ds.Tables[0].Rows[i][2].ToString();
-                            cbs_trainings.External = ds.Tables[0].Rows[i][3].ToString();
-                            cbs_trainings.Category = ds.Tables[0].Rows[i][4].ToString();
-                            cbs_trainings.Training_Month = ds.Tables[0].Rows[i][5].ToString();
-                            cbs_trainings.Time_Duration = ds.Tables[0].Rows[i][6].ToString();
-                            cbs_trainings.Cost_Money = ds.Tables[0].Rows[i][7].ToString();
+                            cbs_trainings.Year = ds.Tables[0].Rows[i][1].ToString();
+                            cbs_trainings.Course_Name = ds.Tables[0].Rows[i][2].ToString();
+                            cbs_trainings.Training_Provider = ds.Tables[0].Rows[i][3].ToString();
+                            cbs_trainings.External = ds.Tables[0].Rows[i][4].ToString();
+                            cbs_trainings.Category = ds.Tables[0].Rows[i][5].ToString();
+                            cbs_trainings.Training_Month = ds.Tables[0].Rows[i][6].ToString();
+                            cbs_trainings.Time_Duration = ds.Tables[0].Rows[i][7].ToString();
+                            cbs_trainings.Cost_Money = ds.Tables[0].Rows[i][8].ToString();
+                            cbs_trainings.EmpID = ds.Tables[0].Rows[i][9].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -418,12 +465,13 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_travels.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_travels.Started_Date = ds.Tables[0].Rows[i][1].ToString();
+                            cbs_travels.Started_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                             cbs_travels.Number_Of_Days = ds.Tables[0].Rows[i][2].ToString();
                             cbs_travels.Country = ds.Tables[0].Rows[i][3].ToString();
                             cbs_travels.City = ds.Tables[0].Rows[i][4].ToString();
                             cbs_travels.Allowance_In_SLR = ds.Tables[0].Rows[i][5].ToString();
                             cbs_travels.Purpose = ds.Tables[0].Rows[i][6].ToString();
+                            cbs_travels.EmpID = ds.Tables[0].Rows[i][7].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -446,7 +494,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_universitysessions.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_universitysessions.Session_Date = ds.Tables[0].Rows[i][1].ToString();
+                            cbs_universitysessions.Session_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                             cbs_universitysessions.Initiated_By = ds.Tables[0].Rows[i][2].ToString();
                             cbs_universitysessions.Location = ds.Tables[0].Rows[i][3].ToString();
                             cbs_universitysessions.Number_Of_Participants = ds.Tables[0].Rows[i][4].ToString();
@@ -455,6 +503,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             cbs_universitysessions.Time_Duration = ds.Tables[0].Rows[i][7].ToString();
                             cbs_universitysessions.Topic = ds.Tables[0].Rows[i][8].ToString();
                             cbs_universitysessions.To_the_University = ds.Tables[0].Rows[i][9].ToString();
+                            cbs_universitysessions.EmpID = ds.Tables[0].Rows[i][10].ToString();
 
                             if (ModelState.IsValid)
                             {
@@ -475,8 +524,9 @@ namespace _99X_CBS.Areas.Admin.Controllers
                         {
 
                             cbs_valueinnovations.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-                            cbs_valueinnovations.Innovation_Date = ds.Tables[0].Rows[i][1].ToString();
+                            cbs_valueinnovations.Innovation_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                             cbs_valueinnovations.Value_Innovation = ds.Tables[0].Rows[i][2].ToString();
+                            cbs_valueinnovations.EmpID = ds.Tables[0].Rows[i][3].ToString();
 
 
                             if (ModelState.IsValid)
