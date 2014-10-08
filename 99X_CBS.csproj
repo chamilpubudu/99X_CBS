@@ -169,6 +169,24 @@
     <Compile Include="Areas\Admin\Controllers\ReportSettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\CBS\CBSAreaRegistration.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_Attendances.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_Awards.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_Bonuses.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_CustomerFeedbackScore.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_EmployeeBillingUtilization.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_Employees.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_Engagement.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_FuelAllowances.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_Increments.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_MentorBuddy.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_Promotions.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_PublicAppearences.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_ReportFormat.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_TechnologyExposure.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_Trainings.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_Travels.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_UniversitySessions.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_ValueInnovations.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\CBS\Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -185,76 +203,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CbsModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CbsModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CbsModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CbsModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CbsModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_Attendances.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_Awards.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_Bonuses.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_CustomerFeedbackScore.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CBS_DTO.cs" />
-    <Compile Include="Models\CBS_EmployeeBillingUtilization.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_Employees.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_Engagement.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_FuelAllowances.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_Increments.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_MentorBuddy.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_Promotions.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_PublicAppearences.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_ReportFormat.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_TechnologyExposure.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_Trainings.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_Travels.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_UniversitySessions.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CBS_ValueInnovations.cs">
-      <DependentUpon>CbsModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Entities.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -298,23 +248,6 @@
     <Content Include="Areas\Admin\Views\DataUpload\Index.cshtml" />
     <Content Include="Areas\CBS\Views\_ViewStart.cshtml" />
     <Content Include="Areas\CBS\Views\Shared\_Layout.cshtml" />
-    <EntityDeploy Include="Models\CbsModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CbsModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\CbsModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CbsModel.edmx</DependentUpon>
-      <LastGenOutput>CbsModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\CbsModel.edmx.diagram">
-      <DependentUpon>CbsModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\CbsModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CbsModel.edmx</DependentUpon>
-      <LastGenOutput>CbsModel.cs</LastGenOutput>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jasny-bootstrap.js" />
     <Content Include="Scripts\jasny-bootstrap.min.js" />
@@ -366,7 +299,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\CBS\Models\" />
     <Folder Include="Content\ExcelTemplates\" />
     <Folder Include="Content\UploadedFiles\" />
   </ItemGroup>

@@ -64,7 +64,7 @@ namespace _99X_CBS.Migrations
             success = idManager.AddUserToRole(newUser.Id, "Admin");
             if (!success) return success;
 
-            success = idManager.AddUserToRole(newUser.Id, "CanEdit");
+            success = idManager.AddUserToRole(newUser.Id, "Manager");
             if (!success) return success;
 
             success = idManager.AddUserToRole(newUser.Id, "User");
