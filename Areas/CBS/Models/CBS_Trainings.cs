@@ -15,7 +15,7 @@ namespace _99X_CBS.Models
     public partial class CBS_Trainings
     {
         public string Employee_Name { get; set; }
-        public string Year { get; set; }
+        public int Year { get; set; }
         public string Course_Name { get; set; }
         public string Training_Provider { get; set; }
         public string External { get; set; }

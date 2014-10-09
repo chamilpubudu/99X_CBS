@@ -17,7 +17,7 @@ namespace _99X_CBS.Models
         public string Employee_Name { get; set; }
         public string Designation { get; set; }
         public Nullable<System.DateTime> Date_Joined { get; set; }
-        public string Career_Started_On { get; set; }
+        public int Career_Started_On { get; set; }
         public string Appraisal_Score { get; set; }
         public string EmpID { get; set; }
         public int ID { get; set; }
