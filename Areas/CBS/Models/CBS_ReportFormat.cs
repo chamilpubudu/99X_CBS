@@ -22,6 +22,5 @@ namespace _99X_CBS.Models
         public bool Approved { get; set; }
         public string EditedBy { get; set; }
         public int TargetRowID { get; set; }
-        public int ID { get; set; }
     }
 }
