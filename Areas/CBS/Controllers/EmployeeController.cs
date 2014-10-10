@@ -21,8 +21,9 @@ namespace _99X_CBS.Areas.CBS.Controllers
         }
 
         // GET: /Employee/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? year = 0)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -32,22 +33,29 @@ namespace _99X_CBS.Areas.CBS.Controllers
             {
                 return HttpNotFound();
             }
-            List<CBS_Promotions> cbs_PromotionsList                                 = db.CBS_Promotions.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_Increments> cbs_IncrementsList                                 = db.CBS_Increments.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_Bonuses> cbs_BonusesList                                       = db.CBS_Bonuses.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_Awards> cbs_AwardsList                                         = db.CBS_Awards.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_EmployeeBillingUtilization> cbs_EmployeeBillingUtilizationList = db.CBS_EmployeeBillingUtilization.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_CustomerFeedbackScore> cbs_CustomerFeedbackScoreList           = db.CBS_CustomerFeedbackScore.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_Trainings> cbs_TrainingsList                                   = db.CBS_Trainings.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_Travels> cbs_TravelsList                                       = db.CBS_Travels.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_TechnologyExposure> cbs_TechnologyExposureList                 = db.CBS_TechnologyExposure.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_MentorBuddy> cbs_MentorBuddyList                               = db.CBS_MentorBuddy.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_PublicAppearences> cbs_PublicAppearencesList                   = db.CBS_PublicAppearences.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_UniversitySessions> cbs_UniversitySessionsList                 = db.CBS_UniversitySessions.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_Engagement> cbs_EngagementList                                 = db.CBS_Engagement.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_ValueInnovations> cbs_ValueInnovationsList                     = db.CBS_ValueInnovations.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_Attendances> cbs_AttendancesList                               = db.CBS_Attendances.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
-            List<CBS_FuelAllowances> cbs_FuelAllowancesList                         = db.CBS_FuelAllowances.Where(x => x.Employee_Name == cbs_employees.Employee_Name).ToList();
+
+            //if the year is not provided then sort by the current year
+            if (year == 0)
+            {
+                year = DateTime.Now.Year ;
+            }
+
+            List<CBS_Promotions> cbs_PromotionsList                                 = db.CBS_Promotions.Where(x => (x.Employee_Name == cbs_employees.Employee_Name) && (x.Date.Value.Year == year)).ToList();
+            List<CBS_Increments> cbs_IncrementsList                                 = db.CBS_Increments.Where(x => (x.Employee_Name == cbs_employees.Employee_Name) && (x.Effective_Date.Value.Year == year)).ToList();
+            List<CBS_Bonuses> cbs_BonusesList                                       = db.CBS_Bonuses.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Date.Value.Year == year)).ToList();
+            List<CBS_Awards> cbs_AwardsList                                         = db.CBS_Awards.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Award_Date.Value.Year == year)).ToList();
+            List<CBS_EmployeeBillingUtilization> cbs_EmployeeBillingUtilizationList = db.CBS_EmployeeBillingUtilization.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.From_Date.Value.Year == year)).ToList();
+            List<CBS_CustomerFeedbackScore> cbs_CustomerFeedbackScoreList           = db.CBS_CustomerFeedbackScore.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Feedback_Date.Value.Year == year)).ToList();
+            List<CBS_Trainings> cbs_TrainingsList                                   = db.CBS_Trainings.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Year == year)).ToList();
+            List<CBS_Travels> cbs_TravelsList                                       = db.CBS_Travels.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Started_Date.Value.Year == year)).ToList();
+            List<CBS_TechnologyExposure> cbs_TechnologyExposureList                 = db.CBS_TechnologyExposure.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Date.Value.Year == year)).ToList();
+            List<CBS_MentorBuddy> cbs_MentorBuddyList                               = db.CBS_MentorBuddy.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Date.Value.Year == year)).ToList();
+            List<CBS_PublicAppearences> cbs_PublicAppearencesList                   = db.CBS_PublicAppearences.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Appearance_Date.Value.Year == year)).ToList();
+            List<CBS_UniversitySessions> cbs_UniversitySessionsList                 = db.CBS_UniversitySessions.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Session_Date.Value.Year == year)).ToList();
+            List<CBS_Engagement> cbs_EngagementList                                 = db.CBS_Engagement.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Date.Value.Year == year)).ToList();
+            List<CBS_ValueInnovations> cbs_ValueInnovationsList                     = db.CBS_ValueInnovations.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Innovation_Date.Value.Year == year)).ToList();
+            List<CBS_Attendances> cbs_AttendancesList                               = db.CBS_Attendances.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Date.Value.Year == year)).ToList();
+            List<CBS_FuelAllowances> cbs_FuelAllowancesList                         = db.CBS_FuelAllowances.Where(x => x.Employee_Name == cbs_employees.Employee_Name && (x.Fueling_Date.Value.Year == year)).ToList();
             List<CBS_ReportFormat> cbs_ReportFormatList                             = db.CBS_ReportFormat.ToList();
 
             CBS_DTO cbs_dto = new CBS_DTO();
@@ -72,6 +80,7 @@ namespace _99X_CBS.Areas.CBS.Controllers
 
             return View(cbs_dto);
         }
+
 
         // GET: /Employee/Create
         public ActionResult Create()

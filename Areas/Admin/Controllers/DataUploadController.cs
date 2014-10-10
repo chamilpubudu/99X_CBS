@@ -245,7 +245,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             cbs_employees.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
                             cbs_employees.Designation = ds.Tables[0].Rows[i][1].ToString();
                             cbs_employees.Date_Joined = Convert.ToDateTime(ds.Tables[0].Rows[i][2].ToString());
-                            cbs_employees.Career_Started_On = Int32.Parse(ds.Tables[0].Rows[i][3].ToString());
+                            cbs_employees.Career_Started_On = Convert.ToDateTime(ds.Tables[0].Rows[i][3].ToString());
                             cbs_employees.Appraisal_Score = ds.Tables[0].Rows[i][4].ToString();
                             cbs_employees.EmpID = ds.Tables[0].Rows[i][5].ToString();
 
