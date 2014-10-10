@@ -25,6 +25,9 @@ namespace _99X_CBS.Models
         public string Lieu_Leaves_Taken { get; set; }
         public string Number_of_Days_Reported_to_Work { get; set; }
         public string EmpID { get; set; }
+        public bool Approved { get; set; }
+        public string  EditedBy { get; set; }
+        public int  TargetRowID { get; set; }
         public int ID { get; set; }
     }
 }

@@ -19,5 +19,9 @@ namespace _99X_CBS.Models
         public bool Enabled { get; set; }
         public string SectionCode { get; set; }
         public Nullable<int> PriviledgeLevel { get; set; }
+        public bool Approved { get; set; }
+        public string EditedBy { get; set; }
+        public int TargetRowID { get; set; }
+        public int ID { get; set; }
     }
 }

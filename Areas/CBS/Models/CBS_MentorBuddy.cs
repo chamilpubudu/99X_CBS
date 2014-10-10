@@ -19,6 +19,9 @@ namespace _99X_CBS.Models
         public string Mentor_or_Buddy_Type { get; set; }
         public string Mentor_or_Buddy { get; set; }
         public string EmpID { get; set; }
+        public bool Approved { get; set; }
+        public string EditedBy { get; set; }
+        public int TargetRowID { get; set; }
         public int ID { get; set; }
     }
 }

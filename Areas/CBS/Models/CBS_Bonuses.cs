@@ -19,6 +19,9 @@ namespace _99X_CBS.Models
         public string Bonus_Type { get; set; }
         public string Bonus_Amount { get; set; }
         public string EmpID { get; set; }
+        public bool Approved { get; set; }
+        public string EditedBy { get; set; }
+        public int TargetRowID { get; set; }
         public int ID { get; set; }
     }
 }
