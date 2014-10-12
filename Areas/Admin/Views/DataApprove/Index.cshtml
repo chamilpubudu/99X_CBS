@@ -1,0 +1,215 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Approve Data</h2>
+
+<link rel="stylesheet" type="text/css" href="../../../../Content/ng-grid.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/data.approve.css" />
+<script type="text/javascript" src="../../../../Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../../../../Scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../../Scripts/angular.js"></script>
+<script type="text/javascript" src="../../../../Scripts/ng-grid.js"></script>
+<script type="text/javascript" src="~/Scripts/data-approve.js"></script>
+
+<div ng-app="cbsApp" ng-controller="DataApproveCtrl" lang="en">
+    <div class="row">
+        <!-- Navigation Buttons -->
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked" id="dataApproveTabs">
+                <li class="active"><a href="#CBS_Attendances">CBS_Attendances</a></li>
+                <li><a href="#CBS_Awards">CBS_Awards</a></li>
+                <li><a href="#CBS_Bonuses">CBS_Bonuses</a></li>
+                <li><a href="#CBS_CustomerFeedbackScore">CBS_CustomerFeedbackScore</a></li>
+                <li><a href="#CBS_EmployeeBillingUtilization">CBS_EmployeeBillingUtilization</a></li>
+
+                @*<li><a href="#profile">Profile</a></li>*@
+                <li><a href="#CBS_Engagement">CBS_Engagement</a></li>
+                <li><a href="#CBS_FuelAllowances">CBS_FuelAllowances</a></li>
+                <li><a href="#CBS_Increments">CBS_Increments</a></li>
+                <li><a href="#CBS_MentorBuddy">CBS_MentorBuddy</a></li>
+
+                <li><a href="#CBS_Promotions">CBS_Promotions</a></li>
+                <li><a href="#CBS_PublicAppearences">CBS_PublicAppearences</a></li>
+                @*<li><a href="#profile">Profile</a></li>*@
+                <li><a href="#CBS_TechnologyExposure">CBS_TechnologyExposure</a></li>
+                <li><a href="#CBS_Trainings">CBS_Trainings</a></li>
+
+                <li><a href="#CBS_Travels">CBS_Travels</a></li>
+                <li><a href="#CBS_UniversitySessions">CBS_UniversitySessions</a></li>
+                <li><a href="#CBS_ValueInnovations">CBS_ValueInnovations</a></li>
+            </ul>
+        </div>
+        <!-- Content -->
+        <div class="col-md-8">
+            <div class="tab-content">
+                <div class="tab-pane active" id="CBS_Attendances">
+                    <h4>CBS_Attendances</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_AttendancesGridOptions"></div>
+                        <button ng-click="Approve('CBS_Attendances')">Approve</button>
+                        <button ng-click="Discard('CBS_Attendances')">Discard</button>
+                        <div class="selectedItems">{{CBS_AttendancesGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="CBS_Awards">
+                    <h4>CBS_Awards 1</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_AwardsGridOptions"></div>
+                        <button ng-click="Approve('CBS_Awards')">Approve</button>
+                        <button ng-click="Discard('CBS_Awards')">Discard</button>
+                        <div class="selectedItems">{{CBS_AwardsGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="CBS_Bonuses">
+                    <h4>CBS_Bonuses</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_BonusesGridOptions"></div>
+                        <button ng-click="Approve('CBS_Bonuses')">Approve</button>
+                        <button ng-click="Discard('CBS_Bonuses')">Discard</button>
+                        <div class="selectedItems">{{CBS_BonusesGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="CBS_CustomerFeedbackScore">
+                    <h4>CBS_CustomerFeedbackScore</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_CustomerFeedbackScoreGridOptions"></div>
+                        <button ng-click="Approve('CBS_CustomerFeedbackScore')">Approve</button>
+                        <button ng-click="Discard('CBS_CustomerFeedbackScore')">Discard</button>
+                        <div class="selectedItems">{{CBS_CustomerFeedbackScoreGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="CBS_EmployeeBillingUtilization">
+                    <h4>CBS_EmployeeBillingUtilization</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_EmployeeBillingUtilizationGridOptions"></div>
+                        <button ng-click="Approve('CBS_EmployeeBillingUtilization')">Approve</button>
+                        <button ng-click="Discard('CBS_EmployeeBillingUtilization')">Discard</button>
+                        <div class="selectedItems">{{CBS_EmployeeBillingUtilizationGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+
+                @*<div class="tab-pane" id="profile">
+                    </div>*@
+                <div class="tab-pane" id="CBS_Engagement">
+                    <h4>CBS_Engagement</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_EngagementGridOptions"></div>
+                        <button ng-click="Approve('CBS_Engagement')">Approve</button>
+                        <button ng-click="Discard('CBS_Engagement')">Discard</button>
+                        <div class="selectedItems">{{CBS_EngagementGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="CBS_FuelAllowances">
+                    <h4>CBS_FuelAllowances</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_FuelAllowancesGridOptions"></div>
+                        <button ng-click="Approve('CBS_FuelAllowances')">Approve</button>
+                        <button ng-click="Discard('CBS_FuelAllowances')">Discard</button>
+                        <div class="selectedItems">{{CBS_FuelAllowancesGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="CBS_Increments">
+                    <h4>CBS_Increments</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_IncrementsGridOptions"></div>
+                        <button ng-click="Approve('CBS_Increments')">Approve</button>
+                        <button ng-click="Discard('CBS_Increments')">Discard</button>
+                        <div class="selectedItems">{{CBS_IncrementsGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="CBS_MentorBuddy">
+                    <h4>CBS_MentorBuddy</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_MentorBuddyGridOptions"></div>
+                        <button ng-click="Approve('CBS_MentorBuddy')">Approve</button>
+                        <button ng-click="Discard('CBS_MentorBuddy')">Discard</button>
+                        <div class="selectedItems">{{CBS_MentorBuddyGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="CBS_Promotions">
+                    <h4>CBS_Promotions</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_PromotionsGridOptions"></div>
+                        <button ng-click="Approve('CBS_Promotions')">Approve</button>
+                        <button ng-click="Discard('CBS_Promotions')">Discard</button>
+                        <div class="selectedItems">{{CBS_PromotionsGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="CBS_PublicAppearences">
+                    <h4>CBS_PublicAppearences</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_PublicAppearencesGridOptions"></div>
+                        <button ng-click="Approve('CBS_PublicAppearences')">Approve</button>
+                        <button ng-click="Discard('CBS_PublicAppearences')">Discard</button>
+                        <div class="selectedItems">{{CBS_PublicAppearencesGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                @*<div class="tab-pane" id="profile">
+                    </div>*@
+                <div class="tab-pane" id="CBS_TechnologyExposure">
+                    <h4>CBS_TechnologyExposure</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_TechnologyExposureGridOptions"></div>
+                        <button ng-click="Approve('CBS_TechnologyExposure')">Approve</button>
+                        <button ng-click="Discard('CBS_TechnologyExposure')">Discard</button>
+                        <div class="selectedItems">{{CBS_TechnologyExposureGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="CBS_Trainings">
+                    <h4>CBS_Trainings</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_TrainingsGridOptions"></div>
+                        <button ng-click="Approve('CBS_Trainings')">Approve</button>
+                        <button ng-click="Discard('CBS_Trainings')">Discard</button>
+                        <div class="selectedItems">{{CBS_TrainingsGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="CBS_Travels">
+                    <h4>CBS_Travels</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_TravelsGridOptions"></div>
+                        <button ng-click="Approve('CBS_Travels')">Approve</button>
+                        <button ng-click="Discard('CBS_Travels')">Discard</button>
+                        <div class="selectedItems">{{CBS_TravelsGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="CBS_UniversitySessions">
+                    <h4>CBS_UniversitySessions</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_UniversitySessionsGridOptions"></div>
+                        <button ng-click="Approve('CBS_UniversitySessions')">Approve</button>
+                        <button ng-click="Discard('CBS_UniversitySessions')">Discard</button>
+                        <div class="selectedItems">{{CBS_UniversitySessionsGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="CBS_ValueInnovations">
+                    <h4>CBS_ValueInnovations</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_ValueInnovationsGridOptions"></div>
+                        <button ng-click="Approve('CBS_ValueInnovations')">Approve</button>
+                        <button ng-click="Discard('CBS_ValueInnovations')">Discard</button>
+                        <div class="selectedItems">{{CBS_ValueInnovationsGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        // Enable the Tabs
+
+        $('#dataApproveTabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        });
+
+    });
+
+</script>
