@@ -1,0 +1,105 @@
+﻿@model IEnumerable<_99X_CBS.Models.CBS_Trainings>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Training_Provider)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.External)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Training_Month)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time_Duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost_Money)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Approved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TargetRowID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Training_Provider)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.External)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Training_Month)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time_Duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost_Money)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Approved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EditedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TargetRowID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

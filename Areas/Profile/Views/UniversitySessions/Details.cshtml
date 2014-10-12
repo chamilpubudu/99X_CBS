@@ -1,0 +1,130 @@
+﻿@model _99X_CBS.Models.CBS_UniversitySessions
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CBS_UniversitySessions</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Session_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Initiated_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Initiated_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number_Of_Participants)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number_Of_Participants)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participants)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participants)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Session_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time_Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time_Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Topic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Topic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.To_the_University)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.To_the_University)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Approved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Approved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TargetRowID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TargetRowID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
