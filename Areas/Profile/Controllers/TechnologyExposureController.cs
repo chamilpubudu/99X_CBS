@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _99X_CBS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace _99X_CBS.Areas.Profile.Controllers
 {
+    [Authorize]
     public class TechnologyExposureController : Controller
     {
         private Entities db = new Entities();
@@ -17,7 +19,15 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: Profile/TechnologyExposure
         public ActionResult Index()
         {
-            return View(db.CBS_TechnologyExposure.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_TechnologyExposure_Manage"))
+            {
+                return View(db.CBS_TechnologyExposure.Where(x => x.Approved == true).ToList());
+            }
+            else
+            {
+                string userId = User.Identity.GetUserId();
+                return View(db.CBS_TechnologyExposure.Where(x => x.Approved == true && x.EmpID == userId).ToList());
+            }
         }
 
         // GET: Profile/TechnologyExposure/Details/5
@@ -50,6 +60,14 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_TechnologyExposure_Manage"))
+                {
+                    cBS_TechnologyExposure.Approved = true;
+                }
+                else
+                {
+                    cBS_TechnologyExposure.Approved = false;
+                }
                 db.CBS_TechnologyExposure.Add(cBS_TechnologyExposure);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +100,20 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cBS_TechnologyExposure).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_TechnologyExposure_Manage"))
+                {
+                    cBS_TechnologyExposure.Approved = true;
+                    db.Entry(cBS_TechnologyExposure).State = EntityState.Modified;
+                }
+                else
+                {
+                    cBS_TechnologyExposure.Approved = false;
+                    cBS_TechnologyExposure.TargetRowID = cBS_TechnologyExposure.ID;
+                    cBS_TechnologyExposure.EditedBy = User.Identity.Name;
+                    cBS_TechnologyExposure.ID = 0;
+                    db.CBS_TechnologyExposure.Add(cBS_TechnologyExposure);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -90,6 +121,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         }
 
         // GET: Profile/TechnologyExposure/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_TechnologyExposure_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +138,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
 
         // POST: Profile/TechnologyExposure/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_TechnologyExposure_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

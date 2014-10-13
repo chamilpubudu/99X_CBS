@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _99X_CBS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace _99X_CBS.Areas.Profile.Controllers
 {
+    [Authorize]
     public class FuelAllowancesController : Controller
     {
         private Entities db = new Entities();
@@ -17,7 +19,15 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: Profile/FuelAllowances
         public ActionResult Index()
         {
-            return View(db.CBS_FuelAllowances.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_FuelAllowances_Manage"))
+            {
+                return View(db.CBS_FuelAllowances.Where(x => x.Approved == true).ToList());
+            }
+            else
+            {
+                string userId = User.Identity.GetUserId();
+                return View(db.CBS_FuelAllowances.Where(x => x.Approved == true && x.EmpID == userId).ToList());
+            }
         }
 
         // GET: Profile/FuelAllowances/Details/5
@@ -50,6 +60,14 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_FuelAllowances_Manage"))
+                {
+                    cBS_FuelAllowances.Approved = true;
+                }
+                else
+                {
+                    cBS_FuelAllowances.Approved = false;
+                }
                 db.CBS_FuelAllowances.Add(cBS_FuelAllowances);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +100,20 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cBS_FuelAllowances).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_FuelAllowances_Manage"))
+                {
+                    cBS_FuelAllowances.Approved = true;
+                    db.Entry(cBS_FuelAllowances).State = EntityState.Modified;
+                }
+                else
+                {
+                    cBS_FuelAllowances.Approved = false;
+                    cBS_FuelAllowances.TargetRowID = cBS_FuelAllowances.ID;
+                    cBS_FuelAllowances.EditedBy = User.Identity.Name;
+                    cBS_FuelAllowances.ID = 0;
+                    db.CBS_FuelAllowances.Add(cBS_FuelAllowances);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -90,6 +121,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         }
 
         // GET: Profile/FuelAllowances/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_FuelAllowances_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +138,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
 
         // POST: Profile/FuelAllowances/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_FuelAllowances_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

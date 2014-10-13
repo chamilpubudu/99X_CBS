@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _99X_CBS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace _99X_CBS.Areas.Profile.Controllers
 {
+    [Authorize]
     public class EmployeeBillingUtilizationController : Controller
     {
         private Entities db = new Entities();
@@ -17,7 +19,15 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: Profile/EmployeeBillingUtilization
         public ActionResult Index()
         {
-            return View(db.CBS_EmployeeBillingUtilization.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_EmployeeBillingUtilization_Manage"))
+            {
+                return View(db.CBS_EmployeeBillingUtilization.Where(x => x.Approved == true).ToList());
+            }
+            else
+            {
+                string userId = User.Identity.GetUserId();
+                return View(db.CBS_EmployeeBillingUtilization.Where(x => x.Approved == true && x.EmpID == userId).ToList());
+            }
         }
 
         // GET: Profile/EmployeeBillingUtilization/Details/5
@@ -50,6 +60,14 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_EmployeeBillingUtilization_Manage"))
+                {
+                    cBS_EmployeeBillingUtilization.Approved = true;
+                }
+                else
+                {
+                    cBS_EmployeeBillingUtilization.Approved = false;
+                }
                 db.CBS_EmployeeBillingUtilization.Add(cBS_EmployeeBillingUtilization);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +100,20 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cBS_EmployeeBillingUtilization).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_EmployeeBillingUtilization_Manage"))
+                {
+                    cBS_EmployeeBillingUtilization.Approved = true;
+                    db.Entry(cBS_EmployeeBillingUtilization).State = EntityState.Modified;
+                }
+                else
+                {
+                    cBS_EmployeeBillingUtilization.Approved = false;
+                    cBS_EmployeeBillingUtilization.TargetRowID = cBS_EmployeeBillingUtilization.ID;
+                    cBS_EmployeeBillingUtilization.EditedBy = User.Identity.Name;
+                    cBS_EmployeeBillingUtilization.ID = 0;
+                    db.CBS_EmployeeBillingUtilization.Add(cBS_EmployeeBillingUtilization);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -90,6 +121,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         }
 
         // GET: Profile/EmployeeBillingUtilization/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_EmployeeBillingUtilization_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +138,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
 
         // POST: Profile/EmployeeBillingUtilization/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_EmployeeBillingUtilization_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

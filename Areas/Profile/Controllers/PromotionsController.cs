@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _99X_CBS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace _99X_CBS.Areas.Profile.Controllers
 {
+    [Authorize]
     public class PromotionsController : Controller
     {
         private Entities db = new Entities();
@@ -17,7 +19,15 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: Profile/Promotions
         public ActionResult Index()
         {
-            return View(db.CBS_Promotions.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Promotions_Manage"))
+            {
+                return View(db.CBS_Promotions.Where(x => x.Approved == true).ToList());
+            }
+            else
+            {
+                string userId = User.Identity.GetUserId();
+                return View(db.CBS_Promotions.Where(x => x.Approved == true && x.EmpID == userId).ToList());
+            }
         }
 
         // GET: Profile/Promotions/Details/5
@@ -50,6 +60,14 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Promotions_Manage"))
+                {
+                    cBS_Promotions.Approved = true;
+                }
+                else
+                {
+                    cBS_Promotions.Approved = false;
+                }
                 db.CBS_Promotions.Add(cBS_Promotions);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +100,20 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cBS_Promotions).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Promotions_Manage"))
+                {
+                    cBS_Promotions.Approved = true;
+                    db.Entry(cBS_Promotions).State = EntityState.Modified;
+                }
+                else
+                {
+                    cBS_Promotions.Approved = false;
+                    cBS_Promotions.TargetRowID = cBS_Promotions.ID;
+                    cBS_Promotions.EditedBy = User.Identity.Name;
+                    cBS_Promotions.ID = 0;
+                    db.CBS_Promotions.Add(cBS_Promotions);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -90,6 +121,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         }
 
         // GET: Profile/Promotions/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_Promotions_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +138,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
 
         // POST: Profile/Promotions/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_Promotions_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

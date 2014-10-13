@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _99X_CBS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace _99X_CBS.Areas.Profile.Controllers
 {
+    [Authorize]
     public class BonusesController : Controller
     {
         private Entities db = new Entities();
@@ -17,7 +19,15 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: Profile/Bonuses
         public ActionResult Index()
         {
-            return View(db.CBS_Bonuses.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))
+            {
+                return View(db.CBS_Bonuses.Where(x => x.Approved == true).ToList());
+            }
+            else
+            {
+                string userId = User.Identity.GetUserId();
+                return View(db.CBS_Bonuses.Where(x => x.Approved == true && x.EmpID == userId).ToList());
+            }
         }
 
         // GET: Profile/Bonuses/Details/5
@@ -50,6 +60,14 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))
+                {
+                    cBS_Bonuses.Approved = true;
+                }
+                else
+                {
+                    cBS_Bonuses.Approved = false;
+                }
                 db.CBS_Bonuses.Add(cBS_Bonuses);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +100,19 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cBS_Bonuses).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))
+                {
+                    cBS_Bonuses.Approved = true;
+                    db.Entry(cBS_Bonuses).State = EntityState.Modified;
+                }
+                else
+                {
+                    cBS_Bonuses.Approved = false;
+                    cBS_Bonuses.TargetRowID = cBS_Bonuses.ID;
+                    cBS_Bonuses.EditedBy = User.Identity.Name;
+                    cBS_Bonuses.ID = 0;
+                    db.CBS_Bonuses.Add(cBS_Bonuses);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -90,6 +120,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         }
 
         // GET: Profile/Bonuses/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_Bonuses_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +137,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
 
         // POST: Profile/Bonuses/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_Bonuses_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

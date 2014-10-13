@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _99X_CBS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace _99X_CBS.Areas.Profile.Controllers
 {
+    [Authorize]
     public class ValueInnovationsController : Controller
     {
         private Entities db = new Entities();
@@ -17,7 +19,16 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: Profile/ValueInnovations
         public ActionResult Index()
         {
-            return View(db.CBS_ValueInnovations.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_ValueInnovations_Manage"))
+            {
+                return View(db.CBS_ValueInnovations.Where(x => x.Approved == true).ToList());
+            }
+            else
+            {
+                string userId = User.Identity.GetUserId();
+                return View(db.CBS_ValueInnovations.Where(x => x.Approved == true && x.EmpID == userId).ToList());
+            }
+
         }
 
         // GET: Profile/ValueInnovations/Details/5
@@ -50,6 +61,14 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_ValueInnovations_Manage"))
+                {
+                    cBS_ValueInnovations.Approved = true;
+                }
+                else
+                {
+                    cBS_ValueInnovations.Approved = false;
+                }
                 db.CBS_ValueInnovations.Add(cBS_ValueInnovations);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +101,20 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cBS_ValueInnovations).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_ValueInnovations_Manage"))
+                {
+                    cBS_ValueInnovations.Approved = true;
+                    db.Entry(cBS_ValueInnovations).State = EntityState.Modified;
+                }
+                else
+                {
+                    cBS_ValueInnovations.Approved = false;
+                    cBS_ValueInnovations.TargetRowID = cBS_ValueInnovations.ID;
+                    cBS_ValueInnovations.EditedBy = User.Identity.Name;
+                    cBS_ValueInnovations.ID = 0;
+                    db.CBS_ValueInnovations.Add(cBS_ValueInnovations);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -90,6 +122,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         }
 
         // GET: Profile/ValueInnovations/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_ValueInnovations_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +139,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
 
         // POST: Profile/ValueInnovations/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_ValueInnovations_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

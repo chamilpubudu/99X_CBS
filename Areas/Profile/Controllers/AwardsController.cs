@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _99X_CBS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace _99X_CBS.Areas.Profile.Controllers
 {
+    [Authorize]
     public class AwardsController : Controller
     {
         private Entities db = new Entities();
@@ -17,7 +19,15 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: Profile/Awards
         public ActionResult Index()
         {
-            return View(db.CBS_Awards.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Awards_Manage"))
+            {
+                return View(db.CBS_Awards.Where(x => x.Approved == true).ToList());
+            }
+            else
+            {
+                string userId = User.Identity.GetUserId();
+                return View(db.CBS_Awards.Where(x => x.Approved == true && x.EmpID == userId).ToList());
+            }
         }
 
         // GET: Profile/Awards/Details/5
@@ -50,6 +60,14 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Awards_Manage"))
+                {
+                    cBS_Awards.Approved = true;
+                }
+                else
+                {
+                    cBS_Awards.Approved = false;
+                }
                 db.CBS_Awards.Add(cBS_Awards);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +100,20 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cBS_Awards).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Awards_Manage"))
+                {
+                    cBS_Awards.Approved = true;
+                    db.Entry(cBS_Awards).State = EntityState.Modified;
+                }
+                else
+                {
+                    cBS_Awards.Approved = false;
+                    cBS_Awards.TargetRowID = cBS_Awards.ID;
+                    cBS_Awards.EditedBy = User.Identity.Name;
+                    cBS_Awards.ID = 0;
+                    db.CBS_Awards.Add(cBS_Awards);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -90,6 +121,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         }
 
         // GET: Profile/Awards/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_Awards_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +138,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
 
         // POST: Profile/Awards/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_Awards_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

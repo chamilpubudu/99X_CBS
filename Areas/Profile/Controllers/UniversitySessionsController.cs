@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _99X_CBS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace _99X_CBS.Areas.Profile.Controllers
 {
+    [Authorize]
     public class UniversitySessionsController : Controller
     {
         private Entities db = new Entities();
@@ -17,7 +19,15 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: Profile/UniversitySessions
         public ActionResult Index()
         {
-            return View(db.CBS_UniversitySessions.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_UniversitySessions_Manage"))
+            {
+                return View(db.CBS_UniversitySessions.Where(x => x.Approved == true).ToList());
+            }
+            else
+            {
+                string userId = User.Identity.GetUserId();
+                return View(db.CBS_UniversitySessions.Where(x => x.Approved == true && x.EmpID == userId).ToList());
+            }
         }
 
         // GET: Profile/UniversitySessions/Details/5
@@ -50,6 +60,14 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_UniversitySessions_Manage"))
+                {
+                    cBS_UniversitySessions.Approved = true;
+                }
+                else
+                {
+                    cBS_UniversitySessions.Approved = false;
+                }
                 db.CBS_UniversitySessions.Add(cBS_UniversitySessions);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +100,20 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cBS_UniversitySessions).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_UniversitySessions_Manage"))
+                {
+                    cBS_UniversitySessions.Approved = true;
+                    db.Entry(cBS_UniversitySessions).State = EntityState.Modified;
+                }
+                else
+                {
+                    cBS_UniversitySessions.Approved = false;
+                    cBS_UniversitySessions.TargetRowID = cBS_UniversitySessions.ID;
+                    cBS_UniversitySessions.EditedBy = User.Identity.Name;
+                    cBS_UniversitySessions.ID = 0;
+                    db.CBS_UniversitySessions.Add(cBS_UniversitySessions);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -90,6 +121,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         }
 
         // GET: Profile/UniversitySessions/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_UniversitySessions_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +138,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
 
         // POST: Profile/UniversitySessions/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_UniversitySessions_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

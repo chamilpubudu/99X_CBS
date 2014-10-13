@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _99X_CBS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace _99X_CBS.Areas.Profile.Controllers
 {
+    [Authorize]
     public class CustomerFeedbackScoreController : Controller
     {
         private Entities db = new Entities();
@@ -17,7 +19,15 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: Profile/CustomerFeedbackScore
         public ActionResult Index()
         {
-            return View(db.CBS_CustomerFeedbackScore.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_CustomerFeedbackScore_Manage"))
+            {
+                return View(db.CBS_CustomerFeedbackScore.Where(x => x.Approved == true).ToList());
+            }
+            else
+            {
+                string userId = User.Identity.GetUserId();
+                return View(db.CBS_CustomerFeedbackScore.Where(x => x.Approved == true && x.EmpID == userId).ToList());
+            }
         }
 
         // GET: Profile/CustomerFeedbackScore/Details/5
@@ -50,6 +60,14 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_CustomerFeedbackScore_Manage"))
+                {
+                    cBS_CustomerFeedbackScore.Approved = true;
+                }
+                else
+                {
+                    cBS_CustomerFeedbackScore.Approved = false;
+                }
                 db.CBS_CustomerFeedbackScore.Add(cBS_CustomerFeedbackScore);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +100,20 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cBS_CustomerFeedbackScore).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_CustomerFeedbackScore_Manage"))
+                {
+                    cBS_CustomerFeedbackScore.Approved = true;
+                    db.Entry(cBS_CustomerFeedbackScore).State = EntityState.Modified;
+                }
+                else
+                {
+                    cBS_CustomerFeedbackScore.Approved = false;
+                    cBS_CustomerFeedbackScore.TargetRowID = cBS_CustomerFeedbackScore.ID;
+                    cBS_CustomerFeedbackScore.EditedBy = User.Identity.Name;
+                    cBS_CustomerFeedbackScore.ID = 0;
+                    db.CBS_CustomerFeedbackScore.Add(cBS_CustomerFeedbackScore);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -90,6 +121,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         }
 
         // GET: Profile/CustomerFeedbackScore/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_CustomerFeedbackScore_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +138,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
 
         // POST: Profile/CustomerFeedbackScore/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_CustomerFeedbackScore_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _99X_CBS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace _99X_CBS.Areas.Profile.Controllers
 {
+    [Authorize]
     public class EngagementController : Controller
     {
         private Entities db = new Entities();
@@ -17,7 +19,15 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: Profile/Engagement
         public ActionResult Index()
         {
-            return View(db.CBS_Engagement.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Engagement_Manage"))
+            {
+                return View(db.CBS_Engagement.Where(x => x.Approved == true).ToList());
+            }
+            else
+            {
+                string userId = User.Identity.GetUserId();
+                return View(db.CBS_Engagement.Where(x => x.Approved == true && x.EmpID == userId).ToList());
+            }
         }
 
         // GET: Profile/Engagement/Details/5
@@ -50,6 +60,14 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Engagement_Manage"))
+                {
+                    cBS_Engagement.Approved = true;
+                }
+                else
+                {
+                    cBS_Engagement.Approved = false;
+                }
                 db.CBS_Engagement.Add(cBS_Engagement);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +100,20 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cBS_Engagement).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Engagement_Manage"))
+                {
+                    cBS_Engagement.Approved = true;
+                    db.Entry(cBS_Engagement).State = EntityState.Modified;
+                }
+                else
+                {
+                    cBS_Engagement.Approved = false;
+                    cBS_Engagement.TargetRowID = cBS_Engagement.ID;
+                    cBS_Engagement.EditedBy = User.Identity.Name;
+                    cBS_Engagement.ID = 0;
+                    db.CBS_Engagement.Add(cBS_Engagement);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -90,6 +121,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         }
 
         // GET: Profile/Engagement/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_Engagement_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +138,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
 
         // POST: Profile/Engagement/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_Engagement_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

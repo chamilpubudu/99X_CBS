@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _99X_CBS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace _99X_CBS.Areas.Profile.Controllers
 {
+    [Authorize]
     public class IncrementsController : Controller
     {
         private Entities db = new Entities();
@@ -17,7 +19,15 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: Profile/Increments
         public ActionResult Index()
         {
-            return View(db.CBS_Increments.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Increments_Manage"))
+            {
+                return View(db.CBS_Increments.Where(x => x.Approved == true).ToList());
+            }
+            else
+            {
+                string userId = User.Identity.GetUserId();
+                return View(db.CBS_Increments.Where(x => x.Approved == true && x.EmpID == userId).ToList());
+            }
         }
 
         // GET: Profile/Increments/Details/5
@@ -50,6 +60,14 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Increments_Manage"))
+                {
+                    cBS_Increments.Approved = true;
+                }
+                else
+                {
+                    cBS_Increments.Approved = false;
+                }
                 db.CBS_Increments.Add(cBS_Increments);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +100,20 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cBS_Increments).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Increments_Manage"))
+                {
+                    cBS_Increments.Approved = true;
+                    db.Entry(cBS_Increments).State = EntityState.Modified;
+                }
+                else
+                {
+                    cBS_Increments.Approved = false;
+                    cBS_Increments.TargetRowID = cBS_Increments.ID;
+                    cBS_Increments.EditedBy = User.Identity.Name;
+                    cBS_Increments.ID = 0;
+                    db.CBS_Increments.Add(cBS_Increments);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -90,6 +121,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         }
 
         // GET: Profile/Increments/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_Increments_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +138,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
 
         // POST: Profile/Increments/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_Increments_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

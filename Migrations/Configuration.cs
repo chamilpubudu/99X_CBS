@@ -43,6 +43,46 @@ namespace _99X_CBS.Migrations
             success = idManager.CreateRole("Manager");
             if (!success == true) return success;
 
+            success = idManager.CreateRole("CBS_Attendances_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_Awards_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_Bonuses_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_CustomerFeedbackScore_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_EmployeeBillingUtilization_Manage");
+            if (!success == true) return success;
+
+            success = idManager.CreateRole("CBS_Employees_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_Engagement_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_FuelAllowances_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_Increments_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_MentorBuddy_Manage");
+            if (!success == true) return success;
+
+            success = idManager.CreateRole("CBS_Promotions_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_PublicAppearences_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_TechnologyExposure_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_Trainings_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_Travels_Manage");
+            
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_UniversitySessions_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_ValueInnovations_Manage");
+            if (!success == true) return success;
+            success = idManager.CreateRole("CBS_ReportFormat_Manage");
+            if (!success == true) return success;
+
             success = idManager.CreateRole("User");
             if (!success) return success;
 
