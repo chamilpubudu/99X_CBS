@@ -502,4 +502,200 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
               });
     };
 
+    $scope.Discard = function (datatype) {
+        var approved_ids = {
+            datatype: datatype,
+            ids: []
+        };
+
+        var selectedItems = [];
+
+        switch (datatype) {
+            case "CBS_Attendances":
+                console.log("CBS_Attendances");
+                selectedItems = $scope.CBS_AttendancesGridOptions.selectedItems;
+                break;
+            case "CBS_Awards":
+                console.log("CBS_Awards");
+                selectedItems = $scope.CBS_AwardsGridOptions.selectedItems;
+                break;
+            case "CBS_Bonuses":
+                console.log("CBS_Bonuses");
+                selectedItems = $scope.CBS_BonusesGridOptions.selectedItems;
+                break;
+            case "CBS_CustomerFeedbackScore":
+                console.log("CBS_CustomerFeedbackScore");
+                selectedItems = $scope.CBS_CustomerFeedbackScoreGridOptions.selectedItems;
+                break;
+            case "CBS_EmployeeBillingUtilization":
+                console.log("CBS_EmployeeBillingUtilization");
+                selectedItems = $scope.CBS_EmployeeBillingUtilizationGridOptions.selectedItems;
+                break;
+
+                //case "CBS_Employees":
+                //    console.log("CBS_Employees");
+                //    selectedItems = $scope.CBS_Employee.selectedItems;
+                //    break;
+            case "CBS_Engagement":
+                console.log("CBS_Engagement");
+                selectedItems = $scope.CBS_EngagementGridOptions.selectedItems;
+                break;
+            case "CBS_FuelAllowances":
+                console.log("CBS_FuelAllowances");
+                selectedItems = $scope.CBS_FuelAllowancesGridOptions.selectedItems;
+                break;
+            case "CBS_Increments":
+                console.log("CBS_Increments");
+                selectedItems = $scope.CBS_IncrementsGridOptions.selectedItems;
+                break;
+            case "CBS_MentorBuddy":
+                console.log("CBS_MentorBuddy");
+                selectedItems = $scope.CBS_MentorBuddyGridOptions.selectedItems;
+                break;
+
+            case "CBS_Promotions":
+                console.log("CBS_Promotions");
+                selectedItems = $scope.CBS_PromotionsGridOptions.selectedItems;
+                break;
+            case "CBS_PublicAppearences":
+                console.log("CBS_PublicAppearences");
+                selectedItems = $scope.CBS_PublicAppearencesGridOptions.selectedItems;
+                break;
+                //case "CBS_ReportFormat":
+                //    console.log("CBS_ReportFormat");
+                //    selectedItems = $scope.CBS_ReportFormat.selectedItems;
+                //    break;
+            case "CBS_TechnologyExposure":
+                console.log("CBS_TechnologyExposure");
+                selectedItems = $scope.CBS_TechnologyExposureGridOptions.selectedItems;
+                break;
+            case "CBS_Trainings":
+                console.log("CBS_Trainings");
+                selectedItems = $scope.CBS_TrainingsGridOptions.selectedItems;
+                break;
+
+            case "CBS_Travels":
+                console.log("CBS_Travels");
+                selectedItems = $scope.CBS_TravelsGridOptions.selectedItems;
+                break;
+            case "CBS_UniversitySessions":
+                console.log("CBS_UniversitySessions");
+                selectedItems = $scope.CBS_UniversitySessionsGridOptions.selectedItems;
+                break;
+            case "CBS_ValueInnovations":
+                console.log("CBS_ValueInnovations");
+                selectedItems = $scope.CBS_ValueInnovationsGridOptions.selectedItems;
+                break;
+        }
+
+        angular.forEach(selectedItems, function (data, index) {
+            approved_ids.ids.push({ "id": data.ID });
+        });
+        $http.post("/Admin/DataApprove/Discard/", approved_ids).
+              success(function (data, status, headers, config) {
+                  // this callback will be called asynchronously
+                  // when the response is available
+                  // alert(data);
+                  switch (datatype) {
+                      case "CBS_Attendances":
+                          console.log("CBS_Attendances");
+                          $scope.CBS_AttendancesData = data;
+                          $scope.CBS_AttendancesGridOptions.selectedItems.length = 0
+                          // alert($scope.CBS_AttendancesGridOptions.selectedItems);
+                          break;
+                      case "CBS_Awards":
+                          console.log("CBS_Awards");
+                          $scope.CBS_AwardsData = data;
+                          $scope.CBS_AwardsGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_Bonuses":
+                          console.log("CBS_Bonuses");
+                          $scope.CBS_BonusesData = data;
+                          $scope.CBS_BonusesGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_CustomerFeedbackScore":
+                          console.log("CBS_CustomerFeedbackScore");
+                          $scope.CBS_CustomerFeedbackScoreData = data;
+                          $scope.CBS_CustomerFeedbackScoreGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_EmployeeBillingUtilization":
+                          console.log("CBS_EmployeeBillingUtilization");
+                          $scope.CBS_EmployeeBillingUtilizationData = data;
+                          $scope.CBS_EmployeeBillingUtilizationGridOptions.selectedItems.length = 0
+                          break;
+
+                          //case "CBS_Employees":
+                          //    console.log("CBS_Employees");
+                          //    $scope.CBS_Employee.selectedItems;
+                          //    break;
+                      case "CBS_Engagement":
+                          console.log("CBS_Engagement");
+                          $scope.CBS_EngagementData = data;
+                          $scope.CBS_EngagementGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_FuelAllowances":
+                          console.log("CBS_FuelAllowances");
+                          $scope.CBS_FuelAllowancesData = data;
+                          $scope.CBS_FuelAllowancesGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_Increments":
+                          console.log("CBS_Increments");
+                          $scope.CBS_IncrementsData = data;
+                          $scope.CBS_IncrementsGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_MentorBuddy":
+                          console.log("CBS_MentorBuddy");
+                          $scope.CBS_MentorBuddyData = data;
+                          $scope.CBS_MentorBuddyGridOptions.selectedItems.length = 0
+                          break;
+
+                      case "CBS_Promotions":
+                          console.log("CBS_Promotions");
+                          $scope.CBS_PromotionsData = data;
+                          $scope.CBS_PromotionsGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_PublicAppearences":
+                          console.log("CBS_PublicAppearences");
+                          $scope.CBS_PublicAppearencesData = data;
+                          $scope.CBS_PublicAppearencesGridOptions.selectedItems.length = 0
+                          break;
+                          //case "CBS_ReportFormat":
+                          //    console.log("CBS_ReportFormat");
+                          //    $scope.CBS_ReportFormat.selectedItems;
+                          //    break;
+                      case "CBS_TechnologyExposure":
+                          console.log("CBS_TechnologyExposure");
+                          $scope.CBS_TechnologyExposureData = data;
+                          $scope.CBS_TechnologyExposureGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_Trainings":
+                          console.log("CBS_Trainings");
+                          $scope.CBS_TrainingsData = data;
+                          $scope.CBS_TrainingsGridOptions.selectedItems.length = 0
+                          break;
+
+                      case "CBS_Travels":
+                          console.log("CBS_Travels");
+                          $scope.CBS_TravelsData = data;
+                          $scope.CBS_TravelsGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_UniversitySessions":
+                          console.log("CBS_UniversitySessions");
+                          $scope.CBS_UniversitySessionsData = data;
+                          $scope.CBS_TravelsGridOptions.selectedItems;
+                          $scope.CBS_UniversitySessionsGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_ValueInnovations":
+                          console.log("CBS_ValueInnovations");
+                          $scope.CBS_ValueInnovationsData = data;
+                          $scope.CBS_ValueInnovationsGridOptions.selectedItems.length = 0
+                          break;
+                  }
+              }).
+              error(function (data, status, headers, config) {
+                  // called asynchronously if an error occurs
+                  // or server returns response with an error status.
+              });
+    };
+
 });
