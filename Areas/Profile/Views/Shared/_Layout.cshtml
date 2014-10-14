@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - CBS Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -16,10 +16,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("CBS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li class="active"><a href="~/">Home</a></li>
+                    <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit Profile<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="~/Profile/Attendances">Attendances</a></li>
+                                <li><a href="~/Profile/Awards">Awards</a></li>
+                                <li><a href="~/Profile/Bonuses">Bonuses</a></li>
+                                <li><a href="~/Profile/CustomerFeedbackScore">CustomerFeedbackScore</a></li>
+                                <li><a href="~/Profile/EmployeeBillingUtilization">EmployeeBillingUtilization</a></li>
+
+                                <li><a href="~/Profile/Employees">Employees</a></li>
+                                <li><a href="~/Profile/Engagement">Engagement</a></li>
+                                <li><a href="~/Profile/FuelAllowances">FuelAllowances</a></li>
+                                <li><a href="~/Profile/Increments">Increments</a></li>
+                                <li><a href="~/Profile/MentorBuddy">MentorBuddy</a></li>
+
+                                <li><a href="~/Profile/Promotions">Promotions</a></li>
+                                <li><a href="~/Profile/PublicAppearences">PublicAppearences</a></li>
+                                <li><a href="~/Profile/TechnologyExposure">TechnologyExposure</a></li>
+                                <li><a href="~/Profile/Trainings">Trainings</a></li>
+                                <li><a href="~/Profile/Travels">Travels</a></li>
+
+                                <li><a href="~/Profile/UniversitySessions">UniversitySessions</a></li>
+                                <li><a href="~/Profile/ValueInnovations">ValueInnovations</a></li>
+                                <li><a href="~/Profile/"></a></li>
+                            </ul>
+                        </li>
                 </ul>
             </div>
         </div>
@@ -29,7 +56,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - CBS Application</p>
         </footer>
     </div>
 

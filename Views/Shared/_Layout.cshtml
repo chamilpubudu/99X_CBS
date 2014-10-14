@@ -31,8 +31,35 @@
                     <li><a href="/Home">Home</a></li>
 <!--                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
-                    <li><a href="/CBS/Employee">CBS Reports</a></li>
+
                     @if ( User.Identity.IsAuthenticated ){
+                        <li><a href="/CBS/Employee">CBS Reports</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit Profile<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="~/Profile/Attendances">Attendances</a></li>
+                                <li><a href="~/Profile/Awards">Awards</a></li>
+                                <li><a href="~/Profile/Bonuses">Bonuses</a></li>
+                                <li><a href="~/Profile/CustomerFeedbackScore">CustomerFeedbackScore</a></li>
+                                <li><a href="~/Profile/EmployeeBillingUtilization">EmployeeBillingUtilization</a></li>
+
+                                <li><a href="~/Profile/Employees">Employees</a></li>
+                                <li><a href="~/Profile/Engagement">Engagement</a></li>
+                                <li><a href="~/Profile/FuelAllowances">FuelAllowances</a></li>
+                                <li><a href="~/Profile/Increments">Increments</a></li>
+                                <li><a href="~/Profile/MentorBuddy">MentorBuddy</a></li>
+
+                                <li><a href="~/Profile/Promotions">Promotions</a></li>
+                                <li><a href="~/Profile/PublicAppearences">PublicAppearences</a></li>
+                                <li><a href="~/Profile/TechnologyExposure">TechnologyExposure</a></li>
+                                <li><a href="~/Profile/Trainings">Trainings</a></li>
+                                <li><a href="~/Profile/Travels">Travels</a></li>
+
+                                <li><a href="~/Profile/UniversitySessions">UniversitySessions</a></li>
+                                <li><a href="~/Profile/ValueInnovations">ValueInnovations</a></li>
+                                <li><a href="~/Profile/"></a></li>
+                            </ul>
+                        </li>
                         if ( User.IsInRole("Admin") || User.IsInRole("Manager")){
                             <li>@Html.ActionLink("Admin", "Index", "Account")</li>
                             <li><a href="/Admin/DataUpload">Bulk Data Upload</a></li>
