@@ -29,5 +29,6 @@ namespace _99X_CBS.Models
         public DbSet<CBS_Travels> CBS_Travels { get; set; }
         public DbSet<CBS_UniversitySessions> CBS_UniversitySessions { get; set; }
         public DbSet<CBS_ValueInnovations> CBS_ValueInnovations { get; set; }
+        public DbSet<CBS_SystemSettings> CBS_SystemSettings { get; set; }
     }
 }
