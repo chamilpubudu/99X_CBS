@@ -183,6 +183,7 @@
     <Compile Include="Areas\CBS\Models\CBS_Promotions.cs" />
     <Compile Include="Areas\CBS\Models\CBS_PublicAppearences.cs" />
     <Compile Include="Areas\CBS\Models\CBS_ReportFormat.cs" />
+    <Compile Include="Areas\CBS\Models\CBS_SystemSettings.cs" />
     <Compile Include="Areas\CBS\Models\CBS_TechnologyExposure.cs" />
     <Compile Include="Areas\CBS\Models\CBS_Trainings.cs" />
     <Compile Include="Areas\CBS\Models\CBS_Travels.cs" />
