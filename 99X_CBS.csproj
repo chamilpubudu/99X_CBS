@@ -223,6 +223,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CBS_DTO.cs" />
+    <Compile Include="Models\CurrentUser.cs" />
     <Compile Include="Models\Entities.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

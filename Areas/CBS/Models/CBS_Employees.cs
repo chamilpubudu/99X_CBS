@@ -24,5 +24,6 @@ namespace _99X_CBS.Models
         public string EditedBy { get; set; }
         public Nullable<int> TargetRowID  { get; set; }
         public int ID { get; set; }
+        public string UserID { get; set; }
     }
 }

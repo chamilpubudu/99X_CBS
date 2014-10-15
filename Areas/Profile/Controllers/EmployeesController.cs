@@ -25,8 +25,8 @@ namespace _99X_CBS.Areas.Profile.Controllers
             }
             else
             {
-                string userId = User.Identity.GetUserId();
-                return View(db.CBS_Employees.Where(x => x.Approved == true && x.EmpID == userId).ToList());
+                string userEmpId = CurrentUser.GetEmpID(this.Session, this.User);
+                return View(db.CBS_Employees.Where(x => x.Approved == true && x.EmpID == userEmpId).ToList());
             }
         }
 
