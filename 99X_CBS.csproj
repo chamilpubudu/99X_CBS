@@ -227,6 +227,7 @@
     <Compile Include="Models\CurrentUser.cs" />
     <Compile Include="Models\Entities.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\SystemSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

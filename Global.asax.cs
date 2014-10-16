@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using _99X_CBS.Models;
 
 namespace _99X_CBS
 {
@@ -16,6 +17,8 @@ namespace _99X_CBS
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Application["_GlobalAppName"] = SystemSettings.GetAppName();
+            Application["_GlobalAppLogo"] = SystemSettings.GetAppLogo();
         }
     }
 }

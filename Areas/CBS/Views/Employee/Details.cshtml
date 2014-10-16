@@ -19,9 +19,10 @@
         List<string> summary = new List<string>();  
     }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Employees")).Enabled){
+    var  GlobalAppLogo = "/Content/Images/"+@App._GlobalAppLogo ;
     <div class="noBreak">
         <div id="dimg1" style="position: relative; left: 3px; z-index: -1; width: 155px; height: 32px;">
-            <img src="~/Content/Images/logo-black.png" id="img1" style="width: 155px; height: 32px;">
+            <img src=@GlobalAppLogo id="img1" style="width: 155px; height: 32px;">
         </div>
         <br />
         @{

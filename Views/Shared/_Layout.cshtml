@@ -18,19 +18,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("99X CBS", "Index", "Home", null, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="/">@App._GlobalAppName</a>
+                
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <!--
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Admin", "Settings", "Admin")</li>
-                    -->
-                    <li><a href="/Home">Home</a></li>
-<!--                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
 
                     @if ( User.Identity.IsAuthenticated ){
                         <li><a href="/CBS/Employee">CBS Reports</a></li>
