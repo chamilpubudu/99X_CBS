@@ -17,7 +17,15 @@ namespace _99X_CBS.Areas.CBS.Controllers
         // GET: /Employee/
         public ActionResult Index()
         {
-           return View(db.CBS_Employees.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+            {
+                return View(db.CBS_Employees.Where(x => x.Approved == true).ToList());
+            }
+            else
+            {
+                string userEmpId = CurrentUser.GetEmpID(this.Session, this.User);
+                return View(db.CBS_Employees.Where(x => x.Approved == true && x.EmpID == userEmpId).ToList());
+            }
         }
 
         // GET: /Employee/Details/5

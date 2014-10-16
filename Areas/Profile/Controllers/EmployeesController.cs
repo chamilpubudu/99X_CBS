@@ -15,6 +15,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
     public class EmployeesController : Controller
     {
         private Entities db = new Entities();
+        private ApplicationDbContext _context = new ApplicationDbContext();
 
         // GET: Profile/Employees
         public ActionResult Index()
@@ -88,6 +89,9 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
+            SelectList UserNameList = new SelectList(_context.Users.Distinct(), "UserName", "UserName", cBS_Employees.UserID);
+            //UserNameList.a
+            ViewData["UserName"] = UserNameList;
             return View(cBS_Employees);
         }
 
@@ -95,8 +99,9 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin, Manager, CBS_Employees_Manage")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Employee_Name,Designation,Date_Joined,Career_Started_On,Appraisal_Score,EmpID,Approved,EditedBy,TargetRowID")] CBS_Employees cBS_Employees)
+        public ActionResult Edit([Bind(Include = "ID,Employee_Name,Designation,Date_Joined,Career_Started_On,Appraisal_Score,EmpID,Approved,EditedBy,TargetRowID,UserID")] CBS_Employees cBS_Employees)
         {
             if (ModelState.IsValid)
             {
