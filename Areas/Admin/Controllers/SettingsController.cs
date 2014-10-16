@@ -35,7 +35,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                 if (CBS_PhotoNameList.Count > 0)
                 {
                     CBS_SystemSettings cbs_systemsettings2 = CBS_PhotoNameList.ElementAt(0);
-                    cbs_systemsettings2.Value = Path.GetFileName(photo.FileName);
+                    cbs_systemsettings2.Value = UniqueFileName + Path.GetExtension(Path.GetFileName(photo.FileName).Replace(" ", string.Empty));
                     System.Web.HttpContext.Current.Application["_GlobalAppLogo"] = UniqueFileName + Path.GetExtension(Path.GetFileName(photo.FileName).Replace(" ", string.Empty));
                     db.SaveChanges();
                 }
@@ -44,7 +44,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     CBS_SystemSettings cbs_systemsettings2 = new CBS_SystemSettings();
                     cbs_systemsettings2.Name = "Photo Name";
-                    cbs_systemsettings2.Value = Path.GetFileName(photo.FileName);
+                    cbs_systemsettings2.Value = UniqueFileName + Path.GetExtension(Path.GetFileName(photo.FileName).Replace(" ", string.Empty));
                     System.Web.HttpContext.Current.Application["_GlobalAppLogo"] = UniqueFileName + Path.GetExtension(Path.GetFileName(photo.FileName).Replace(" ", string.Empty));
                     db.CBS_SystemSettings.Add(cbs_systemsettings2);
                     db.SaveChanges();
