@@ -49,6 +49,8 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: Profile/Employees/Create
         public ActionResult Create()
         {
+            SelectList UserNameList = new SelectList(_context.Users.Distinct(), "UserName", "UserName");
+            ViewData["UserName"] = UserNameList;
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Employee_Name,Designation,Date_Joined,Career_Started_On,Appraisal_Score,EmpID,Approved,EditedBy,TargetRowID")] CBS_Employees cBS_Employees)
+        public ActionResult Create([Bind(Include = "ID,Employee_Name,Designation,Date_Joined,Career_Started_On,Appraisal_Score,EmpID,Approved,EditedBy,TargetRowID,UserID")] CBS_Employees cBS_Employees)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +92,6 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 return HttpNotFound();
             }
             SelectList UserNameList = new SelectList(_context.Users.Distinct(), "UserName", "UserName", cBS_Employees.UserID);
-            //UserNameList.a
             ViewData["UserName"] = UserNameList;
             return View(cBS_Employees);
         }
