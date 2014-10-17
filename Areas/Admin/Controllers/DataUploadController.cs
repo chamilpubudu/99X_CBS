@@ -110,6 +110,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             cbs_awards.Award = ds.Tables[0].Rows[i][2].ToString();
                             cbs_awards.EmpID = ds.Tables[0].Rows[i][3].ToString();
 
+
                             if (ModelState.IsValid)
                             {
                                 db.CBS_Awards.Add(cbs_awards);
@@ -248,6 +249,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             cbs_employees.Career_Started_On = Convert.ToDateTime(ds.Tables[0].Rows[i][3].ToString());
                             cbs_employees.Appraisal_Score = ds.Tables[0].Rows[i][4].ToString();
                             cbs_employees.EmpID = ds.Tables[0].Rows[i][5].ToString();
+                            cbs_employees.UserID = ds.Tables[0].Rows[i][6].ToString();
 
                             if (ModelState.IsValid)
                             {

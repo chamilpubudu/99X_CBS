@@ -22,7 +22,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
             {
-                return View(db.CBS_Employees.Where(x => x.Approved == true).ToList());
+                return View(db.CBS_Employees.ToList());
             }
             else
             {
