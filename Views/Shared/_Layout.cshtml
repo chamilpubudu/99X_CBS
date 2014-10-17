@@ -54,8 +54,12 @@
                         </li>
                         if ( User.IsInRole("Admin") || User.IsInRole("Manager")){
                             <li>@Html.ActionLink("Admin", "Index", "Account")</li>
-                            <li><a href="/Admin/DataUpload">Bulk Data Upload</a></li>
+                        }
+                        if ( User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Attendances_Manage")|| User.IsInRole("CBS_Awards_Manage")|| User.IsInRole("CBS_Bonuses_Manage")|| User.IsInRole("CBS_CustomerFeedbackScore_Manage")|| User.IsInRole("CBS_Employees_Manage")|| User.IsInRole("CBS_EmployeeBillingUtilization_Manage")|| User.IsInRole("CBS_Engagement_Manage")|| User.IsInRole("CBS_FuelAllowances_Manage")|| User.IsInRole("CBS_Increments_Manage")|| User.IsInRole("CBS_MentorBuddy_Manage")|| User.IsInRole("CBS_Promotions_Manage")|| User.IsInRole("CBS_PublicAppearences_Manage")|| User.IsInRole("CBS_TechnologyExposure_Manage")|| User.IsInRole("CBS_Trainings_Manage")|| User.IsInRole("CBS_Travels_Manage")|| User.IsInRole("CBS_UniversitySessions_Manage")|| User.IsInRole("CBS_ValueInnovations_Manage")){
+                            <li><a href="/Admin/DataUpload">Bulk Data Upload</a></li>    
                             <li><a href="/Admin/DataApprove">Approve User Changes</a></li>
+                        }
+                        if ( User.IsInRole("Admin") || User.IsInRole("Manager")){
                             <li><a href="/Admin/ReportSettings">Report Settings</a></li>
                             <li><a href="/Admin/Settings">System Settings</a></li>
                         }

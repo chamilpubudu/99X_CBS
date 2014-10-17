@@ -17,32 +17,64 @@
         <!-- Navigation Buttons -->
         <div class="col-md-2">
             <ul class="nav nav-pills nav-stacked" id="dataApproveTabs">
-                <li class="active"><a href="#CBS_Attendances">CBS_Attendances</a></li>
-                <li><a href="#CBS_Awards">CBS_Awards</a></li>
-                <li><a href="#CBS_Bonuses">CBS_Bonuses</a></li>
-                <li><a href="#CBS_CustomerFeedbackScore">CBS_CustomerFeedbackScore</a></li>
-                <li><a href="#CBS_EmployeeBillingUtilization">CBS_EmployeeBillingUtilization</a></li>
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Attendances_Manage")){
+                    <li class="active"><a href="#CBS_Attendances">CBS_Attendances</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Awards_Manage")){
+                    <li><a href="#CBS_Awards">CBS_Awards</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Bonuses_Manage")){
+                    <li><a href="#CBS_Bonuses">CBS_Bonuses</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_CustomerFeedbackScore_Manage")){
+                    <li><a href="#CBS_CustomerFeedbackScore">CBS_CustomerFeedbackScore</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_EmployeeBillingUtilization_Manage")){
+                    <li><a href="#CBS_EmployeeBillingUtilization">CBS_EmployeeBillingUtilization</a></li>
+                }
+                
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Engagement_Manage")){
+                    <li><a href="#CBS_Engagement">CBS_Engagement</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_FuelAllowances_Manage")){
+                    <li><a href="#CBS_FuelAllowances">CBS_FuelAllowances</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Increments_Manage")){
+                    <li><a href="#CBS_Increments">CBS_Increments</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_MentorBuddy_Manage")){
+                    <li><a href="#CBS_MentorBuddy">CBS_MentorBuddy</a></li>
+                }
+                
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Promotions_Manage")){
+                   <li><a href="#CBS_Promotions">CBS_Promotions</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_PublicAppearences_Manage")){
+                    <li><a href="#CBS_PublicAppearences">CBS_PublicAppearences</a></li>
+                }
+                 @*<li><a href="#profile">Profile</a></li>*@
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_TechnologyExposure_Manage")){
+                    <li><a href="#CBS_TechnologyExposure">CBS_TechnologyExposure</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Trainings_Manage")){
+                    <li><a href="#CBS_Trainings">CBS_Trainings</a></li>
+                }
 
-                @*<li><a href="#profile">Profile</a></li>*@
-                <li><a href="#CBS_Engagement">CBS_Engagement</a></li>
-                <li><a href="#CBS_FuelAllowances">CBS_FuelAllowances</a></li>
-                <li><a href="#CBS_Increments">CBS_Increments</a></li>
-                <li><a href="#CBS_MentorBuddy">CBS_MentorBuddy</a></li>
-
-                <li><a href="#CBS_Promotions">CBS_Promotions</a></li>
-                <li><a href="#CBS_PublicAppearences">CBS_PublicAppearences</a></li>
-                @*<li><a href="#profile">Profile</a></li>*@
-                <li><a href="#CBS_TechnologyExposure">CBS_TechnologyExposure</a></li>
-                <li><a href="#CBS_Trainings">CBS_Trainings</a></li>
-
-                <li><a href="#CBS_Travels">CBS_Travels</a></li>
-                <li><a href="#CBS_UniversitySessions">CBS_UniversitySessions</a></li>
-                <li><a href="#CBS_ValueInnovations">CBS_ValueInnovations</a></li>
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Travels_Manage")){
+                    <li><a href="#CBS_Travels">CBS_Travels</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_UniversitySessions_Manage")){
+                    <li><a href="#CBS_UniversitySessions">CBS_UniversitySessions</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_ValueInnovations_Manage")){
+                    <li><a href="#CBS_ValueInnovations">CBS_ValueInnovations</a></li>
+                }
             </ul>
         </div>
         <!-- Content -->
         <div class="col-md-8">
             <div class="tab-content">
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Attendances_Manage")){
                 <div class="tab-pane active" id="CBS_Attendances">
                     <h4>CBS_Attendances</h4>
                     <div>
@@ -52,6 +84,8 @@
                         <div class="selectedItems">{{CBS_AttendancesGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Awards_Manage")){
                 <div class="tab-pane" id="CBS_Awards">
                     <h4>CBS_Awards 1</h4>
                     <div>
@@ -61,6 +95,8 @@
                         <div class="selectedItems">{{CBS_AwardsGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Bonuses_Manage")){
                 <div class="tab-pane" id="CBS_Bonuses">
                     <h4>CBS_Bonuses</h4>
                     <div>
@@ -70,6 +106,8 @@
                         <div class="selectedItems">{{CBS_BonusesGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_CustomerFeedbackScore_Manage")){
                 <div class="tab-pane" id="CBS_CustomerFeedbackScore">
                     <h4>CBS_CustomerFeedbackScore</h4>
                     <div>
@@ -79,6 +117,8 @@
                         <div class="selectedItems">{{CBS_CustomerFeedbackScoreGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_EmployeeBillingUtilization_Manage")){
                 <div class="tab-pane" id="CBS_EmployeeBillingUtilization">
                     <h4>CBS_EmployeeBillingUtilization</h4>
                     <div>
@@ -91,6 +131,8 @@
 
                 @*<div class="tab-pane" id="profile">
                     </div>*@
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Engagement_Manage")){
                 <div class="tab-pane" id="CBS_Engagement">
                     <h4>CBS_Engagement</h4>
                     <div>
@@ -100,6 +142,8 @@
                         <div class="selectedItems">{{CBS_EngagementGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_FuelAllowances_Manage")){
                 <div class="tab-pane" id="CBS_FuelAllowances">
                     <h4>CBS_FuelAllowances</h4>
                     <div>
@@ -109,6 +153,8 @@
                         <div class="selectedItems">{{CBS_FuelAllowancesGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Increments_Manage")){
                 <div class="tab-pane" id="CBS_Increments">
                     <h4>CBS_Increments</h4>
                     <div>
@@ -118,6 +164,8 @@
                         <div class="selectedItems">{{CBS_IncrementsGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_MentorBuddy_Manage")){
                 <div class="tab-pane" id="CBS_MentorBuddy">
                     <h4>CBS_MentorBuddy</h4>
                     <div>
@@ -127,6 +175,8 @@
                         <div class="selectedItems">{{CBS_MentorBuddyGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Promotions_Manage")){
 
                 <div class="tab-pane" id="CBS_Promotions">
                     <h4>CBS_Promotions</h4>
@@ -137,6 +187,8 @@
                         <div class="selectedItems">{{CBS_PromotionsGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_PublicAppearences_Manage")){
                 <div class="tab-pane" id="CBS_PublicAppearences">
                     <h4>CBS_PublicAppearences</h4>
                     <div>
@@ -146,6 +198,8 @@
                         <div class="selectedItems">{{CBS_PublicAppearencesGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_TechnologyExposure_Manage")){
                 @*<div class="tab-pane" id="profile">
                     </div>*@
                 <div class="tab-pane" id="CBS_TechnologyExposure">
@@ -157,6 +211,8 @@
                         <div class="selectedItems">{{CBS_TechnologyExposureGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Trainings_Manage")){
                 <div class="tab-pane" id="CBS_Trainings">
                     <h4>CBS_Trainings</h4>
                     <div>
@@ -166,6 +222,8 @@
                         <div class="selectedItems">{{CBS_TrainingsGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Travels_Manage")){
 
                 <div class="tab-pane" id="CBS_Travels">
                     <h4>CBS_Travels</h4>
@@ -176,6 +234,8 @@
                         <div class="selectedItems">{{CBS_TravelsGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_UniversitySessions_Manage")){
                 <div class="tab-pane" id="CBS_UniversitySessions">
                     <h4>CBS_UniversitySessions</h4>
                     <div>
@@ -185,6 +245,8 @@
                         <div class="selectedItems">{{CBS_UniversitySessionsGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_ValueInnovations_Manage")){
                 <div class="tab-pane" id="CBS_ValueInnovations">
                     <h4>CBS_ValueInnovations</h4>
                     <div>
@@ -194,6 +256,7 @@
                         <div class="selectedItems">{{CBS_ValueInnovationsGridOptions.selectedItems}}</div>
                     </div>
                 </div>
+                }
             </div>
         </div>
     </div>

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace _99X_CBS.Areas.Admin.Controllers
 {
+    [Authorize]
     public class DataApproveController : Controller
     {
         private Entities db = new Entities();
@@ -46,23 +47,74 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
             CBS_DTO cbs_dto = new CBS_DTO();
             //cbs_dto.cbs_employee = cbs_employees;
-            cbs_dto.cbs_PromotionsList = cbs_PromotionsList;
-            cbs_dto.cbs_IncrementsList = cbs_IncrementsList;
-            cbs_dto.cbs_BonusesList = cbs_BonusesList;
-            cbs_dto.cbs_AwardsList = cbs_AwardsList;
-            cbs_dto.cbs_EmployeeBillingUtilizationList = cbs_EmployeeBillingUtilizationList;
-            cbs_dto.cbs_CustomerFeedbackScoreList = cbs_CustomerFeedbackScoreList;
-            cbs_dto.cbs_TrainingsList = cbs_TrainingsList;
-            cbs_dto.cbs_TravelsList = cbs_TravelsList;
-            cbs_dto.cbs_TechnologyExposureList = cbs_TechnologyExposureList;
-            cbs_dto.cbs_MentorBuddyList = cbs_MentorBuddyList;
-            cbs_dto.cbs_PublicAppearencesList = cbs_PublicAppearencesList;
-            cbs_dto.cbs_UniversitySessionsList = cbs_UniversitySessionsList;
-            cbs_dto.cbs_EngagementList = cbs_EngagementList;
-            cbs_dto.cbs_ValueInnovationsList = cbs_ValueInnovationsList;
-            cbs_dto.cbs_AttendancesList = cbs_AttendancesList;
-            cbs_dto.cbs_FuelAllowancesList = cbs_FuelAllowancesList;
-            cbs_dto.cbs_ReportFormatList = cbs_ReportFormatList;
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Promotions_Manage"))
+            {
+                cbs_dto.cbs_PromotionsList = cbs_PromotionsList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Increments_Manage"))
+            {
+                cbs_dto.cbs_IncrementsList = cbs_IncrementsList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))
+            {
+                cbs_dto.cbs_BonusesList = cbs_BonusesList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Awards_Manage"))
+            {
+                cbs_dto.cbs_AwardsList = cbs_AwardsList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_EmployeeBillingUtilization_Manage"))
+            {
+                cbs_dto.cbs_EmployeeBillingUtilizationList = cbs_EmployeeBillingUtilizationList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_CustomerFeedbackScore_Manage"))
+            {
+                cbs_dto.cbs_CustomerFeedbackScoreList = cbs_CustomerFeedbackScoreList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Trainings_Manage"))
+            {
+                cbs_dto.cbs_TrainingsList = cbs_TrainingsList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Travels_Manage"))
+            {
+                cbs_dto.cbs_TravelsList = cbs_TravelsList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_TechnologyExposure_Manage"))
+            {
+                cbs_dto.cbs_TechnologyExposureList = cbs_TechnologyExposureList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_MentorBuddy_Manage"))
+            {
+                cbs_dto.cbs_MentorBuddyList = cbs_MentorBuddyList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_PublicAppearences_Manage"))
+            {
+                cbs_dto.cbs_PublicAppearencesList = cbs_PublicAppearencesList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_UniversitySessions_Manage"))
+            {
+                cbs_dto.cbs_UniversitySessionsList = cbs_UniversitySessionsList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Engagement_Manage"))
+            {
+                cbs_dto.cbs_EngagementList = cbs_EngagementList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_ValueInnovations_Manage"))
+            {
+                cbs_dto.cbs_ValueInnovationsList = cbs_ValueInnovationsList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Attendances_Manage"))
+            {
+                cbs_dto.cbs_AttendancesList = cbs_AttendancesList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_FuelAllowances_Manage"))
+            {
+                cbs_dto.cbs_FuelAllowancesList = cbs_FuelAllowancesList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_ReportFormat_Manage"))
+            {
+                cbs_dto.cbs_ReportFormatList = cbs_ReportFormatList;
+            }
 
             return Json(cbs_dto, JsonRequestBehavior.AllowGet);
         }
