@@ -23,10 +23,11 @@ namespace _99X_CBS.Areas.Admin.Controllers
         public ActionResult UploadPhoto(String systemName, HttpPostedFileBase photo)
         {
 
-
+            string UniqueFileName = "logo";
             if (photo != null)
             {
-                string path = HttpContext.Server.MapPath(@"\Content\Images\" + Path.GetFileName(photo.FileName));
+
+                string path = HttpContext.Server.MapPath(@"\Content\Images\" + UniqueFileName + Path.GetExtension(Path.GetFileName(photo.FileName).Replace(" ", string.Empty)));
                 photo.SaveAs(path);
 
                 List<CBS_SystemSettings> CBS_PhotoNameList = db.CBS_SystemSettings.Where(x => x.Name == "Photo Name").ToList();
@@ -34,8 +35,8 @@ namespace _99X_CBS.Areas.Admin.Controllers
                 if (CBS_PhotoNameList.Count > 0)
                 {
                     CBS_SystemSettings cbs_systemsettings2 = CBS_PhotoNameList.ElementAt(0);
-                    cbs_systemsettings2.Value = Path.GetFileName(photo.FileName);
-                    System.Web.HttpContext.Current.Application["_GlobalAppLogo"] = Path.GetFileName(photo.FileName);
+                    cbs_systemsettings2.Value = UniqueFileName + Path.GetExtension(Path.GetFileName(photo.FileName).Replace(" ", string.Empty));
+                    System.Web.HttpContext.Current.Application["_GlobalAppLogo"] = UniqueFileName + Path.GetExtension(Path.GetFileName(photo.FileName).Replace(" ", string.Empty));
                     db.SaveChanges();
                 }
                 else
@@ -43,8 +44,8 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     CBS_SystemSettings cbs_systemsettings2 = new CBS_SystemSettings();
                     cbs_systemsettings2.Name = "Photo Name";
-                    cbs_systemsettings2.Value = Path.GetFileName(photo.FileName);
-                    System.Web.HttpContext.Current.Application["_GlobalAppLogo"] = Path.GetFileName(photo.FileName);
+                    cbs_systemsettings2.Value = UniqueFileName + Path.GetExtension(Path.GetFileName(photo.FileName).Replace(" ", string.Empty));
+                    System.Web.HttpContext.Current.Application["_GlobalAppLogo"] = UniqueFileName + Path.GetExtension(Path.GetFileName(photo.FileName).Replace(" ", string.Empty));
                     db.CBS_SystemSettings.Add(cbs_systemsettings2);
                     db.SaveChanges();
 
