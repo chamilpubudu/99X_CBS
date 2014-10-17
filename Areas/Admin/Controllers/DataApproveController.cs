@@ -71,7 +71,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
         public ActionResult Discard(ID_List approved_ids)
         {
             var returnData = new Object();
-            if (approved_ids != null)
+            if (approved_ids != null && approved_ids.ids != null)
             {
                 foreach (var ID in approved_ids.ids)
                 {
@@ -81,13 +81,13 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Attendances_Manage"))
                             {
                                 CBS_Attendances cbs_attendances = db.CBS_Attendances.Find(ID.id);
-                                if (cbs_attendances.Approved == false )
+                                if (cbs_attendances.Approved == false)
                                 {
-                                     db.CBS_Attendances.Remove(cbs_attendances);
-                                     db.SaveChanges();
-                                }                               
+                                    db.CBS_Attendances.Remove(cbs_attendances);
+                                    db.SaveChanges();
+                                }
                             }
-                            returnData = db.CBS_Attendances.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_Attendances.Where(x => x.Approved == false).ToList();
                             break;
                         case "CBS_Awards":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Awards_Manage"))
@@ -95,12 +95,11 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 CBS_Awards cbs_awards = db.CBS_Awards.Find(ID.id);
                                 if (cbs_awards.TargetRowID == null)
                                 {
-
                                     db.CBS_Awards.Remove(cbs_awards);
                                     db.SaveChanges();
                                 }
-                            }    
-                            returnData = db.CBS_Awards.Where(x => x.Approved == false ).ToList();
+                            }
+                            returnData = db.CBS_Awards.Where(x => x.Approved == false).ToList();
                             break;
                         case "CBS_Bonuses":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))
@@ -111,8 +110,8 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.CBS_Bonuses.Remove(cbs_bonuses);
                                     db.SaveChanges();
                                 }
-                            }    
-                            returnData = db.CBS_Bonuses.Where(x => x.Approved == false ).ToList();
+                            }
+                            returnData = db.CBS_Bonuses.Where(x => x.Approved == false).ToList();
                             break;
                         case "CBS_CustomerFeedbackScore":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_CustomerFeedbackScore_Manage"))
@@ -124,7 +123,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_CustomerFeedbackScore.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_CustomerFeedbackScore.Where(x => x.Approved == false).ToList();
                             break;
                         case "CBS_EmployeeBillingUtilization":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_EmployeeBillingUtilization_Manage"))
@@ -136,8 +135,9 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_EmployeeBillingUtilization.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_EmployeeBillingUtilization.Where(x => x.Approved == false).ToList();
                             break;
+
                         case "CBS_Engagement":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Engagement_Manage"))
                             {
@@ -148,7 +148,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_Engagement.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_Engagement.Where(x => x.Approved == false).ToList();
                             break;
                         case "CBS_FuelAllowances":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_FuelAllowances_Manage"))
@@ -160,7 +160,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_FuelAllowances.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_FuelAllowances.Where(x => x.Approved == false).ToList();
                             break;
                         case "CBS_Increments":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Increments_Manage"))
@@ -172,7 +172,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_Increments.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_Increments.Where(x => x.Approved == false).ToList();
                             break;
                         case "CBS_MentorBuddy":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_MentorBuddy_Manage"))
@@ -184,9 +184,8 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_MentorBuddy.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_MentorBuddy.Where(x => x.Approved == false).ToList();
                             break;
-
                         case "CBS_Promotions":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Promotions_Manage"))
                             {
@@ -197,8 +196,9 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_Promotions.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_Promotions.Where(x => x.Approved == false).ToList();
                             break;
+
                         case "CBS_PublicAppearences":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_PublicAppearences_Manage"))
                             {
@@ -209,9 +209,8 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_PublicAppearences.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_PublicAppearences.Where(x => x.Approved == false).ToList();
                             break;
-
                         case "CBS_TechnologyExposure":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_TechnologyExposure_Manage"))
                             {
@@ -222,7 +221,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_TechnologyExposure.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_TechnologyExposure.Where(x => x.Approved == false).ToList();
                             break;
                         case "CBS_Trainings":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Trainings_Manage"))
@@ -234,9 +233,8 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_Trainings.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_Trainings.Where(x => x.Approved == false).ToList();
                             break;
-
                         case "CBS_Travels":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Travels_Manage"))
                             {
@@ -247,7 +245,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_Travels.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_Travels.Where(x => x.Approved == false).ToList();
                             break;
                         case "CBS_UniversitySessions":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_UniversitySessions_Manage"))
@@ -259,8 +257,9 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_UniversitySessions.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_UniversitySessions.Where(x => x.Approved == false).ToList();
                             break;
+
                         case "CBS_ValueInnovations":
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_ValueInnovations_Manage"))
                             {
@@ -271,7 +270,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                     db.SaveChanges();
                                 }
                             }
-                            returnData = db.CBS_ValueInnovations.Where(x => x.Approved == false ).ToList();
+                            returnData = db.CBS_ValueInnovations.Where(x => x.Approved == false).ToList();
                             break;
                     }
                 }
@@ -279,17 +278,69 @@ namespace _99X_CBS.Areas.Admin.Controllers
             }
             else
             {
-                List<CBS_Attendances> cbs_AttendanceList = db.CBS_Attendances.ToList();
-                return Json(cbs_AttendanceList, JsonRequestBehavior.AllowGet);
-            }
+                switch (approved_ids.datatype)
+                {
+                    case "CBS_Attendances":
+                        returnData = db.CBS_Attendances.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Awards":
+                        returnData = db.CBS_Awards.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Bonuses":
+                        returnData = db.CBS_Bonuses.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_CustomerFeedbackScore":
+                        returnData = db.CBS_CustomerFeedbackScore.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_EmployeeBillingUtilization":
+                        returnData = db.CBS_EmployeeBillingUtilization.Where(x => x.Approved == false).ToList();
+                        break;
 
+                    case "CBS_Engagement":
+                        returnData = db.CBS_Engagement.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_FuelAllowances":
+                        returnData = db.CBS_FuelAllowances.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Increments":
+                        returnData = db.CBS_Increments.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_MentorBuddy":
+                        returnData = db.CBS_MentorBuddy.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Promotions":
+                        returnData = db.CBS_Promotions.Where(x => x.Approved == false).ToList();
+                        break;
+
+                    case "CBS_PublicAppearences":
+                        returnData = db.CBS_PublicAppearences.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_TechnologyExposure":
+                        returnData = db.CBS_TechnologyExposure.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Trainings":
+                        returnData = db.CBS_Trainings.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Travels":
+                        returnData = db.CBS_Travels.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_UniversitySessions":
+                        returnData = db.CBS_UniversitySessions.Where(x => x.Approved == false).ToList();
+                        break;
+
+                    case "CBS_ValueInnovations":
+                        returnData = db.CBS_ValueInnovations.Where(x => x.Approved == false).ToList();
+                        break;
+                }
+                return Json(returnData, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET :/Admin/DataApprove/Approve/
         public ActionResult Approve(ID_List approved_ids)
         {
             var returnData = new Object();
-            if (approved_ids != null)
+            if (approved_ids != null && approved_ids.ids != null)
             {
                 foreach (var ID in approved_ids.ids)
                 {
@@ -591,12 +642,64 @@ namespace _99X_CBS.Areas.Admin.Controllers
             }
             else
             {
-                List<CBS_Attendances> cbs_AttendanceList = db.CBS_Attendances.ToList();
-                return Json(cbs_AttendanceList, JsonRequestBehavior.AllowGet);
+                switch (approved_ids.datatype)
+                {
+                    case "CBS_Attendances":
+                        returnData = db.CBS_Attendances.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Awards":
+                        returnData = db.CBS_Awards.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Bonuses":
+                        returnData = db.CBS_Bonuses.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_CustomerFeedbackScore":
+                        returnData = db.CBS_CustomerFeedbackScore.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_EmployeeBillingUtilization":
+                        returnData = db.CBS_EmployeeBillingUtilization.Where(x => x.Approved == false).ToList();
+                        break;
+
+                    case "CBS_Engagement":
+                        returnData = db.CBS_Engagement.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_FuelAllowances":
+                        returnData = db.CBS_FuelAllowances.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Increments":
+                        returnData = db.CBS_Increments.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_MentorBuddy":
+                        returnData = db.CBS_MentorBuddy.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Promotions":
+                        returnData = db.CBS_Promotions.Where(x => x.Approved == false).ToList();
+                        break;
+
+                    case "CBS_PublicAppearences":
+                        returnData = db.CBS_PublicAppearences.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_TechnologyExposure":
+                        returnData = db.CBS_TechnologyExposure.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Trainings":
+                        returnData = db.CBS_Trainings.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Travels":
+                        returnData = db.CBS_Travels.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_UniversitySessions":
+                        returnData = db.CBS_UniversitySessions.Where(x => x.Approved == false).ToList();
+                        break;
+
+                    case "CBS_ValueInnovations":
+                        returnData = db.CBS_ValueInnovations.Where(x => x.Approved == false).ToList();
+                        break;
+                }
+
+                return Json(returnData, JsonRequestBehavior.AllowGet);
             }
-
         }
-
     }
 
     public class ID_List
