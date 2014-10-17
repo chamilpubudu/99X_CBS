@@ -84,8 +84,11 @@
         </td>-->
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) 
+            @if(User.IsInRole("Admin") || User.IsInRole("Manager")||User.IsInRole("CBS_Travels_Manage")){
+                @Html.Raw("|")
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            }
         </td>
     </tr>
 }
