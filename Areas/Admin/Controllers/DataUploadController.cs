@@ -111,6 +111,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_awards.Award_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                                 cbs_awards.Award = ds.Tables[0].Rows[i][2].ToString();
                                 cbs_awards.EmpID = ds.Tables[0].Rows[i][3].ToString();
+                                cbs_awards.Approved = true;
 
 
                                 if (ModelState.IsValid)
@@ -150,6 +151,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_attendances.Lieu_Leaves_Taken = ds.Tables[0].Rows[i][8].ToString();
                                 cbs_attendances.Number_of_Days_Reported_to_Work = ds.Tables[0].Rows[i][9].ToString();
                                 cbs_attendances.EmpID = ds.Tables[0].Rows[i][10].ToString();
+                                cbs_attendances.Approved = true;
 
                                 if (ModelState.IsValid)
                                 {
@@ -182,7 +184,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_bonuses.Bonus_Type = ds.Tables[0].Rows[i][2].ToString();
                                 cbs_bonuses.Bonus_Amount = ds.Tables[0].Rows[i][3].ToString();
                                 cbs_bonuses.EmpID = ds.Tables[0].Rows[i][4].ToString();
-
+                                cbs_bonuses.Approved = true;
 
                                 if (ModelState.IsValid)
                                 {
@@ -216,6 +218,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_customerfeedbackscore.Score = ds.Tables[0].Rows[i][2].ToString();
                                 cbs_customerfeedbackscore.Comments = ds.Tables[0].Rows[i][3].ToString();
                                 cbs_customerfeedbackscore.EmpID = ds.Tables[0].Rows[i][4].ToString();
+                                cbs_customerfeedbackscore.Approved = true;
 
 
                                 if (ModelState.IsValid)
@@ -250,6 +253,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_employeebillingutilization.Project = ds.Tables[0].Rows[i][3].ToString();
                                 cbs_employeebillingutilization.Billing_Utilization = ds.Tables[0].Rows[i][4].ToString();
                                 cbs_employeebillingutilization.EmpID = ds.Tables[0].Rows[i][5].ToString();
+                                cbs_employeebillingutilization.Approved = true;
 
                                 if (ModelState.IsValid)
                                 {
@@ -283,6 +287,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_employees.Appraisal_Score = ds.Tables[0].Rows[i][4].ToString();
                                 cbs_employees.EmpID = ds.Tables[0].Rows[i][5].ToString();
                                 cbs_employees.UserID = ds.Tables[0].Rows[i][6].ToString();
+                                cbs_employees.Approved = true;
 
                                 if (ModelState.IsValid)
                                 {
@@ -313,6 +318,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_engagement.Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                                 cbs_engagement.Event = ds.Tables[0].Rows[i][2].ToString();
                                 cbs_engagement.EmpID = ds.Tables[0].Rows[i][3].ToString();
+                                cbs_engagement.Approved = true;
 
                                 if (ModelState.IsValid)
                                 {
@@ -344,6 +350,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_fuelallowances.Number_Of_Liters = ds.Tables[0].Rows[i][2].ToString();
                                 cbs_fuelallowances.Amount = ds.Tables[0].Rows[i][3].ToString();
                                 cbs_fuelallowances.EmpID = ds.Tables[0].Rows[i][4].ToString();
+                                cbs_fuelallowances.Approved = true;
 
                                 if (ModelState.IsValid)
                                 {
@@ -374,6 +381,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_increments.Effective_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                                 cbs_increments.Increment_Amount = ds.Tables[0].Rows[i][2].ToString();
                                 cbs_increments.EmpID = ds.Tables[0].Rows[i][3].ToString();
+                                cbs_increments.Approved = true;
 
                                 if (ModelState.IsValid)
                                 {
@@ -405,6 +413,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_mentorbuddy.Mentor_or_Buddy_Type = ds.Tables[0].Rows[i][2].ToString();
                                 cbs_mentorbuddy.Mentor_or_Buddy = ds.Tables[0].Rows[i][3].ToString();
                                 cbs_mentorbuddy.EmpID = ds.Tables[0].Rows[i][4].ToString();
+                                cbs_mentorbuddy.Approved = true;
 
                                 if (ModelState.IsValid)
                                 {
@@ -436,6 +445,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_promotions.Promoted_To = ds.Tables[0].Rows[i][2].ToString();
                                 cbs_promotions.Previous_Designation = ds.Tables[0].Rows[i][3].ToString();
                                 cbs_promotions.EmpID = ds.Tables[0].Rows[i][4].ToString();
+                                cbs_promotions.Approved = true;
 
                                 if (ModelState.IsValid)
                                 {
@@ -469,7 +479,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_publicappearance.Session_Topic = ds.Tables[0].Rows[i][4].ToString();
                                 cbs_publicappearance.Number_Of_Participants = ds.Tables[0].Rows[i][5].ToString();
                                 cbs_publicappearance.EmpID = ds.Tables[0].Rows[i][6].ToString();
-
+                                cbs_publicappearance.Approved = true;
                                 if (ModelState.IsValid)
                                 {
                                     db.CBS_PublicAppearences.Add(cbs_publicappearance);
@@ -500,7 +510,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_technologyexposure.Engagement = ds.Tables[0].Rows[i][2].ToString();
                                 cbs_technologyexposure.Technologies = ds.Tables[0].Rows[i][3].ToString();
                                 cbs_technologyexposure.EmpID = ds.Tables[0].Rows[i][4].ToString();
-
+                                cbs_technologyexposure.Approved = true;
                                 if (ModelState.IsValid)
                                 {
                                     db.CBS_TechnologyExposure.Add(cbs_technologyexposure);
@@ -536,7 +546,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_trainings.Time_Duration = ds.Tables[0].Rows[i][7].ToString();
                                 cbs_trainings.Cost_Money = ds.Tables[0].Rows[i][8].ToString();
                                 cbs_trainings.EmpID = ds.Tables[0].Rows[i][9].ToString();
-
+                                cbs_trainings.Approved = true;
                                 if (ModelState.IsValid)
                                 {
                                     db.CBS_Trainings.Add(cbs_trainings);
@@ -570,7 +580,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_travels.Allowance_In_SLR = ds.Tables[0].Rows[i][5].ToString();
                                 cbs_travels.Purpose = ds.Tables[0].Rows[i][6].ToString();
                                 cbs_travels.EmpID = ds.Tables[0].Rows[i][7].ToString();
-
+                                cbs_travels.Approved = true;
                                 if (ModelState.IsValid)
                                 {
                                     db.CBS_Travels.Add(cbs_travels);
@@ -609,7 +619,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_universitysessions.Topic = ds.Tables[0].Rows[i][8].ToString();
                                 cbs_universitysessions.To_the_University = ds.Tables[0].Rows[i][9].ToString();
                                 cbs_universitysessions.EmpID = ds.Tables[0].Rows[i][10].ToString();
-
+                                cbs_universitysessions.Approved = true;
                                 if (ModelState.IsValid)
                                 {
                                     db.CBS_UniversitySessions.Add(cbs_universitysessions);
@@ -639,7 +649,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                                 cbs_valueinnovations.Innovation_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
                                 cbs_valueinnovations.Value_Innovation = ds.Tables[0].Rows[i][2].ToString();
                                 cbs_valueinnovations.EmpID = ds.Tables[0].Rows[i][3].ToString();
-
+                                cbs_valueinnovations.Approved = true;
 
                                 if (ModelState.IsValid)
                                 {
