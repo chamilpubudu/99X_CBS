@@ -137,6 +137,10 @@ namespace _99X_CBS.Models
                 this.Roles.Add(rvm);
             }
 
+            //Order UserRoles alphabetically 
+            IComparer<SelectRoleEditorViewModel> comparer = new RoleEditorOrderingClass();
+            this.Roles.Sort(comparer);
+
             // Set the Selected property to true for those roles for 
             // which the current user is a member:
             foreach (var userRole in user.Roles)
@@ -166,5 +170,14 @@ namespace _99X_CBS.Models
 
         [Required]
         public string RoleName { get; set; }
+    }
+
+    public class RoleEditorOrderingClass : IComparer<SelectRoleEditorViewModel>
+    {
+        public int Compare(SelectRoleEditorViewModel x, SelectRoleEditorViewModel y)
+        {
+            int compareName = x.RoleName.CompareTo(y.RoleName);
+            return compareName;
+        }
     }
 }
