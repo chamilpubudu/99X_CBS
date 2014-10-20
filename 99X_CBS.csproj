@@ -239,6 +239,9 @@
     <Content Include="Content\CBS.css" />
     <Content Include="Content\Images\CBS_Logo.jpg" />
     <Content Include="Content\Images\logo-black.png" />
+    <Content Include="Content\Images\Slider\1.jpg" />
+    <Content Include="Content\Images\Slider\2.jpg" />
+    <Content Include="Content\Images\Slider\3.jpg" />
     <Content Include="Content\jasny-bootstrap.css" />
     <Content Include="Content\jasny-bootstrap.min.css" />
     <Content Include="Content\jquery-ui.css" />
