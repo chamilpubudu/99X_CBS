@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - CBS Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet"  href="../../../../Content/jquery-ui.css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -62,7 +63,25 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-ui")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        $(".datepicker :input").datepicker({
+            showWeek: true,
+            firstDay: 1
+        });
+        //$(".yearpicker :input").datepicker({
+        //    changeMonth: true,
+        //    changeYear: true,
+        //    showButtonPanel: true,
+        //    dateFormat: 'MM yy',
+        //    onClose: function(dateText, inst) { 
+        //        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+        //        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+        //        $(this).datepicker('setDate', new Date(year, month, 1));
+        //    }
+        //});
+    </script>
 </body>
 </html>

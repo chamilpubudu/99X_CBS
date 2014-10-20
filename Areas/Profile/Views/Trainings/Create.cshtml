@@ -24,7 +24,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10 yearpicker">
                 @Html.EditorFor(model => model.Year)
                 @Html.ValidationMessageFor(model => model.Year)
             </div>

@@ -24,7 +24,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.From_Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10 datepicker">
                 @Html.EditorFor(model => model.From_Date)
                 @Html.ValidationMessageFor(model => model.From_Date)
             </div>
@@ -32,7 +32,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.To_Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10 datepicker">
                 @Html.EditorFor(model => model.To_Date)
                 @Html.ValidationMessageFor(model => model.To_Date)
             </div>

@@ -26,7 +26,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Fueling_Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10 datepicker">
                 @Html.EditorFor(model => model.Fueling_Date)
                 @Html.ValidationMessageFor(model => model.Fueling_Date)
             </div>
