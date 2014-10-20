@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace _99X_CBS.Models
 {
@@ -129,7 +130,7 @@ namespace _99X_CBS.Models
             var Db = new ApplicationDbContext();
 
             // Add all available roles to the list of EditorViewModels:
-            var allRoles = Db.Roles;
+            var allRoles = Db.Roles.OrderBy(o=> o.Name);
             foreach (var role in allRoles)
             {
                 // An EditorViewModel will be used by Editor Template:
@@ -138,8 +139,7 @@ namespace _99X_CBS.Models
             }
 
             //Order UserRoles alphabetically 
-            IComparer<SelectRoleEditorViewModel> comparer = new RoleEditorOrderingClass();
-            this.Roles.Sort(comparer);
+           
 
             // Set the Selected property to true for those roles for 
             // which the current user is a member:
@@ -170,14 +170,5 @@ namespace _99X_CBS.Models
 
         [Required]
         public string RoleName { get; set; }
-    }
-
-    public class RoleEditorOrderingClass : IComparer<SelectRoleEditorViewModel>
-    {
-        public int Compare(SelectRoleEditorViewModel x, SelectRoleEditorViewModel y)
-        {
-            int compareName = x.RoleName.CompareTo(y.RoleName);
-            return compareName;
-        }
     }
 }
