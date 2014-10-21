@@ -70,18 +70,25 @@
         <table>
             <tr>
                 <td class="tr0 td1">
-                    <p class=" ft2">Total Years at 99XTechnology</p>
+                    <p class=" ft2">Total Years at 99XTechnology </p>
                 </td>
+                @{
+                    int joinedYear = Model.cbs_employee.Date_Joined.Value.Year;
+                    int startedYear = Model.cbs_employee.Career_Started_On.Value.Year;
+                    int currentYear = @DateTime.Now.Year;
+                    int total99Xperiance = currentYear - joinedYear ;
+                    int totalXperiance = currentYear  - startedYear ;              
+                }
                 <td class="tr0 td1">
-                    <p class=" ft2">5 years - Calc</p>
+                    <p class=" ft2">:@total99Xperiance</p>
                 </td>
             </tr>
             <tr>
                 <td class="tr0 td1">
-                    <p class=" ft2">Total Experience</p>
+                    <p class=" ft2">Total Experience in Years </p>
                 </td>
                 <td class="tr0 td1">
-                    <p class=" ft2">5 years - Calc</p>
+                    <p class=" ft2">:@totalXperiance</p>
                 </td>
             </tr>
             <tr>
