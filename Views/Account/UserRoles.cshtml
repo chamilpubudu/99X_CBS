@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "User Roles";
 }
-  
+<script src="../../Scripts/jquery-1.10.2.min.js"> </script> 
 <h2>Roles for user @Html.DisplayFor(model => model.UserName)</h2>
 <hr />
   
@@ -43,5 +43,22 @@
             </div>
         </div>
     </div>
+<script >
+    //var id = $("[value='Admin']").attr('id');
+    $('#Roles_0__Selected').click(function () {
+        var adminCheckBox = $('#Roles_0__Selected').is(':checked');
+        if (adminCheckBox) {
+            $(":checkbox").prop('disabled', true);
+            $(":checkbox").prop('checked', true);
+            $('#Roles_0__Selected').prop('disabled', false);
+        }
+        else
+        {
+            $(":checkbox").prop('disabled', false);
+            $(":checkbox").prop('checked', false);
+        }
+
+    });
+</script>
 }
 
