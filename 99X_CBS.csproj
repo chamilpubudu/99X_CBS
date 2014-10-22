@@ -189,6 +189,7 @@
     <Compile Include="Models\CBS_FuelAllowances.cs" />
     <Compile Include="Models\CBS_Increments.cs" />
     <Compile Include="Models\CBS_MentorBuddy.cs" />
+    <Compile Include="Models\CBS_NotificationInfo.cs" />
     <Compile Include="Models\CBS_Promotions.cs" />
     <Compile Include="Models\CBS_PublicAppearences.cs" />
     <Compile Include="Models\CBS_ReportFormat.cs" />
