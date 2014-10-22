@@ -26,5 +26,12 @@ namespace _99X_CBS.Controllers
 
             return View();
         }
+
+        public ActionResult Notification()
+        {
+            ViewBag.Message = "Your Notification page.";
+
+            return View();
+        }
     }
 }

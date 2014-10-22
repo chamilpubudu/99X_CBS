@@ -9,6 +9,7 @@ namespace _99X_CBS
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            app.MapSignalR();
         }
     }
 }
