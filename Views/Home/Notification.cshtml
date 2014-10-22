@@ -27,8 +27,14 @@
             // Create a function that the hub can call back to display messages.
             chat.client.addNewMessageToPage = function (name, message) {
                 // Add the message to the page. 
-                $('#discussion').append('<li><strong>' + htmlEncode(name)
-                    + '</strong>: ' + htmlEncode(message) + '</li>');
+                $('#notificationsBody').append('<div><strong>' + htmlEncode(name)
+                    + '</strong>: ' + htmlEncode(message) + '</div>');
+
+                var notificationCount = parseInt($("#notification_count").text());
+                notificationCount = notificationCount + 1;
+                $("#notification_count").text(notificationCount);
+                $("#notification_count").fadeIn("high");
+
             };
             // Get the user name and store it to prepend to messages.
             $('#displayname').val(prompt('Enter your name:', ''));

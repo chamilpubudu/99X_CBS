@@ -69,6 +69,7 @@
             position: absolute;
             margin-top: 7px;
             font-size: 11px;
+            display:none;
         }
     </style>
 
@@ -77,7 +78,7 @@
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li id="notification_li">
-            <span id="notification_count">3</span>
+            <span id="notification_count">0</span>
             <a href="#" id="notificationLink">Notifications</a>
             <div id="notificationContainer">
                 <div id="notificationTitle">Notifications</div>
@@ -101,9 +102,11 @@ else
     @Scripts.Render("~/bundles/jquery")
     <script type="text/javascript">
         $(document).ready(function () {
+
             $("#notificationLink").click(function () {
                 $("#notificationContainer").fadeToggle(300);
                 $("#notification_count").fadeOut("slow");
+                $("#notification_count").text("0");
                 return false;
             });
 
@@ -116,5 +119,9 @@ else
                 return false
             });
 
+
+            if (parseInt($("#notification_count").text())>0) {
+                $("#notification_count").show();
+            };
         });
     </script>
