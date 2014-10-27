@@ -15,7 +15,13 @@ namespace _99X_CBS.Models
             {
                 Entities db = new Entities();
                 string userID = User.Identity.GetUserName();
-                CBS_Employees cbs_Employee = db.CBS_Employees.Where(x => x.Approved == true && x.UserID == userID ).First();
+                CBS_Employees cbs_Employee = null;
+                try {
+                    
+                    cbs_Employee = db.CBS_Employees.Where(x => x.Approved == true && x.UserID == userID).First();
+                }catch{
+                    return "";
+                }
                 if (cbs_Employee != null)
                 {
                     employeeID = cbs_Employee.EmpID;
