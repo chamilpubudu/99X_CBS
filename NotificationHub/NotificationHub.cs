@@ -39,8 +39,8 @@ namespace _99X_CBS.NotificationHub
         {
             string name = Context.User.Identity.Name;
             List<CBS_NotificationInfo> cbs_NotificationInfoList = entitiesDb.CBS_NotificationInfo.Where(n => n.UserID == name).OrderByDescending(n => n.NotifiedTime).Take(10).ToList();
-            string test = JsonConvert.SerializeObject(cbs_NotificationInfoList);
-            Clients.Caller.setInitialNotifications(test);
+            string strJson = JsonConvert.SerializeObject(cbs_NotificationInfoList);
+            Clients.Caller.setInitialNotifications(strJson);
         }
 
 
@@ -50,7 +50,8 @@ namespace _99X_CBS.NotificationHub
             CBS_NotificationInfo cbs_NotificationInfo = entitiesDb.CBS_NotificationInfo.Find(ID);
             cbs_NotificationInfo.Viewed = true;
             entitiesDb.Entry(cbs_NotificationInfo).State = EntityState.Modified;
-            entitiesDb.SaveChanges();            
+            entitiesDb.SaveChanges();
+            Clients.Caller.reloadNotifications();
         }
 
         public static void NotifyAll(string message, string link)

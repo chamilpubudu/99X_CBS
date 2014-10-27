@@ -110,14 +110,26 @@
             };
 
             function checkNotification(link, notificationID, viewed) {
+                $("#notificationContainer").hide();
                 if (!viewed) {
                     chat.server.viewNotification(notificationID);
                 }
-                location.href = link;
+                //alert("document.URL : " + document.URL);
+                //alert("document.location.href : " + document.location.href);
+                //alert("document.location.origin : " + document.location.origin + link);
+                //alert("document.location.hostname : " + document.location.hostname);
+                //alert("document.location.host : " + document.location.host);
+                //alert("document.location.pathname : " + document.location.pathname);
+                location = document.location.origin +"/"+ link;
             };
 
             function addNotification(message, link, viewed, notificationID) {
-                $('#notificationsBody').append("<div class='notification message hasClick animateIn' onclick=\"checkNotification('" + link + "'," + notificationID + "," + viewed + ");\">" +
+                var highlight = '';
+                if (!viewed) {
+                    highlight = 'highlight';
+                }
+                    
+                $('#notificationsBody').append("<div class='notification message hasClick animateIn  " + highlight + " ' onclick=\"checkNotification('" + link + "'," + notificationID + "," + viewed + ");\">" +
                         "<span class='icon'></span>"+
                         "<span class='notifyText'>"+
                             "<span class='notifyTitle'>"+ htmlEncode('Notification')+"</span>"+

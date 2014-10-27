@@ -97,9 +97,23 @@
           -moz-box-shadow: 0 -1px 0 #FFF inset;
           box-shadow: 0 -1px 0 #FFF inset;
 }
+
+#notificationsBody .notification.highlight {
+        background: #ffffff; /* Old browsers */
+        background: -moz-linear-gradient(top,  #FF9999 5%, #FFBBBB 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#FF9999), color-stop(100%,#FFBBBB)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  #FF9999 5%,#FFBBBB 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  #FF9999 5%,#FFBBBB 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  #FF9999 5%,#FFBBBB 100%); /* IE10+ */
+        background: linear-gradient(top,  #FF9999 5%,#FFBBBB 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FF9999', endColorstr='#FFBBBB',GradientType=0 ); /* IE6-9 */
+}
+
 #notificationsBody .notification.hasClick {
   cursor: pointer;
 }
+
+
 #notificationsBody .icon {
   display: inline-block;
   border-right: 1px solid #dddddd;
@@ -135,7 +149,8 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+<!--            Html.ActionLink("Hello " +  + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })-->
+            <a href="/Account/Manage" title="Manage">Hello @User.Identity.GetUserName()!</a>
         </li>
         <li id="notification_li">
             <span id="notification_count">0</span>
