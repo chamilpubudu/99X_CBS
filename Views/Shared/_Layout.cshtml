@@ -66,7 +66,7 @@
                             <li><a href="/Admin/DataApprove">Approve User Changes</a></li>
                         }
                         if ( User.IsInRole("Admin") || User.IsInRole("Manager")){
-                            <li>@Html.ActionLink("Account", "Index", "Account")</li>
+                            <li><a href="/Account">Account</a></li>
                         }
                     }
                 </ul>
@@ -94,7 +94,10 @@
             // Reference the auto-generated proxy for the hub.  
             var chat = $.connection.notificationHub;
             chat.client.setInitialNotifications = function (messages) {
-               // alert(messages);
+                // alert(messages);
+                $('#notificationsBody').text("");
+                $("#notification_count").fadeOut("slow");
+                $("#notification_count").text("0");
                 messages = jQuery.parseJSON(messages);
                 for (var index = 0; messages.length > index; index++) {
                     var message = messages[index];
