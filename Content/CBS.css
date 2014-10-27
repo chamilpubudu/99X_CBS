@@ -191,5 +191,9 @@ p {
     #pdfbtn {
         display :  none;
     }
+
+    .form-control {
+        display: none !important;
+    }
 }
 
