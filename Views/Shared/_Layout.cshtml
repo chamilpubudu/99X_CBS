@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - 99X CBS Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -83,6 +82,7 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-ui")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jquery.signalR")
     @RenderSection("scripts", required: false)
@@ -91,6 +91,11 @@
 
     <script src="~/signalr/hubs"></script>
         <script>
+            $(".datepicker :input").datepicker({
+                showWeek: true,
+                firstDay: 1
+            });
+
             // Reference the auto-generated proxy for the hub.  
             var chat = $.connection.notificationHub;
             chat.client.setInitialNotifications = function (messages) {
