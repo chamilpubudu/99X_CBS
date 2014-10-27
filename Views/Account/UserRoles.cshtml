@@ -55,7 +55,6 @@
         }
         else {
             $(":checkbox").prop('disabled', false);
-            $(":checkbox").prop('checked', false);
         }
     });
 
@@ -76,7 +75,6 @@
 
     $("#myForm").submit(function (event) {
         $(":checkbox").prop('disabled', false);
-        event.preventDefault();
     });
 </script>
 }
