@@ -7,7 +7,7 @@
 <h2>Roles for user @Html.DisplayFor(model => model.UserName)</h2>
 <hr />
   
-@using (Html.BeginForm("UserRoles", "Account", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+@using (Html.BeginForm("UserRoles", "Account", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" , id="myForm" }))
 {
     @Html.AntiForgeryToken()
   
@@ -44,12 +44,26 @@
         </div>
     </div>
 <script >
-    //var id = $("[value='Admin']").attr('id');
+
+
+    $(document).ready(function () {
+        var adminCheckBox = $('#Roles_0__Selected').is(':checked');
+        if (adminCheckBox) {
+            $(":checkbox").prop('disabled', true);
+            $(":checkbox").prop('checked', 'checked');
+            $('#Roles_0__Selected').prop('disabled', false);
+        }
+        else {
+            $(":checkbox").prop('disabled', false);
+            $(":checkbox").prop('checked', false);
+        }
+    });
+
     $('#Roles_0__Selected').click(function () {
         var adminCheckBox = $('#Roles_0__Selected').is(':checked');
         if (adminCheckBox) {
             $(":checkbox").prop('disabled', true);
-            $(":checkbox").prop('checked', true);
+            $(":checkbox").prop('checked', 'checked');
             $('#Roles_0__Selected').prop('disabled', false);
         }
         else
@@ -58,6 +72,11 @@
             $(":checkbox").prop('checked', false);
         }
 
+    });
+
+    $("#myForm").submit(function (event) {
+        $(":checkbox").prop('disabled', false);
+        event.preventDefault();
     });
 </script>
 }
