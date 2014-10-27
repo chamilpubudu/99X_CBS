@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_UniversitySessions.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_UniversitySessions_Manage", "UniversitySessions change requested", "Admin/DataApprove#CBS_UniversitySessions");
                 }
                 db.CBS_UniversitySessions.Add(cBS_UniversitySessions);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_UniversitySessions.EditedBy = User.Identity.Name;
                     cBS_UniversitySessions.ID = 0;
                     db.CBS_UniversitySessions.Add(cBS_UniversitySessions);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_UniversitySessions_Manage", "UniversitySessions change requested", "Admin/DataApprove#CBS_UniversitySessions");
                 }
 
                 db.SaveChanges();

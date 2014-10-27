@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_FuelAllowances.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_FuelAllowances_Manage", "FuelAllowances change requested", "Admin/DataApprove#CBS_FuelAllowances");
                 }
                 db.CBS_FuelAllowances.Add(cBS_FuelAllowances);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_FuelAllowances.EditedBy = User.Identity.Name;
                     cBS_FuelAllowances.ID = 0;
                     db.CBS_FuelAllowances.Add(cBS_FuelAllowances);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_FuelAllowances_Manage", "FuelAllowances change requested", "Admin/DataApprove#CBS_FuelAllowances");
                 }
 
                 db.SaveChanges();

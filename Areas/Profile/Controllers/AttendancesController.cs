@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_Attendances.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances");
                 }
                 db.CBS_Attendances.Add(cBS_Attendances);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_Attendances.EditedBy = User.Identity.Name;
                     cBS_Attendances.ID = 0;
                     db.CBS_Attendances.Add(cBS_Attendances);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances");
                 }
 
                 db.SaveChanges();

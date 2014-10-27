@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_Promotions.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Promotions_Manage", "Promotions change requested", "Admin/DataApprove#CBS_Promotions");
                 }
                 db.CBS_Promotions.Add(cBS_Promotions);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_Promotions.EditedBy = User.Identity.Name;
                     cBS_Promotions.ID = 0;
                     db.CBS_Promotions.Add(cBS_Promotions);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Promotions_Manage", "Promotions change requested", "Admin/DataApprove#CBS_Promotions");
                 }
 
                 db.SaveChanges();

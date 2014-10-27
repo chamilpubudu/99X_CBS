@@ -5,7 +5,7 @@ using System.Web;
 
 namespace _99X_CBS.Models
 {
-    public class CBS_NotificationInfo
+    public class CBS_NotificationInfo : ICloneable
     {
         public string NotificationID { get; set; }
         public bool Viewed { get; set; }
@@ -14,5 +14,10 @@ namespace _99X_CBS.Models
         public string Message { get; set; }
         public string UserID { get; set; }
         public string Link { get; set; }
+
+        public object Clone()
+        {
+            return new CBS_NotificationInfo() { NotificationID = this.NotificationID, Viewed = this.Viewed, NotifiedTime = this.NotifiedTime, Message = this.Message, UserID = this.UserID, Link = this.Link };
+        }
     }
 }

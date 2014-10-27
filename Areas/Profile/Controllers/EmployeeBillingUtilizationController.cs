@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_EmployeeBillingUtilization.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_EmployeeBillingUtilization_Manage", "EmployeeBillingUtilization change requested", "Admin/DataApprove#CBS_EmployeeBillingUtilization");
                 }
                 db.CBS_EmployeeBillingUtilization.Add(cBS_EmployeeBillingUtilization);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_EmployeeBillingUtilization.EditedBy = User.Identity.Name;
                     cBS_EmployeeBillingUtilization.ID = 0;
                     db.CBS_EmployeeBillingUtilization.Add(cBS_EmployeeBillingUtilization);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_EmployeeBillingUtilization_Manage", "EmployeeBillingUtilization change requested", "Admin/DataApprove#CBS_EmployeeBillingUtilization");
                 }
 
                 db.SaveChanges();

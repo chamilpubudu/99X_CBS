@@ -30,7 +30,7 @@ namespace _99X_CBS.Controllers
         public ActionResult Notification()
         {
             ViewBag.Message = "Your Notification page.";
-
+            NotificationHub.NotificationHub.NotifyAll("Test", "/");
             return View();
         }
     }

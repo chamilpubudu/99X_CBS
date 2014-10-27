@@ -46,8 +46,8 @@
         }
 
         #notificationsBody {
-            padding: 33px 0px 0px 0px !important;
-            min-height: 300px;
+            padding: 5px 5px 5px 5px !important;
+            min-height: 20px;
         }
 
         #notificationFooter {
@@ -71,6 +71,66 @@
             font-size: 11px;
             display:none;
         }
+
+#notificationsBody .notification {
+  display: block;
+  text-decoration: none;
+  /*width: 60%;*/
+  overflow: hidden;
+  margin: 0 0 4px 0;
+    -webkit-transform-origin: center top;
+    -moz-transform-origin: center top;
+    -o-transform-origin: center top;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -o-border-radius: 6px;
+      border-radius: 6px;
+        background: #ffffff; /* Old browsers */
+        background: -moz-linear-gradient(top,  #ffffff 0%, #e6e6e6 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e6e6e6)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* IE10+ */
+        background: linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */
+          -webkit-box-shadow: 0 -1px 0 #FFF inset;
+          -moz-box-shadow: 0 -1px 0 #FFF inset;
+          box-shadow: 0 -1px 0 #FFF inset;
+}
+#notificationsBody .notification.hasClick {
+  cursor: pointer;
+}
+#notificationsBody .icon {
+  display: inline-block;
+  border-right: 1px solid #dddddd;
+  width: 38px;
+  height: 38px;
+  margin-right: 8px;
+  float: left;
+}
+#notificationsBody .notifyText {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333333;
+  overflow: hidden;
+}
+#notificationsBody .notifyTitle {
+  font-weight: bold;
+  font-size: 14px;
+  height: 14px;
+  display: block;
+  /*padding: 3px 0 0 0;*/
+}
+#notificationsBody .notifyMessage {
+  font-size: 12px;
+  padding: 0;
+  display: block;
+}
+
+
+
+  #notificationsBody .message .icon {
+    background: transparent url(../img/icon_message.png) center center no-repeat;
+  }
     </style>
 
     <ul class="nav navbar-nav navbar-right">
@@ -83,6 +143,23 @@
             <div id="notificationContainer">
                 <div id="notificationTitle">Notifications</div>
                 <div id="notificationsBody" class="notifications">
+
+<!--                    <div class="notification message hasClick animateIn">
+                        <span class="icon"></span>
+                        <span class="notifyText">
+                            <span class="notifyTitle">Notification</span>
+                            <span class="notifyMessage">Lorem ipsum dolor sit amet.</span>
+                        </span>
+                    </div>-->
+
+
+<!--                    <div class="notification message hasClick animateIn" onclick="location.href='/';">
+                        <span class="icon"></span>
+                        <span class="notifyText">
+                            <span class="notifyTitle">Tait Brown</span>
+                            <span class="notifyMessage">I hope you like this quirky little script!</span>
+                        </span>
+                    </div>-->
                 </div>
                 <div id="notificationFooter"><a href="#">See All</a></div>
             </div>
@@ -100,13 +177,15 @@ else
     </ul>
 }
     @Scripts.Render("~/bundles/jquery")
+
+ 
     <script type="text/javascript">
         $(document).ready(function () {
 
             $("#notificationLink").click(function () {
                 $("#notificationContainer").fadeToggle(300);
-                $("#notification_count").fadeOut("slow");
-                $("#notification_count").text("0");
+                //$("#notification_count").fadeOut("slow");
+                //$("#notification_count").text("0");
                 return false;
             });
 
@@ -125,3 +204,6 @@ else
             };
         });
     </script>
+
+
+ 

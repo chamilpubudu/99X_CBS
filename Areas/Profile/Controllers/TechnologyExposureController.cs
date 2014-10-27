@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_TechnologyExposure.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_TechnologyExposure_Manage", "TechnologyExposure change requested", "Admin/DataApprove#CBS_TechnologyExposure");
                 }
                 db.CBS_TechnologyExposure.Add(cBS_TechnologyExposure);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_TechnologyExposure.EditedBy = User.Identity.Name;
                     cBS_TechnologyExposure.ID = 0;
                     db.CBS_TechnologyExposure.Add(cBS_TechnologyExposure);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_TechnologyExposure_Manage", "TechnologyExposure change requested", "Admin/DataApprove#CBS_TechnologyExposure");
                 }
 
                 db.SaveChanges();

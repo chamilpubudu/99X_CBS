@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_Awards.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Awards_Manage", "Awards change requested", "Admin/DataApprove#CBS_Awards");
                 }
                 db.CBS_Awards.Add(cBS_Awards);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_Awards.EditedBy = User.Identity.Name;
                     cBS_Awards.ID = 0;
                     db.CBS_Awards.Add(cBS_Awards);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Awards_Manage", "Awards change requested", "Admin/DataApprove#CBS_Awards");
                 }
 
                 db.SaveChanges();

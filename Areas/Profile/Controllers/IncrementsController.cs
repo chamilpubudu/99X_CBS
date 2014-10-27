@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_Increments.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Increments change requested", "Admin/DataApprove#CBS_Increments");
                 }
                 db.CBS_Increments.Add(cBS_Increments);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_Increments.EditedBy = User.Identity.Name;
                     cBS_Increments.ID = 0;
                     db.CBS_Increments.Add(cBS_Increments);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Increments_Manage", "Increments change requested", "Admin/DataApprove#CBS_Increments");
                 }
 
                 db.SaveChanges();

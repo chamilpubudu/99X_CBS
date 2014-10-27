@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_CustomerFeedbackScore.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_CustomerFeedbackScore_Manage", "CustomerFeedbackScore change requested", "Admin/DataApprove#CBS_CustomerFeedbackScore");
                 }
                 db.CBS_CustomerFeedbackScore.Add(cBS_CustomerFeedbackScore);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_CustomerFeedbackScore.EditedBy = User.Identity.Name;
                     cBS_CustomerFeedbackScore.ID = 0;
                     db.CBS_CustomerFeedbackScore.Add(cBS_CustomerFeedbackScore);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_CustomerFeedbackScore_Manage", "CustomerFeedbackScore change requested", "Admin/DataApprove#CBS_CustomerFeedbackScore");
                 }
 
                 db.SaveChanges();

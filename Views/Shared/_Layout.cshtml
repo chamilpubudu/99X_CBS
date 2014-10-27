@@ -84,6 +84,66 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery.signalR")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+    <script src="~/signalr/hubs"></script>
+        <script>
+            // Reference the auto-generated proxy for the hub.  
+            var chat = $.connection.notificationHub;
+            chat.client.setInitialNotifications = function (messages) {
+               // alert(messages);
+                messages = jQuery.parseJSON(messages);
+                for (var index = 0; messages.length > index; index++) {
+                    var message = messages[index];
+                    addNotification(message.Message, message.Link, message.Viewed, message.ID);
+                }
+            };
+
+            chat.client.reloadNotifications = function () {
+                $('#notificationsBody').text("");
+                $("#notification_count").fadeOut("slow");
+                $("#notification_count").text("0");
+                chat.server.getInitialNotifications();
+            };
+
+            function checkNotification(link, notificationID, viewed) {
+                if (!viewed) {
+                    chat.server.viewNotification(notificationID);
+                }
+                location.href = link;
+            };
+
+            function addNotification(message, link, viewed, notificationID) {
+                $('#notificationsBody').append("<div class='notification message hasClick animateIn' onclick=\"checkNotification('" + link + "'," + notificationID + "," + viewed + ");\">" +
+                        "<span class='icon'></span>"+
+                        "<span class='notifyText'>"+
+                            "<span class='notifyTitle'>"+ htmlEncode('Notification')+"</span>"+
+                            "<span class='notifyMessage'>" + htmlEncode(message) + "</span>" +
+                        "</span>"+
+                    "</div>");
+                var notificationCount = parseInt($("#notification_count").text());
+                if (!viewed){
+                    notificationCount = notificationCount + 1;
+                }
+                if (notificationCount > 0) {
+                    $("#notification_count").text(notificationCount);
+                    $("#notification_count").fadeIn("high");
+                }
+            };
+
+
+
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                chat.server.getInitialNotifications();
+            });
+
+        // This optional function html-encodes messages for display in the page.
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+        </script>

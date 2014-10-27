@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_Trainings.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Trainings_Manage", "Trainings change requested", "Admin/DataApprove#CBS_Trainings");
                 }
                 db.CBS_Trainings.Add(cBS_Trainings);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_Trainings.EditedBy = User.Identity.Name;
                     cBS_Trainings.ID = 0;
                     db.CBS_Trainings.Add(cBS_Trainings);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Trainings_Manage", "Trainings change requested", "Admin/DataApprove#CBS_Trainings");
                 }
 
                 db.SaveChanges();

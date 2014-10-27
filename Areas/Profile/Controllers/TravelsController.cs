@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_Travels.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Travels_Manage", "Travels change requested", "Admin/DataApprove#CBS_Travels");
                 }
                 db.CBS_Travels.Add(cBS_Travels);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_Travels.EditedBy = User.Identity.Name;
                     cBS_Travels.ID = 0;
                     db.CBS_Travels.Add(cBS_Travels);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Travels_Manage", "Travels change requested", "Admin/DataApprove#CBS_Travels");
                 }
 
                 db.SaveChanges();

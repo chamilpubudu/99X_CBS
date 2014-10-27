@@ -7,19 +7,25 @@ using System.Threading.Tasks;
 using System.Web.Security;
 using System.Diagnostics;
 using _99X_CBS.Models;
+using Newtonsoft.Json;
+using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace _99X_CBS.NotificationHub
 {
     public class NotificationHub : Hub
     {
 
+      private static Entities entitiesDb = new Entities();
+      private static ApplicationDbContext applicationDbContext = new ApplicationDbContext();
+
         public override Task OnConnected()
         {
             string name = Context.User.Identity.Name;
-            var Db = new ApplicationDbContext();
             if (Context.User.Identity.IsAuthenticated)
             {
-                var user = Db.Users.First(u => u.UserName == name);
+                var user = applicationDbContext.Users.First(u => u.UserName == name);
                 var allRoles = user.Roles;
                 foreach (var role in allRoles)
                 {
@@ -29,24 +35,75 @@ namespace _99X_CBS.NotificationHub
             return base.OnConnected();
         }
 
-        public void Send(string group, string message)
+        public void getInitialNotifications()
         {
-            // Call the addNewMessageToPage method to update clients.
-            Clients.Group(group).addNewMessageToPage(group, message);
+            string name = Context.User.Identity.Name;
+            List<CBS_NotificationInfo> cbs_NotificationInfoList = entitiesDb.CBS_NotificationInfo.Where(n => n.UserID == name).OrderByDescending(n => n.NotifiedTime).Take(10).ToList();
+            string test = JsonConvert.SerializeObject(cbs_NotificationInfoList);
+            Clients.Caller.setInitialNotifications(test);
         }
 
-        public static void Notify(string message)
+
+        public void viewNotification(int ID)
         {
-            var hubContext = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
-            hubContext.Clients.All.addNewMessageToPage(message);
+            string name = Context.User.Identity.Name;
+            CBS_NotificationInfo cbs_NotificationInfo = entitiesDb.CBS_NotificationInfo.Find(ID);
+            cbs_NotificationInfo.Viewed = true;
+            entitiesDb.Entry(cbs_NotificationInfo).State = EntityState.Modified;
+            entitiesDb.SaveChanges();            
         }
 
-        public static void GroupNotify(string group, string message)
+        public static void NotifyAll(string message, string link)
         {
+            
+            HashSet<ApplicationUser> usersList = new HashSet<ApplicationUser>();
+            usersList.UnionWith(applicationDbContext.Users.ToList());
+
+            SaveNotificationToDB(usersList, message, link);
+
             var hubContext = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
-            hubContext.Clients.Group("Admin").addNewMessageToPage(group, message);
-            hubContext.Clients.Group("Manager").addNewMessageToPage(group, message);
-            hubContext.Clients.Group(group).addNewMessageToPage(group, message);
+            hubContext.Clients.All.reloadNotifications();
+        }
+
+        public static void GroupNotify(string groupName, string message, string link)
+        {
+            var roleNameAdmin = "Admin";
+            var roleNameManager = "Manager";
+
+            HashSet<ApplicationUser> usersList = new HashSet<ApplicationUser>();
+            usersList.UnionWith(GetUsersInGroup(roleNameAdmin));
+            usersList.UnionWith(GetUsersInGroup(roleNameManager));
+            usersList.UnionWith(GetUsersInGroup(groupName));
+
+            SaveNotificationToDB(usersList,message,link);
+
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
+            hubContext.Clients.Group("Admin").reloadNotifications();
+            hubContext.Clients.Group("Manager").reloadNotifications();
+            hubContext.Clients.Group(groupName).reloadNotifications();
+        }
+
+        private static List<ApplicationUser> GetUsersInGroup(string groupName)
+        {
+            return applicationDbContext.Users.Where(u => u.Roles.Where(r => r.Role.Name == groupName).FirstOrDefault().Role.Name == groupName).ToList();
+        }
+
+        private static void SaveNotificationToDB(HashSet<ApplicationUser> usersList, string message, string link)
+        {
+            CBS_NotificationInfo cbs_NotificationInfo = new CBS_NotificationInfo();
+            cbs_NotificationInfo.NotifiedTime = System.DateTime.Now;
+            cbs_NotificationInfo.Message = message;
+            cbs_NotificationInfo.Viewed = false;
+            cbs_NotificationInfo.Link = link;
+            cbs_NotificationInfo.NotificationID = System.DateTime.Now.Ticks.ToString();
+
+            foreach (var user in usersList)
+            {
+                var notification = (CBS_NotificationInfo)cbs_NotificationInfo.Clone();
+                notification.UserID = user.UserName;
+                entitiesDb.CBS_NotificationInfo.Add(notification);
+            }
+            entitiesDb.SaveChanges(); 
         }
     }
 }

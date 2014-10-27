@@ -70,6 +70,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_Employees.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Employees_Manage", "Employees change requested", "Admin/DataApprove#CBS_Employees");
                 }
                 db.CBS_Employees.Add(cBS_Employees);
                 db.SaveChanges();
@@ -118,6 +119,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_Employees.EditedBy = User.Identity.Name;
                     cBS_Employees.ID = 0;
                     db.CBS_Employees.Add(cBS_Employees);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Employees_Manage", "Employees change requested", "Admin/DataApprove#CBS_Employees");
                 }
 
                 db.SaveChanges();

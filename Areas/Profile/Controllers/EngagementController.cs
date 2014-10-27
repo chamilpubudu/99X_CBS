@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_Engagement.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Engagement_Manage", "Engagement change requested", "Admin/DataApprove#CBS_Engagement");
                 }
                 db.CBS_Engagement.Add(cBS_Engagement);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_Engagement.EditedBy = User.Identity.Name;
                     cBS_Engagement.ID = 0;
                     db.CBS_Engagement.Add(cBS_Engagement);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Engagement_Manage", "Engagement change requested", "Admin/DataApprove#CBS_Engagement");
                 }
 
                 db.SaveChanges();

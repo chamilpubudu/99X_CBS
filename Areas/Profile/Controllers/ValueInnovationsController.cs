@@ -68,6 +68,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_ValueInnovations.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_ValueInnovations_Manage", "ValueInnovations change requested", "Admin/DataApprove#CBS_ValueInnovations");
                 }
                 db.CBS_ValueInnovations.Add(cBS_ValueInnovations);
                 db.SaveChanges();
@@ -113,6 +114,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_ValueInnovations.EditedBy = User.Identity.Name;
                     cBS_ValueInnovations.ID = 0;
                     db.CBS_ValueInnovations.Add(cBS_ValueInnovations);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_ValueInnovations_Manage", "ValueInnovations change requested", "Admin/DataApprove#CBS_ValueInnovations");
                 }
 
                 db.SaveChanges();

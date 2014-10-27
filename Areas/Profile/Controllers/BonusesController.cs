@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_Bonuses.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Bonuses_Manage", "Bonuses change requested", "Admin/DataApprove#CBS_Bonuses");
                 }
                 db.CBS_Bonuses.Add(cBS_Bonuses);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_Bonuses.EditedBy = User.Identity.Name;
                     cBS_Bonuses.ID = 0;
                     db.CBS_Bonuses.Add(cBS_Bonuses);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Bonuses_Manage", "Bonuses change requested", "Admin/DataApprove#CBS_Bonuses");
                 }
                 db.SaveChanges();
                 return RedirectToAction("Index");

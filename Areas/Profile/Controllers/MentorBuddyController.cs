@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_MentorBuddy.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_MentorBuddy_Manage", "MentorBuddy change requested", "Admin/DataApprove#CBS_MentorBuddy");
                 }
                 db.CBS_MentorBuddy.Add(cBS_MentorBuddy);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_MentorBuddy.EditedBy = User.Identity.Name;
                     cBS_MentorBuddy.ID = 0;
                     db.CBS_MentorBuddy.Add(cBS_MentorBuddy);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_MentorBuddy_Manage", "MentorBuddy change requested", "Admin/DataApprove#CBS_MentorBuddy");
                 }
 
                 db.SaveChanges();

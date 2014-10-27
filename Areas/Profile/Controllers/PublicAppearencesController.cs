@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 else
                 {
                     cBS_PublicAppearences.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_PublicAppearences_Manage", "PublicAppearences change requested", "Admin/DataApprove#CBS_PublicAppearences");
                 }
                 db.CBS_PublicAppearences.Add(cBS_PublicAppearences);
                 db.SaveChanges();
@@ -112,6 +113,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cBS_PublicAppearences.EditedBy = User.Identity.Name;
                     cBS_PublicAppearences.ID = 0;
                     db.CBS_PublicAppearences.Add(cBS_PublicAppearences);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_PublicAppearences_Manage", "PublicAppearences change requested", "Admin/DataApprove#CBS_PublicAppearences");
                 }
 
                 db.SaveChanges();
