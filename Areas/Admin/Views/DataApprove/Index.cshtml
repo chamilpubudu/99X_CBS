@@ -273,6 +273,10 @@
             $(this).tab('show')
         });
 
+        //goto to the relevent tab using hash in url
+        var hash = $.trim(window.location.hash);
+        if (hash) $('.nav a[href$="' + hash + '"]').trigger('click');
+
     });
 
 </script>
