@@ -86,7 +86,15 @@ namespace _99X_CBS.Areas.CBS.Controllers
             cbs_dto.cbs_FuelAllowancesList              = cbs_FuelAllowancesList;
             cbs_dto.cbs_ReportFormatList                = cbs_ReportFormatList;
 
-            return View(cbs_dto);
+
+            if (cbs_dto.cbs_employee.EmpID == CurrentUser.GetEmpID(this.Session, this.User))
+            {
+                return View(cbs_dto);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
         }
 
 
@@ -110,7 +118,14 @@ namespace _99X_CBS.Areas.CBS.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(cbs_employees);
+            if (cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User))
+            {
+                return View(cbs_employees);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
         }
 
         // GET: /Employee/Edit/5
@@ -125,7 +140,14 @@ namespace _99X_CBS.Areas.CBS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(cbs_employees);
+            if (cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User))
+            {
+                return View(cbs_employees);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
         }
 
         // POST: /Employee/Edit/5
@@ -141,7 +163,14 @@ namespace _99X_CBS.Areas.CBS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cbs_employees);
+            if (cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User))
+            {
+                return View(cbs_employees);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
         }
 
         // GET: /Employee/Delete/5
@@ -156,7 +185,14 @@ namespace _99X_CBS.Areas.CBS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(cbs_employees);
+            if (cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User))
+            {
+                return View(cbs_employees);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
         }
 
         // POST: /Employee/Delete/5
