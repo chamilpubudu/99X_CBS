@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Travels.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Travels.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_Travels_Manage", "Travels change requested", "Admin/DataApprove#CBS_Travels");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Travels.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Travels.Approved = false;
                     cBS_Travels.TargetRowID = cBS_Travels.ID;
                     cBS_Travels.EditedBy = User.Identity.Name;

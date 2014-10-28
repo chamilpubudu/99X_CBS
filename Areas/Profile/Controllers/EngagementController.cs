@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Engagement.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Engagement.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_Engagement_Manage", "Engagement change requested", "Admin/DataApprove#CBS_Engagement");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Engagement.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Engagement.Approved = false;
                     cBS_Engagement.TargetRowID = cBS_Engagement.ID;
                     cBS_Engagement.EditedBy = User.Identity.Name;

@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_CustomerFeedbackScore.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_CustomerFeedbackScore.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_CustomerFeedbackScore_Manage", "CustomerFeedbackScore change requested", "Admin/DataApprove#CBS_CustomerFeedbackScore");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_CustomerFeedbackScore.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_CustomerFeedbackScore.Approved = false;
                     cBS_CustomerFeedbackScore.TargetRowID = cBS_CustomerFeedbackScore.ID;
                     cBS_CustomerFeedbackScore.EditedBy = User.Identity.Name;

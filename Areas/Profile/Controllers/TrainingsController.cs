@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Trainings.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Trainings.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_Trainings_Manage", "Trainings change requested", "Admin/DataApprove#CBS_Trainings");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Trainings.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Trainings.Approved = false;
                     cBS_Trainings.TargetRowID = cBS_Trainings.ID;
                     cBS_Trainings.EditedBy = User.Identity.Name;

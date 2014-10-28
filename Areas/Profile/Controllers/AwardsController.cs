@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Awards.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Awards.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_Awards_Manage", "Awards change requested", "Admin/DataApprove#CBS_Awards");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Awards.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Awards.Approved = false;
                     cBS_Awards.TargetRowID = cBS_Awards.ID;
                     cBS_Awards.EditedBy = User.Identity.Name;

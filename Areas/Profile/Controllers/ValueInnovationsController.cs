@@ -67,6 +67,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_ValueInnovations.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_ValueInnovations.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_ValueInnovations_Manage", "ValueInnovations change requested", "Admin/DataApprove#CBS_ValueInnovations");
                 }
@@ -109,6 +110,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_ValueInnovations.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_ValueInnovations.Approved = false;
                     cBS_ValueInnovations.TargetRowID = cBS_ValueInnovations.ID;
                     cBS_ValueInnovations.EditedBy = User.Identity.Name;

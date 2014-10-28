@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_EmployeeBillingUtilization.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_EmployeeBillingUtilization.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_EmployeeBillingUtilization_Manage", "EmployeeBillingUtilization change requested", "Admin/DataApprove#CBS_EmployeeBillingUtilization");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_EmployeeBillingUtilization.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_EmployeeBillingUtilization.Approved = false;
                     cBS_EmployeeBillingUtilization.TargetRowID = cBS_EmployeeBillingUtilization.ID;
                     cBS_EmployeeBillingUtilization.EditedBy = User.Identity.Name;

@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_PublicAppearences.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_PublicAppearences.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_PublicAppearences_Manage", "PublicAppearences change requested", "Admin/DataApprove#CBS_PublicAppearences");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_PublicAppearences.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_PublicAppearences.Approved = false;
                     cBS_PublicAppearences.TargetRowID = cBS_PublicAppearences.ID;
                     cBS_PublicAppearences.EditedBy = User.Identity.Name;

@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Increments.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Increments.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Increments change requested", "Admin/DataApprove#CBS_Increments");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Increments.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Increments.Approved = false;
                     cBS_Increments.TargetRowID = cBS_Increments.ID;
                     cBS_Increments.EditedBy = User.Identity.Name;

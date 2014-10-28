@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_UniversitySessions.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_UniversitySessions.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_UniversitySessions_Manage", "UniversitySessions change requested", "Admin/DataApprove#CBS_UniversitySessions");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_UniversitySessions.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_UniversitySessions.Approved = false;
                     cBS_UniversitySessions.TargetRowID = cBS_UniversitySessions.ID;
                     cBS_UniversitySessions.EditedBy = User.Identity.Name;

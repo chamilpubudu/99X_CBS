@@ -69,6 +69,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Employees.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Employees.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_Employees_Manage", "Employees change requested", "Admin/DataApprove#CBS_Employees");
                 }
@@ -114,6 +115,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Employees.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Employees.Approved = false;
                     cBS_Employees.TargetRowID = cBS_Employees.ID;
                     cBS_Employees.EditedBy = User.Identity.Name;

@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_TechnologyExposure.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_TechnologyExposure.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_TechnologyExposure_Manage", "TechnologyExposure change requested", "Admin/DataApprove#CBS_TechnologyExposure");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_TechnologyExposure.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_TechnologyExposure.Approved = false;
                     cBS_TechnologyExposure.TargetRowID = cBS_TechnologyExposure.ID;
                     cBS_TechnologyExposure.EditedBy = User.Identity.Name;

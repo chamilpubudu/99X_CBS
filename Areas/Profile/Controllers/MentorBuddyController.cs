@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_MentorBuddy.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_MentorBuddy.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_MentorBuddy_Manage", "MentorBuddy change requested", "Admin/DataApprove#CBS_MentorBuddy");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_MentorBuddy.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_MentorBuddy.Approved = false;
                     cBS_MentorBuddy.TargetRowID = cBS_MentorBuddy.ID;
                     cBS_MentorBuddy.EditedBy = User.Identity.Name;

@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Attendances.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Attendances.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Attendances.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Attendances.Approved = false;
                     cBS_Attendances.TargetRowID = cBS_Attendances.ID;
                     cBS_Attendances.EditedBy = User.Identity.Name;

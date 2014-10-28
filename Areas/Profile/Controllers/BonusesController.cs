@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Bonuses.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Bonuses.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_Bonuses_Manage", "Bonuses change requested", "Admin/DataApprove#CBS_Bonuses");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Bonuses.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Bonuses.Approved = false;
                     cBS_Bonuses.TargetRowID = cBS_Bonuses.ID;
                     cBS_Bonuses.EditedBy = User.Identity.Name;

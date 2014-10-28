@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_FuelAllowances.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_FuelAllowances.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_FuelAllowances_Manage", "FuelAllowances change requested", "Admin/DataApprove#CBS_FuelAllowances");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_FuelAllowances.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_FuelAllowances.Approved = false;
                     cBS_FuelAllowances.TargetRowID = cBS_FuelAllowances.ID;
                     cBS_FuelAllowances.EditedBy = User.Identity.Name;

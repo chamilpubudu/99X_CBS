@@ -66,6 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Promotions.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Promotions.Approved = false;
                     NotificationHub.NotificationHub.GroupNotify("CBS_Promotions_Manage", "Promotions change requested", "Admin/DataApprove#CBS_Promotions");
                 }
@@ -108,6 +109,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 }
                 else
                 {
+                    cBS_Promotions.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cBS_Promotions.Approved = false;
                     cBS_Promotions.TargetRowID = cBS_Promotions.ID;
                     cBS_Promotions.EditedBy = User.Identity.Name;
