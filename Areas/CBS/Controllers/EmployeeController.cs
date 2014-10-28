@@ -42,6 +42,12 @@ namespace _99X_CBS.Areas.CBS.Controllers
                 return HttpNotFound();
             }
 
+
+            if (cbs_employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             //if the year is not provided then sort by the current year
             if (year == 0)
             {
@@ -86,15 +92,7 @@ namespace _99X_CBS.Areas.CBS.Controllers
             cbs_dto.cbs_FuelAllowancesList              = cbs_FuelAllowancesList;
             cbs_dto.cbs_ReportFormatList                = cbs_ReportFormatList;
 
-
-            if (cbs_dto.cbs_employee.EmpID == CurrentUser.GetEmpID(this.Session, this.User))
-            {
-                return View(cbs_dto);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-            }
+            return View(cbs_dto);
         }
 
 
@@ -118,14 +116,12 @@ namespace _99X_CBS.Areas.CBS.Controllers
                 return RedirectToAction("Index");
             }
 
-            if (cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User))
-            {
-                return View(cbs_employees);
-            }
-            else
+            if (cbs_employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
+
+            return View(cbs_employees);
         }
 
         // GET: /Employee/Edit/5
@@ -140,14 +136,14 @@ namespace _99X_CBS.Areas.CBS.Controllers
             {
                 return HttpNotFound();
             }
-            if (cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User))
-            {
-                return View(cbs_employees);
-            }
-            else
+
+            if (cbs_employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
+
+            return View(cbs_employees);
+           
         }
 
         // POST: /Employee/Edit/5
@@ -163,14 +159,14 @@ namespace _99X_CBS.Areas.CBS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            if (cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User))
-            {
-                return View(cbs_employees);
-            }
-            else
+
+            if (cbs_employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
+
+            return View(cbs_employees);
+           
         }
 
         // GET: /Employee/Delete/5
@@ -185,14 +181,14 @@ namespace _99X_CBS.Areas.CBS.Controllers
             {
                 return HttpNotFound();
             }
-            if (cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User))
-            {
-                return View(cbs_employees);
-            }
-            else
+
+            if (cbs_employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
+
+            return View(cbs_employees);
+            
         }
 
         // POST: /Employee/Delete/5

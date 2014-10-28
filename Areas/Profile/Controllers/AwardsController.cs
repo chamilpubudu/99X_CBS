@@ -42,6 +42,11 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
+            if (cBS_Awards.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Awards_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_Awards);
         }
 
@@ -75,6 +80,11 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 return RedirectToAction("Index");
             }
 
+            if (cBS_Awards.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Awards_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_Awards);
         }
 
@@ -90,6 +100,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (cBS_Awards.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Awards_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_Awards);
         }
 
@@ -121,6 +137,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            if (cBS_Awards.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Awards_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_Awards);
         }
 
@@ -137,6 +159,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (cBS_Awards.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Awards_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_Awards);
         }
 

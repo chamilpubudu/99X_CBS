@@ -42,6 +42,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (cBS_Travels.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Travels_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_Travels);
         }
 
@@ -75,6 +81,11 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 return RedirectToAction("Index");
             }
 
+            if (cBS_Travels.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Travels_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_Travels);
         }
 
@@ -90,6 +101,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (cBS_Travels.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Travels_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_Travels);
         }
 
@@ -121,6 +138,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            if (cBS_Travels.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Travels_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_Travels);
         }
 
@@ -136,6 +159,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
             if (cBS_Travels == null)
             {
                 return HttpNotFound();
+            }
+
+            if (cBS_Travels.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Travels_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+
             }
             return View(cBS_Travels);
         }

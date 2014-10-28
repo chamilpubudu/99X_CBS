@@ -42,6 +42,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (cBS_MentorBuddy.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_MentorBuddy_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_MentorBuddy);
         }
 
@@ -75,6 +81,11 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 return RedirectToAction("Index");
             }
 
+            if (cBS_MentorBuddy.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_MentorBuddy_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_MentorBuddy);
         }
 
@@ -90,6 +101,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (cBS_MentorBuddy.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_MentorBuddy_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_MentorBuddy);
         }
 
@@ -121,6 +138,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            if (cBS_MentorBuddy.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_MentorBuddy_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_MentorBuddy);
         }
 
@@ -137,6 +160,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (cBS_MentorBuddy.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_MentorBuddy_Manage"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cBS_MentorBuddy);
         }
 
