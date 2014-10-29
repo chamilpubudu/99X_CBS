@@ -44,7 +44,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
             }
 
             //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
-            if (!(cBS_Bonuses.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))))
+            if (!(cBS_Bonuses.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -83,7 +83,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
             }
 
             //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
-            if (!(cBS_Bonuses.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))))
+            if (!(cBS_Bonuses.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -105,7 +105,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
             }
 
             //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
-            if (!(cBS_Bonuses.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))))
+            if (!(cBS_Bonuses.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -142,7 +142,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
             }
 
             //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
-            if (!(cBS_Bonuses.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))))
+            if (!(cBS_Bonuses.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -165,7 +165,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
             }
 
             //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
-            if (!(cBS_Bonuses.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))))
+            if (!(cBS_Bonuses.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
