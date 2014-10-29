@@ -43,10 +43,12 @@ namespace _99X_CBS.Areas.CBS.Controllers
             }
 
 
-            if (cbs_employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
+
 
             //if the year is not provided then sort by the current year
             if (year == 0)
@@ -116,7 +118,8 @@ namespace _99X_CBS.Areas.CBS.Controllers
                 return RedirectToAction("Index");
             }
 
-            if (cbs_employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -137,7 +140,8 @@ namespace _99X_CBS.Areas.CBS.Controllers
                 return HttpNotFound();
             }
 
-            if (cbs_employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -160,7 +164,8 @@ namespace _99X_CBS.Areas.CBS.Controllers
                 return RedirectToAction("Index");
             }
 
-            if (cbs_employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -182,7 +187,8 @@ namespace _99X_CBS.Areas.CBS.Controllers
                 return HttpNotFound();
             }
 
-            if (cbs_employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }

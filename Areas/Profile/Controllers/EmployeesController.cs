@@ -44,7 +44,8 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 return HttpNotFound();
             }
 
-            if (cBS_Employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cBS_Employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -84,7 +85,8 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 return RedirectToAction("Index");
             }
 
-            if (cBS_Employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cBS_Employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -107,7 +109,8 @@ namespace _99X_CBS.Areas.Profile.Controllers
             SelectList UserNameList = new SelectList(_context.Users.Distinct(), "UserName", "UserName", cBS_Employees.UserID);
             ViewData["UserName"] = UserNameList;
 
-            if (cBS_Employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cBS_Employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -145,7 +148,8 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 return RedirectToAction("Index");
             }
 
-            if (cBS_Employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cBS_Employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -167,7 +171,8 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 return HttpNotFound();
             }
 
-            if (cBS_Employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cBS_Employees.EmpID != CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
