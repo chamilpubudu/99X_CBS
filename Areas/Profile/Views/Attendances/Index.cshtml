@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link href="../../../../Content/CBS.css" rel="stylesheet" />
 <h2>Index</h2>
 
 <p>
@@ -44,10 +44,10 @@
         <th>
             @Html.DisplayNameFor(model => model.EmpID)
         </th>
-        <!--<th>
+        <th>
             @Html.DisplayNameFor(model => model.Approved)
         </th>
-        <th>
+        <!--<th>
             @Html.DisplayNameFor(model => model.EditedBy)
         </th>
         <th>
@@ -57,58 +57,61 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employee_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Average_InTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Average_OutTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Weekends_Worked)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Medical_Leaves_Taken)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Casual_Leaves_Taken)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Annual_Leaves_Taken)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lieu_Leaves_Taken)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Number_of_Days_Reported_to_Work)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmpID)
-        </td>
-        <!--<td>
-            @Html.DisplayFor(modelItem => item.Approved)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EditedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TargetRowID)
-        </td>-->
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) 
-            @if(User.IsInRole("Admin") || User.IsInRole("Manager")||User.IsInRole("CBS_Attendances_Manage")){
-                @Html.Raw("|")
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            }
-        </td>
-    </tr>
+    if(@Html.Raw(item.Approved).ToString() == "False")
+     {
+        @: <tr class="approvedraw">
+     }
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Average_InTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Average_OutTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weekends_Worked)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medical_Leaves_Taken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Casual_Leaves_Taken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Annual_Leaves_Taken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lieu_Leaves_Taken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number_of_Days_Reported_to_Work)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Approved)
+            </td>
+            <!--<td>
+                @Html.DisplayFor(modelItem => item.EditedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetRowID)
+            </td>-->
+            <td >
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) 
+                @if(User.IsInRole("Admin") || User.IsInRole("Manager")||User.IsInRole("CBS_Attendances_Manage")){
+                    @Html.Raw("|")
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                }
+            </td>
+        @: </tr>
 }
 
 </table>

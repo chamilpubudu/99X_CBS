@@ -21,12 +21,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Awards_Manage"))
             {
-                return View(db.CBS_Awards.Where(x => x.Approved == true).ToList());
+                return View(db.CBS_Awards.ToList());
             }
             else
             {
                 string userEmpId = CurrentUser.GetEmpID(this.Session, this.User);
-                return View(db.CBS_Awards.Where(x => x.Approved == true && x.EmpID == userEmpId).ToList());
+                return View(db.CBS_Awards.Where(x => x.EmpID == userEmpId).ToList());
             }
         }
 

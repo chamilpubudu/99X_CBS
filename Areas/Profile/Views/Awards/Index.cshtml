@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link href="../../../../Content/CBS.css" rel="stylesheet" />
 <h2>Index</h2>
 
 <p>
@@ -36,7 +36,10 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    if(@Html.Raw(item.Approved).ToString() == "False")
+     {
+        @: <tr class="approvedraw">
+     }
         <td>
             @Html.DisplayFor(modelItem => item.Employee_Name)
         </td>
@@ -66,7 +69,8 @@
                 @Html.ActionLink("Delete", "Delete", new { id=item.ID })
             }
         </td>
-    </tr>
+     @: </tr>
 }
+
 
 </table>
