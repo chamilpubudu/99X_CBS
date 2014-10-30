@@ -145,7 +145,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Awards_Manage"))
                             {
                                 CBS_Awards cbs_awards = db.CBS_Awards.Find(ID.id);
-                                if (cbs_awards.TargetRowID == null)
+                                if (cbs_awards.Approved == false)
                                 {
                                     db.CBS_Awards.Remove(cbs_awards);
                                     db.SaveChanges();
@@ -157,7 +157,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Bonuses_Manage"))
                             {
                                 CBS_Bonuses cbs_bonuses = db.CBS_Bonuses.Find(ID.id);
-                                if (cbs_bonuses.TargetRowID == null)
+                                if (cbs_bonuses.Approved == false)
                                 {
                                     db.CBS_Bonuses.Remove(cbs_bonuses);
                                     db.SaveChanges();
@@ -169,7 +169,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_CustomerFeedbackScore_Manage"))
                             {
                                 CBS_CustomerFeedbackScore cbs_customerfeedbackscore = db.CBS_CustomerFeedbackScore.Find(ID.id);
-                                if (cbs_customerfeedbackscore.TargetRowID == null)
+                                if (cbs_customerfeedbackscore.Approved == false)
                                 {
                                     db.CBS_CustomerFeedbackScore.Remove(cbs_customerfeedbackscore);
                                     db.SaveChanges();
@@ -181,7 +181,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_EmployeeBillingUtilization_Manage"))
                             {
                                 CBS_EmployeeBillingUtilization cbs_employeebillingutilization = db.CBS_EmployeeBillingUtilization.Find(ID.id);
-                                if (cbs_employeebillingutilization.TargetRowID == null)
+                                if (cbs_employeebillingutilization.Approved == false)
                                 {
                                     db.CBS_EmployeeBillingUtilization.Remove(cbs_employeebillingutilization);
                                     db.SaveChanges();
@@ -194,7 +194,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Engagement_Manage"))
                             {
                                 CBS_Engagement cbs_engagement = db.CBS_Engagement.Find(ID.id);
-                                if (cbs_engagement.TargetRowID == null)
+                                if (cbs_engagement.Approved == false)
                                 {
                                     db.CBS_Engagement.Remove(cbs_engagement);
                                     db.SaveChanges();
@@ -206,7 +206,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_FuelAllowances_Manage"))
                             {
                                 CBS_FuelAllowances cbs_fuelallowances = db.CBS_FuelAllowances.Find(ID.id);
-                                if (cbs_fuelallowances.TargetRowID == null)
+                                if (cbs_fuelallowances.Approved == false)
                                 {
                                     db.CBS_FuelAllowances.Remove(cbs_fuelallowances);
                                     db.SaveChanges();
@@ -218,7 +218,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Increments_Manage"))
                             {
                                 CBS_Increments cbs_increments = db.CBS_Increments.Find(ID.id);
-                                if (cbs_increments.TargetRowID == null)
+                                if (cbs_increments.Approved == false)
                                 {
                                     db.CBS_Increments.Remove(cbs_increments);
                                     db.SaveChanges();
@@ -230,7 +230,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_MentorBuddy_Manage"))
                             {
                                 CBS_MentorBuddy cbs_mentorbuddy = db.CBS_MentorBuddy.Find(ID.id);
-                                if (cbs_mentorbuddy.TargetRowID == null)
+                                if (cbs_mentorbuddy.Approved == false)
                                 {
                                     db.CBS_MentorBuddy.Remove(cbs_mentorbuddy);
                                     db.SaveChanges();
@@ -242,7 +242,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Promotions_Manage"))
                             {
                                 CBS_Promotions cbs_promotions = db.CBS_Promotions.Find(ID.id);
-                                if (cbs_promotions.TargetRowID == null)
+                                if (cbs_promotions.Approved == false)
                                 {
                                     db.CBS_Promotions.Remove(cbs_promotions);
                                     db.SaveChanges();
@@ -255,7 +255,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_PublicAppearences_Manage"))
                             {
                                 CBS_PublicAppearences cbs_publicappearences = db.CBS_PublicAppearences.Find(ID.id);
-                                if (cbs_publicappearences.TargetRowID == null)
+                                if (cbs_publicappearences.Approved == false)
                                 {
                                     db.CBS_PublicAppearences.Remove(cbs_publicappearences);
                                     db.SaveChanges();
@@ -267,7 +267,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_TechnologyExposure_Manage"))
                             {
                                 CBS_TechnologyExposure cbs_technologyexposure = db.CBS_TechnologyExposure.Find(ID.id);
-                                if (cbs_technologyexposure.TargetRowID == null)
+                                if (cbs_technologyexposure.Approved == false)
                                 {
                                     db.CBS_TechnologyExposure.Remove(cbs_technologyexposure);
                                     db.SaveChanges();
@@ -279,7 +279,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Trainings_Manage"))
                             {
                                 CBS_Trainings cbs_trainings = db.CBS_Trainings.Find(ID.id);
-                                if (cbs_trainings.TargetRowID == null)
+                                if (cbs_trainings.Approved == false)
                                 {
                                     db.CBS_Trainings.Remove(cbs_trainings);
                                     db.SaveChanges();
@@ -291,7 +291,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Travels_Manage"))
                             {
                                 CBS_Travels cbs_travels = db.CBS_Travels.Find(ID.id);
-                                if (cbs_travels.TargetRowID == null)
+                                if (cbs_travels.Approved == false)
                                 {
                                     db.CBS_Travels.Remove(cbs_travels);
                                     db.SaveChanges();
@@ -303,7 +303,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_UniversitySessions_Manage"))
                             {
                                 CBS_UniversitySessions cbs_universitysessions = db.CBS_UniversitySessions.Find(ID.id);
-                                if (cbs_universitysessions.TargetRowID == null)
+                                if (cbs_universitysessions.Approved == false)
                                 {
                                     db.CBS_UniversitySessions.Remove(cbs_universitysessions);
                                     db.SaveChanges();
@@ -316,7 +316,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_ValueInnovations_Manage"))
                             {
                                 CBS_ValueInnovations cbs_valueinnovations = db.CBS_ValueInnovations.Find(ID.id);
-                                if (cbs_valueinnovations.TargetRowID == null)
+                                if (cbs_valueinnovations.Approved == false)
                                 {
                                     db.CBS_ValueInnovations.Remove(cbs_valueinnovations);
                                     db.SaveChanges();
