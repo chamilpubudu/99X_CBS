@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using _99X_CBS.Models;
 
@@ -29,25 +30,31 @@ namespace _99X_CBS.Areas.CBS.Controllers
         }
 
         // GET: /Employee/Details/5
-        public ActionResult Details(int? id, int? year = 0)
+        public ActionResult Details(int? id, int? year = 0 ,  bool? auth = false)
         {
             
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CBS_Employees cbs_employees                                             = db.CBS_Employees.Find(id);
+            CBS_Employees cbs_employees  = db.CBS_Employees.Find(id);
             if (cbs_employees == null)
             {
                 return HttpNotFound();
             }
 
-
-            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
-            if (!(cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))))
+            //here by using auth variable below , it makes the pdf generation call to bypass the User priviledge checking condition since rotativa uses the anyonymose user call (Application cookie value is null)
+            if (!((bool)auth))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+
+                //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+                if (!(cbs_employees.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Employees_Manage"))))
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+                }
+
             }
+
 
 
             //if the year is not provided then sort by the current year
@@ -220,8 +227,9 @@ namespace _99X_CBS.Areas.CBS.Controllers
         // GET: /Employee/GeneratePDF
         public ActionResult GeneratePDF(int id)
         {
-            
-            return new Rotativa.ActionAsPdf("Details/"+id);
+            return new Rotativa.ActionAsPdf("Details/"+id , new { year = 2014 , auth = true });
         }
+
+
     }
 }

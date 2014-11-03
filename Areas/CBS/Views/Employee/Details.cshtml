@@ -892,11 +892,27 @@
 <input id="printbtn" type="button" onclick="window.print();" value="Print" />
 
 @{
-var pdfUrl = "window.open('/CBS/Employee/GeneratePDF/"+Model.cbs_employee.ID+"');";
+
+var selectedYearForPDF= Request.QueryString["year"] ;
+
+var pdfUrl = "window.open('/CBS/Employee/GeneratePDF/"+Model.cbs_employee.ID+"?year="+Html.Raw(selectedYearForPDF)+"');";
 
 <input id="pdfbtn" type="button" onclick='@pdfUrl' value="PDF" />
 
 }
+
+<input id="emialbtn" type="button" value="EMAIL" />
+
+<div class="menu" style="display: none;">
+
+    <input id="emailsubject" type="text" size="25" value="Enter your name here!"> <br>
+    <input id="emailaddress" type="text" size="25" value="Enter your name here!"> <br>
+    <input id="emailmessage" type="text" size="25" value="Enter your name here!"> <br>
+
+</div>
+
+
+<!--<a href="mailto:user@example.com?subject=MessageTitle&amp;body=Message Content">Email this !</a>-->
 
 <p id="naviglinks">
     @Html.ActionLink("Edit", "Edit", new { id = Model.cbs_employee.ID }) |
@@ -914,7 +930,16 @@ var id = Model.cbs_employee.ID ;
     });
 
 
+    $(document).ready(function() {
+        $('#emialbtn').click(function() {
+            $('.menu').slideToggle("fast");
+        });
+    });
+
 </script>
+
+
+
 }
 
 
