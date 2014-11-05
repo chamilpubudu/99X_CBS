@@ -30,7 +30,6 @@ namespace _99X_CBS
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
                       "~/Content/jquery-ui.css",
                       "~/Content/cosmobootstrap.css",
                       "~/Content/site.css"));

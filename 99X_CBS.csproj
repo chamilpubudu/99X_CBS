@@ -249,7 +249,7 @@
     <Content Include="Content\bootstrap.vertical-tabs.min.css" />
     <Content Include="Content\CBS.css" />
     <Content Include="Content\cosmobootstrap.css" />
-    <Content Include="Content\cosmo.bootstrap.min.css" />
+    <Content Include="Content\cosmobootstrap.min.css" />
     <Content Include="Content\Images\CBS_Logo.jpg" />
     <Content Include="Content\Images\logo-black.png" />
     <Content Include="Content\Images\Slider\1.jpg" />
@@ -260,6 +260,7 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\ng-grid.css" />
     <Content Include="Content\ng-grid.min.css" />
+    <Content Include="Content\Profile.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />

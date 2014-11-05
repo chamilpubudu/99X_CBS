@@ -44,7 +44,7 @@
         <!-- Employee Details Start -->
         <p class="p2 ft2">Employee Details</p>
         <br />
-        <table>
+        <table >
             <tr>
                 <td class="tr0 td1">
                     <p class="ft2">Employee Name</p>
@@ -73,7 +73,7 @@
                 </td>
             </tr>
         </table>
-        <table>
+        <table >
             <tr>
                 <td class="tr0 td1">
                     <p class=" ft2">Total Years at 99XTechnology </p>
@@ -144,20 +144,19 @@
     <div class="noBreak">
         <!-- Bonus Details Start -->
         <p class="ft1"><b>Bonus Details</b></p>
-        <br />
-        <table>
+        <table class="gridtable">
             @{
             float totalBonusAmount = 0;
             <tr>
-                <td class="tr1 ">
+                <th class="tr1 ">
                     <p class=" ft2">Bonus Date</p>
-                </td>
-                <td class="tr1 ">
+                </th>
+                <th class="tr1 ">
                     <p class=" ft2">Bonus Type</p>
-                </td>
-                <td class="tr1 ">
+                </th>
+                <th class="tr1 ">
                     <p class=" ft2">Bonus Amount</p>
-                </td>
+                </th>
             </tr>
             <!-- Repeat -->
             foreach (var bonus in Model.cbs_BonusesList)
@@ -196,14 +195,14 @@
         <!-- Awards Start -->
         <p class="ft1"><b>Awards</b></p>
         <br />
-        <table>
+        <table class="gridtable">
             <tr>
-                <td class="tr0 ">
+                <th class="tr0 ">
                     <p class=" ft2">Date</p>
-                </td>
-                <td class="tr0 ">
+                </th>
+                <th class="tr0 ">
                     <p class=" ft2">Award</p>
-                </td>
+                </th>
             </tr>
             <!-- Repeat -->
             @foreach (var award in Model.cbs_AwardsList)
@@ -232,20 +231,20 @@
         <!-- Billing Utilization - Summary Start -->
         <p class="ft1"><b>Billing Utilization - Summary</b></p>
         <br />
-        <table>
+        <table class="gridtable">
             <tr>
-                <td class="tr2 ">
+                <th class="tr2 ">
                     <p class=" ft2">From</p>
-                </td>
-                <td class="tr2 ">
+                </th>
+                <th class="tr2 ">
                     <p class=" ft2">To</p>
-                </td>
-                <td class="tr2 ">
+                </th>
+                <th class="tr2 ">
                     <p class=" ft2">Project</p>
-                </td>
-                <td class="tr2 ">
+                </th>
+                <th class="tr2 ">
                     <p class=" ft2">Billing Utilization</p>
-                </td>
+                </th>
             </tr>
             <!-- Repeat -->
             @foreach (var bill in Model.cbs_EmployeeBillingUtilizationList)
@@ -285,17 +284,17 @@
         <!-- Customer Feedback Start -->
         <p class=" ft2">Customer Feedback</p>
         <br />
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="gridtable">
             <tr>
-                <td class="tr1 ">
+                <th class="tr1 ">
                     <p class=" ft2">Date</p>
-                </td>
-                <td class="tr1 ">
+                </th>
+                <th class="tr1 ">
                     <p class=" ft2">Rating</p>
-                </td>
-                <td class="tr1 ">
+                </th>
+                <th class="tr1 ">
                     <p class=" ft2">Comments</p>
-                </td>
+                </th>
             </tr>
             <!-- Repeat -->
             @foreach (var feedback in Model.cbs_CustomerFeedbackScoreList)
@@ -323,7 +322,7 @@
     </div>
     }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Trainings")).Enabled){
-    <div class="noBreak">
+    <div class="noBreak" >
         <!-- Career Development-Skills Start -->
         <p class=" ft1">
             <b>Career
@@ -334,29 +333,29 @@
         <!-- Training Details Start -->
         <p class=" ft2">Training Details</p>
         <br />
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="gridtable">
             <tr>
-                <td class="tr1 ">
+                <th class="tr1 ">
                     <p class=" ft2">Training Month</p>
-                </td>
-                <td class="tr1 ">
+                </th>
+                <th class="tr1 ">
                     <p class=" ft2">Course Name</p>
-                </td>
-                <td class="tr1 ">
+                </th>
+                <th class="tr1 ">
                     <p class=" ft2">Training Provider</p>
-                </td>
-                <td class="tr1 ">
+                </th>
+                <th class="tr1 ">
                     <p class=" ft2">Training Category</p>
-                </td>
-                <td class="tr1 ">
+                </th>
+                <th class="tr1 ">
                     <p class=" ft2">External/Internal</p>
-                </td>
-                <td class="tr1 ">
+                </th>
+                <th class="tr1 ">
                     <p class=" ft2">Cost (Money Rs.)</p>
-                </td>
-                <td class="tr1 ">
+                </th>
+                <th class="tr1 ">
                     <p class=" ft2">Cost (Time Hrs)</p>
-                </td>
+                </th>
             </tr>
             <!-- Repeat -->
             @{
@@ -410,24 +409,24 @@
         <!-- Travel Details Start -->
         <p class=" ft1"><b>Travel Details</b></p>
         <br />
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="gridtable">
 
             <tr>
-                <td class="tr2 ">
+                <th class="tr2 ">
                     <p class=" ft2">Started Date</p>
-                </td>
-                <td class="tr2 ">
+                </th>
+                <th class="tr2 ">
                     <p class=" ft2">Number of Days</p>
-                </td>
-                <td class="tr2 ">
+                </th>
+                <th class="tr2 ">
                     <p class=" ft2">Country</p>
-                </td>
-                <td class="tr2 ">
+                </th>
+                <th class="tr2 ">
                     <p class=" ft2">City</p>
-                </td>
-                <td class="tr2 ">
+                </th>
+                <th class="tr2 ">
                     <p class=" ft2">Purpose</p>
-                </td>
+                </th>
             </tr>
             @{
                 int numberOfTravelledTimes = 0 ;
@@ -476,14 +475,14 @@
         <!-- Technology Exposure Start -->
         <p class=" ft1"><b>Technology Exposure</b></p>
         <br />
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="gridtable">
             <tr>
-                <td class="tr0 ">
+                <th class="tr0 ">
                     <p class=" ft2">Engagement</p>
-                </td>
-                <td class="tr0 ">
+                </th>
+                <th class="tr0 ">
                     <p class=" ft2">Technologies</p>
-                </td>
+                </th>
             </tr>
             <!-- Repeat -->
             @foreach (var technologyExposure in Model.cbs_TechnologyExposureList)
@@ -517,14 +516,14 @@
         <!-- Mentor or Buddy Details Start -->
         <p class=" ft2">Mentor or Buddy Details</p>
         <br />
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="gridtable">
             <tr>
-                <td class="tr0 ">
+                <th class="tr0 ">
                     <p class=" ft2">Type</p>
-                </td>
-                <td class="tr0 ">
+                </th>
+                <th class="tr0 ">
                     <p class=" ft2">For</p>
-                </td>
+                </th>
             </tr>
             <!-- Repeat -->
             @foreach (var mentorBuddy in Model.cbs_MentorBuddyList)
@@ -558,23 +557,23 @@
         <!-- Public Appearence Details Start -->
         <p class="ft2">Public Appearence Details</p>
         <br />
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="gridtable">
             <tr>
-                <td class="tr0 ">
+                <th class="tr0 ">
                     <p class=" ft2">Date</p>
-                </td>
-                <td class="tr0 ">
+                </th>
+                <th class="tr0 ">
                     <p class=" ft2">Location</p>
-                </td>
-                <td class="tr0 ">
+                </th>
+                <th class="tr0 ">
                     <p class=" ft2">Event Name</p>
-                </td>
-                <td class="tr0 ">
+                </th>
+                <th class="tr0 ">
                     <p class=" ft2">Session Topic</p>
-                </td>
-                <td class="tr0 ">
+                </th>
+                <th class="tr0 ">
                     <p class=" ft2">Number of Participants</p>
-                </td>
+                </th>
             </tr>
             @{
                 int numberOfSessions = 0 ;
@@ -624,32 +623,32 @@
         <!-- University Sessions Details Start -->
         <p class="ft1"><b>University Sessions Details</b></p>
         <br />
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="gridtable">
             <tr>
-                <td class="tr0 ">
+                <th class="tr0 ">
                     <p class=" ft2">Session Date</p>
-                </td>
-                <td class="tr15 ">
+                </th>
+                <th class="tr15 ">
                     <p class=" ft2">Location</p>
-                </td>
-                <td class="tr0 ">
+                </th>
+                <th class="tr0 ">
                     <p class=" ft2">Session Type</p>
-                </td>
-                <td class="tr0 ">
+                </th>
+                <th class="tr0 ">
                     <p class=" ft2">Session Initiated By</p>
-                </td>
-                <td class="tr15 ">
+                </th>
+                <th class="tr15 ">
                     <p class=" ft2">Session Name</p>
-                </td>
-                <td class="tr0 ">
+                </th>
+                <th class="tr0 ">
                     <p class=" ft2">Session Participants</p>
-                </td>
-                <td class="tr0 ">
+                </th>
+                <th class="tr0 ">
                     <p class="ft2">Number of Participants</p>
-                </td>
-                <td class="tr0">
+                </th>
+                <th class="tr0">
                     <p class="ft2">Time Duration</p>
-                </td>
+                </th>
             </tr>
             @{
                 int numberOfHours = 0 ;
@@ -707,14 +706,14 @@
         <!-- Engagements Start -->
         <p class="ft1"><b>Engagements</b></p>
         <br />
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="gridtable">
             <tr>
-                <td class="tr0">
+                <th class="tr0">
                     <p class="ft2">Date</p>
-                </td>
-                <td class="tr0">
+                </th>
+                <th class="tr0">
                     <p class="ft2">Event</p>
-                </td>
+                </th>
             </tr>
             <!-- Repeat -->
             @foreach (var engagement in Model.cbs_EngagementList)
@@ -750,14 +749,14 @@
         <!-- Value Innovations Start -->
         <p class="ft2">Value Innovations</p>
         <br />
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="gridtable">
             <tr>
-                <td class="tr0">
+                <th class="tr0">
                     <p class="ft2">Date</p>
-                </td>
-                <td class="tr0">
+                </th>
+                <th class="tr0">
                     <p class="ft2">Innovation </p>
-                </td>
+                </th>
             </tr>
             @{
                 int numberOfInnovations = 0 ;
@@ -792,7 +791,7 @@
     </div>
     }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Attendances")).Enabled){
-    <div class="noBreak">
+    <div class="noBreak" >
         <!-- Process Compliance Start -->
         <p class="ft1">
             <b>Career
@@ -803,32 +802,32 @@
         <!-- Attendance Details Start -->
         <p class="ft2">Attendance Details</p>
         <br />
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="gridtable">
             <tr>
-                <td class="tr0">
+                <th class="tr0">
                     <p class="ft2">Average In Time</p>
-                </td>
-                <td class="tr0">
+                </th>
+                <th class="tr0">
                     <p class="ft2">Average Out Time</p>
-                </td>
-                <td class="tr0">
+                </th>
+                <th class="tr0">
                     <p class="ft2">Weekends Worked</p>
-                </td>
-                <td class="tr0">
+                </th>
+                <th class="tr0">
                     <p class="ft2">Medical Leaves Taken</p>
-                </td>
-                <td class="tr0">
+                </th>
+                <th class="tr0">
                     <p class="ft2">Annual Leaves Taken</p>
-                </td>
-                <td class="tr0">
+                </th>
+                <th class="tr0">
                     <p class="ft2">Casual Leaves Taken</p>
-                </td>
-                <td class="tr0">
+                </th>
+                <th class="tr0">
                     <p class="ft2">Lieu Leaves Taken</p>
-                </td>
-                <td class="tr0">
+                </th>
+                <th class="tr0">
                     <p class="ft2">Days Reported to Work</p>
-                </td>
+                </th>
             </tr>
             <!-- Repeat -->
             @foreach (var attendance in Model.cbs_AttendancesList)
@@ -884,7 +883,7 @@
         <br />
     </div>
     }
-    <div class="noBreak">
+    <div class="noBreak" >
         <p class="ft1">
             <b>Summary</b>
         </p>

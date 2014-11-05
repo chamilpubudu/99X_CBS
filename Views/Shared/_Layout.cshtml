@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 99X CBS Application</title>
+    <title>@ViewBag.Title - 99X @App._GlobalAppName Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -77,7 +77,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - CBS Application</p>
+            <p>&copy; @DateTime.Now.Year - @App._GlobalAppName Application</p>
         </footer>
     </div>
 
