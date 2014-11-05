@@ -1,0 +1,14 @@
+﻿/**the last-child is used to avoid the "|" sign is getting the red color*/
+
+.approvedraw td:not(:last-child) {
+    color:red ;
+    font-weight: bold;
+}
+
+table td {
+    border-right : none ;
+    border-left : none ;
+    border-top :none ;
+    border-bottom : none ;
+    
+}

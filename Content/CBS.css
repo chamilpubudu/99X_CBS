@@ -83,6 +83,8 @@ td {
     border-bottom: #000000 1px solid;
     padding: 2px;
     margin: 0px;
+    width: 33%;
+
 }
 
 .td1 {
@@ -177,7 +179,16 @@ p {
     margin: 0;
 }
 
-.noBreak { page-break-inside: avoid;  }
+.noBreak 
+{ 
+    page-break-inside: avoid; 
+}
+
+.noBreak table 
+{
+    table-layout: fixed;
+}
+
 
 @media print {
     #printbtn {
@@ -197,18 +208,12 @@ p {
     }
 }
 
-/**the last-child is used to avoid the "|" sign is getting the red color*/
 
-.approvedraw td:not(:last-child) {
-    color:red ;
-    font-weight: bold;
-}
 
-table td {
-    border-right : none ;
-    border-left : none ;
-    border-top :none ;
-    border-bottom : none ;
-    
+#devcbsDropdown {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 450px;
+    padding-right: 250px;
 }
 

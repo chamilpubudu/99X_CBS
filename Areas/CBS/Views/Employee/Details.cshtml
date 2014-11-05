@@ -5,7 +5,7 @@
 }
 <link href="~/Content/CBS.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<div >
+<div id="devcbsDropdown" >
     <select id="cbsDropdown" class="form-control" >
       <option value="">Select a year to generate</option>
       <option value="2012">2012</option>
@@ -26,7 +26,7 @@
         </div>
         <br />
         @{
-            @When the forst time the page loads there are no "year" in query string. It is handled in below code@
+            @*When the forst time the page loads there are no "year" in query string. It is handled in below code*@
             var selectedYear= Request.QueryString["year"] ;
             if(selectedYear==null)
             {
