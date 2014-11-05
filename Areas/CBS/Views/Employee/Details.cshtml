@@ -26,7 +26,13 @@
         </div>
         <br />
         @{
+            @When the forst time the page loads there are no "year" in query string. It is handled in below code@
             var selectedYear= Request.QueryString["year"] ;
+            if(selectedYear==null)
+            {
+                selectedYear = @DateTime.Now.Year.ToString(); ;
+            }
+            
         <p class="p0 ft0">Career Balance Sheet - @Html.Raw(selectedYear)  </p> 
 
         }

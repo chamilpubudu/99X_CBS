@@ -32,6 +32,7 @@ namespace _99X_CBS
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/jquery-ui.css",
+                      "~/Content/cosmobootstrap.css",
                       "~/Content/site.css"));
         }
     }
