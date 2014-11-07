@@ -83,6 +83,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                     {
                         dataAdapter.Fill(ds);
                     }
+                    excelConnection.Close();
                 }
                 if (fileExtension.ToString().ToLower().Equals(".xml"))
                 {
@@ -102,7 +103,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                 {
                     if (Request.Files["file"].FileName.Equals("Awards.xlsx") || Request.Files["file"].FileName.Equals("Awards.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager"))&& User.IsInRole("CBS_Awards_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager"))|| User.IsInRole("CBS_Awards_Manage"))
                         {
                             CBS_Awards cbs_awards = new CBS_Awards();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -133,7 +134,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("Attendances.xlsx") || Request.Files["file"].FileName.Equals("Attendances.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_Attendances_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_Attendances_Manage"))
                         {
 
                             CBS_Attendances cbs_attendances = new CBS_Attendances();
@@ -173,7 +174,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("Bonuses.xlsx") || Request.Files["file"].FileName.Equals("Bonuses.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_Bonuses_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_Bonuses_Manage"))
                         {
                             CBS_Bonuses cbs_bonuses = new CBS_Bonuses();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -207,7 +208,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("CustomerFeedbackScore.xlsx") || Request.Files["file"].FileName.Equals("CustomerFeedbackScore.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_CustomerFeedbackScore_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_CustomerFeedbackScore_Manage"))
                         {
                             CBS_CustomerFeedbackScore cbs_customerfeedbackscore = new CBS_CustomerFeedbackScore();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -241,7 +242,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("EmployeeBillingUtilization.xlsx") || Request.Files["file"].FileName.Equals("EmployeeBillingUtilization.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_EmployeeBillingUtilization_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_EmployeeBillingUtilization_Manage"))
                         {
                             CBS_EmployeeBillingUtilization cbs_employeebillingutilization = new CBS_EmployeeBillingUtilization();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -274,7 +275,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("Employees.xlsx") || Request.Files["file"].FileName.Equals("Employees.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_Employees_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_Employees_Manage"))
                         {
                             CBS_Employees cbs_employees = new CBS_Employees();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -308,7 +309,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("Engagement.xlsx") || Request.Files["file"].FileName.Equals("Engagement.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_Engagement_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_Engagement_Manage"))
                         {
                             CBS_Engagement cbs_engagement = new CBS_Engagement();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -339,7 +340,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("FuelAllowances.xlsx") || Request.Files["file"].FileName.Equals("FuelAllowances.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_FuelAllowances_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_FuelAllowances_Manage"))
                         {   
                             CBS_FuelAllowances cbs_fuelallowances = new CBS_FuelAllowances();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -371,7 +372,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("Increments.xlsx") || Request.Files["file"].FileName.Equals("Increments.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_Increments_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_Increments_Manage"))
                         {
                             CBS_Increments cbs_increments = new CBS_Increments();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -402,7 +403,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("MentorBuddy.xlsx") || Request.Files["file"].FileName.Equals("MentorBuddy.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_MentorBuddy_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_MentorBuddy_Manage"))
                         {
                             CBS_MentorBuddy cbs_mentorbuddy = new CBS_MentorBuddy();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -434,7 +435,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("Promotions.xlsx") || Request.Files["file"].FileName.Equals("Promotions.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_Promotions_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_Promotions_Manage"))
                         {
                             CBS_Promotions cbs_promotions = new CBS_Promotions();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -466,7 +467,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("PublicAppearences.xlsx") || Request.Files["file"].FileName.Equals("PublicAppearences.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_PublicAppearences_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_PublicAppearences_Manage"))
                         {
                             CBS_PublicAppearences cbs_publicappearance = new CBS_PublicAppearences();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -499,7 +500,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("TechnologyExposure.xlsx") || Request.Files["file"].FileName.Equals("TechnologyExposure.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_TechnologyExposure_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_TechnologyExposure_Manage"))
                         {
                             CBS_TechnologyExposure cbs_technologyexposure = new CBS_TechnologyExposure();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -530,7 +531,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("Trainings.xlsx") || Request.Files["file"].FileName.Equals("Trainings.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_Trainings_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_Trainings_Manage"))
                         {
                             CBS_Trainings cbs_trainings = new CBS_Trainings();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -566,7 +567,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("Travels.xlsx") || Request.Files["file"].FileName.Equals("Travels.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_Travels_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_Travels_Manage"))
                         {
                             CBS_Travels cbs_travels = new CBS_Travels();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -602,7 +603,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("UniversitySessions.xlsx") || Request.Files["file"].FileName.Equals("UniversitySessions.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_UniversitySessions_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_UniversitySessions_Manage"))
                         {
                             CBS_UniversitySessions cbs_universitysessions = new CBS_UniversitySessions();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -639,7 +640,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
                     else if (Request.Files["file"].FileName.Equals("ValueInnovations.xlsx") || Request.Files["file"].FileName.Equals("ValueInnovations.xls"))
                     {
-                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) && User.IsInRole("CBS_ValueInnovations_Manage"))
+                        if ((User.IsInRole("Admin") || User.IsInRole("Manager")) || User.IsInRole("CBS_ValueInnovations_Manage"))
                         {
                             CBS_ValueInnovations cbs_valueinnovations = new CBS_ValueInnovations();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)

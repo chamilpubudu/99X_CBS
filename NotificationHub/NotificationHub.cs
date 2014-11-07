@@ -37,10 +37,17 @@ namespace _99X_CBS.NotificationHub
 
         public void getInitialNotifications()
         {
-            string name = Context.User.Identity.Name;
-            List<CBS_NotificationInfo> cbs_NotificationInfoList = entitiesDb.CBS_NotificationInfo.Where(n => n.UserID == name).OrderByDescending(n => n.NotifiedTime).Take(10).ToList();
-            string strJson = JsonConvert.SerializeObject(cbs_NotificationInfoList);
-            Clients.Caller.setInitialNotifications(strJson);
+            try
+            {
+                string name = Context.User.Identity.Name;
+                List<CBS_NotificationInfo> cbs_NotificationInfoList = entitiesDb.CBS_NotificationInfo.Where(n => n.UserID == name).OrderByDescending(n => n.NotifiedTime).Take(10).ToList();
+                string strJson = JsonConvert.SerializeObject(cbs_NotificationInfoList);
+                Clients.Caller.setInitialNotifications(strJson);
+            }
+            catch
+            {
+ 
+            }
         }
 
 
