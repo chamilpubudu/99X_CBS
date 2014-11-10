@@ -38,45 +38,40 @@
         }
         <br />
         <br />
-        <!-- Performance Details Start -->
-        <p class="p1 ft1"><b>Performance Details</b></p>
-        <br />
         <!-- Employee Details Start -->
-        <p class="p2 ft2">Employee Details</p>
+        <p class="p2 ft1"><b>Employee Details</b></p>
         <br />
         <table >
             <tr>
                 <td class="tr0 td1">
-                    <p class="ft2">Employee Name</p>
+                    <p class="ft2"><b>Employee Name</b></p>
                 </td>
                 <td class="tr0 td1">
-                    <p class=" ft2">: @Html.DisplayFor(model => model.cbs_employee.Employee_Name)</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="tr0 td1">
-                    <p class=" ft2">Designation</p>
-                </td>
-                <td class="tr0 td1">
-                    <p class=" ft2">: @Html.DisplayFor(model => model.cbs_employee.Designation)</p>
+                    <p class=" ft3">:@Html.DisplayFor(model => model.cbs_employee.Employee_Name)</p>
                 </td>
             </tr>
             <tr>
                 <td class="tr0 td1">
-                    <p class=" ft2">Date Joined</p>
+                    <p class=" ft2"><b>Designation</b></p>
                 </td>
                 <td class="tr0 td1">
-                    <p class=" ft2">
+                    <p class=" ft3">:@Html.DisplayFor(model => model.cbs_employee.Designation)</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="tr0 td1">
+                    <p class=" ft2"><b>Date Joined</b></p>
+                </td>
+                <td class="tr0 td1">
+                    <p class=" ft3">
                         :
                         <nobr>@Html.DisplayFor(model => model.cbs_employee.Date_Joined)</nobr>
                     </p>
                 </td>
             </tr>
-        </table>
-        <table >
             <tr>
                 <td class="tr0 td1">
-                    <p class=" ft2">Total Years at 99XTechnology </p>
+                    <p class=" ft2"><b>Total Years at 99XTechnology </b></p>
                 </td>
                 @{
                     int joinedYear = Model.cbs_employee.Date_Joined.Value.Year;
@@ -86,23 +81,23 @@
                     int totalXperiance = currentYear  - startedYear ;              
                 }
                 <td class="tr0 td1">
-                    <p class=" ft2">:@total99Xperiance</p>
+                    <p class=" ft3">:@total99Xperiance</p>
                 </td>
             </tr>
             <tr>
                 <td class="tr0 td1">
-                    <p class=" ft2">Total Experience in Years </p>
+                    <p class=" ft2"><b>Total Experience in Years </b></p>
                 </td>
                 <td class="tr0 td1">
-                    <p class=" ft2">:@totalXperiance</p>
+                    <p class=" ft3">:@totalXperiance</p>
                 </td>
             </tr>
             <tr>
                 <td class="tr1 td1">
-                    <p class=" ft2">Appraisal Score</p>
+                    <p class=" ft2"><b>Appraisal Score</b></p>
                 </td>
                 <td class="tr1 td1">
-                    <p class=" ft2">@Html.DisplayFor(model => model.cbs_employee.Appraisal_Score)/100</p>
+                    <p class=" ft3">:@Html.DisplayFor(model => model.cbs_employee.Appraisal_Score)/100</p>
                 </td>
             </tr>
         </table>
@@ -144,6 +139,7 @@
     <div class="noBreak">
         <!-- Bonus Details Start -->
         <p class="ft1"><b>Bonus Details</b></p>
+        <br/>
         <table class="gridtable">
             @{
             float totalBonusAmount = 0;
@@ -329,9 +325,6 @@
             <nobr>Development-Skills</nobr>
             </b>
         </p>
-        <br />
-        <!-- Training Details Start -->
-        <p class=" ft2">Training Details</p>
         <br />
         <table cellpadding="0" cellspacing="0" class="gridtable">
             <tr>
@@ -553,9 +546,6 @@
             <nobr>Development-PR</nobr>
             </b>
         </p>
-        <br />
-        <!-- Public Appearence Details Start -->
-        <p class="ft2">Public Appearence Details</p>
         <br />
         <table cellpadding="0" cellspacing="0" class="gridtable">
             <tr>
