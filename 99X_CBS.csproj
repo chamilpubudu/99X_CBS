@@ -179,6 +179,7 @@
     <Compile Include="Areas\Admin\Controllers\ReportSettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\CBS\CBSAreaRegistration.cs" />
+    <Compile Include="Areas\Profile\Controllers\SalaryInformation.cs" />
     <Compile Include="Models\CBS_Attendances.cs" />
     <Compile Include="Models\CBS_Awards.cs" />
     <Compile Include="Models\CBS_Bonuses.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Models\CBS_Promotions.cs" />
     <Compile Include="Models\CBS_PublicAppearences.cs" />
     <Compile Include="Models\CBS_ReportFormat.cs" />
+    <Compile Include="Models\CBS_SalaryInformation.cs" />
     <Compile Include="Models\CBS_SystemSettings.cs" />
     <Compile Include="Models\CBS_TechnologyExposure.cs" />
     <Compile Include="Models\CBS_Trainings.cs" />
@@ -429,6 +431,12 @@
     <Content Include="Areas\Profile\Views\ValueInnovations\Details.cshtml" />
     <Content Include="Areas\Profile\Views\ValueInnovations\Edit.cshtml" />
     <Content Include="Areas\Profile\Views\ValueInnovations\Index.cshtml" />
+    <Content Include="Areas\Profile\Views\SalaryInformation\Create.cshtml" />
+    <Content Include="Areas\Profile\Views\SalaryInformation\Delete.cshtml" />
+    <Content Include="Areas\Profile\Views\SalaryInformation\Details.cshtml" />
+    <Content Include="Areas\Profile\Views\SalaryInformation\Edit.cshtml" />
+    <Content Include="Areas\Profile\Views\SalaryInformation\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\CBS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\data-approve.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
