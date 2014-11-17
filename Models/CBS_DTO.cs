@@ -1,7 +1,4 @@
-﻿
-
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 namespace _99X_CBS.Models
 {
     public class CBS_DTO
@@ -26,6 +23,8 @@ namespace _99X_CBS.Models
         public List<CBS_FuelAllowances> cbs_FuelAllowancesList { get; set; }
         public List<CBS_ReportFormat> cbs_ReportFormatList { get; set; }
         public List<CBS_SalaryInformation> cbs_SalaryInformation { get; set; }
+        public List<CBS_AdditionalAccomplishments> cbs_AdditionalAccomplishments { get; set; }
+        public List<CBS_Benefits> cbs_Benefits { get; set; }
 
     }
 }

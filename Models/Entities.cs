@@ -32,5 +32,9 @@ namespace _99X_CBS.Models
         public DbSet<CBS_SystemSettings> CBS_SystemSettings { get; set; }
         public DbSet<CBS_NotificationInfo> CBS_NotificationInfo { get; set; }
         public DbSet<CBS_SalaryInformation> CBS_SalaryInformation { get; set; }
+
+        public System.Data.Entity.DbSet<_99X_CBS.Models.CBS_AdditionalAccomplishments> CBS_AdditionalAccomplishments { get; set; }
+
+        public System.Data.Entity.DbSet<_99X_CBS.Models.CBS_Benefits> CBS_Benefits { get; set; }
     }
 }

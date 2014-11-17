@@ -86,6 +86,14 @@ namespace _99X_CBS.Migrations
             success = idManager.CreateRole("User");
             if (!success) return success;
 
+            success = idManager.CreateRole("CBS_SalaryInformation_Manage");
+            if (!success == true) return success;
+
+            success = idManager.CreateRole("CBS_AdditionalAccomplishments");
+            if (!success == true) return success;
+
+            success = idManager.CreateRole("CBS_Benefits");
+            if (!success == true) return success;
 
             var newUser = new ApplicationUser()
             {

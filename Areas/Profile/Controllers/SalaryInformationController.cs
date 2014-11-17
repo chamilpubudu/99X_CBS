@@ -10,14 +10,22 @@ using _99X_CBS.Models;
 
 namespace _99X_CBS.Areas.Profile.Controllers
 {
-    public class SalaryInformation : Controller
+    public class SalaryInformationController : Controller
     {
         private Entities db = new Entities();
 
         // GET: /Profile/SalaryInformation/
         public ActionResult Index()
         {
-            return View(db.CBS_SalaryInformation.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_SalaryInformation_Manage"))
+            {
+                return View(db.CBS_SalaryInformation.ToList());
+            }
+            else
+            {
+                String userEmpId = CurrentUser.GetEmpID(this.Session, this.User);
+                return View(db.CBS_SalaryInformation.Where(x => x.EmpID == userEmpId).ToList());
+            }
         }
 
         // GET: /Profile/SalaryInformation/Details/5
@@ -32,7 +40,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
-            return View(cbs_salaryinformation);
+
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_salaryinformation.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_SalaryInformation_Manage"))))
+            {
+                return View(cbs_salaryinformation);
+            }
         }
 
         // GET: /Profile/SalaryInformation/Create
@@ -50,6 +63,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.CBS_SalaryInformation.Add(cbs_salaryinformation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
