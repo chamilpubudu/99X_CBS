@@ -63,10 +63,26 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Attendances_Manage"))
+                {
+                    cbs_salaryinformation.Approved = true;
+                }
 
+                else
+                {
+                    cbs_salaryinformation.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
+                    cbs_salaryinformation.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances"); //Need to change here
+                }
                 db.CBS_SalaryInformation.Add(cbs_salaryinformation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_salaryinformation.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_SalaryInformation_Manage"))))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             return View(cbs_salaryinformation);
@@ -83,6 +99,11 @@ namespace _99X_CBS.Areas.Profile.Controllers
             if (cbs_salaryinformation == null)
             {
                 return HttpNotFound();
+            }
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_salaryinformation.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_SalaryInformation_Manage"))))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             return View(cbs_salaryinformation);
         }
