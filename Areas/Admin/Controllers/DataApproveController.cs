@@ -44,6 +44,10 @@ namespace _99X_CBS.Areas.Admin.Controllers
 
             List<CBS_FuelAllowances> cbs_FuelAllowancesList = db.CBS_FuelAllowances.Where(x => x.Approved == false ).ToList();
             List<CBS_ReportFormat> cbs_ReportFormatList = db.CBS_ReportFormat.Where(x => x.Approved == false ).ToList();
+            List<CBS_SalaryInformation> cbs_SalaryInformationList = db.CBS_SalaryInformation.Where(x => x.Approved == false).ToList();
+            List<CBS_AdditionalAccomplishments> cbs_AdditionalAccomplishmentsList = db.CBS_AdditionalAccomplishments.Where(x => x.Approved == false).ToList();
+            List<CBS_Benefits> cbs_BenifitsList = db.CBS_Benefits.Where(x => x.Approved == false).ToList();
+
 
             CBS_DTO cbs_dto = new CBS_DTO();
             //cbs_dto.cbs_employee = cbs_employees;
@@ -114,6 +118,18 @@ namespace _99X_CBS.Areas.Admin.Controllers
             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_ReportFormat_Manage"))
             {
                 cbs_dto.cbs_ReportFormatList = cbs_ReportFormatList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_SalaryInformation_Manage"))
+            {
+                cbs_dto.cbs_SalaryInformation = cbs_SalaryInformationList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_AdditionalAccomplishments_Manage"))
+            {
+                cbs_dto.cbs_AdditionalAccomplishments = cbs_AdditionalAccomplishmentsList;
+            }
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Benefits_Manage"))
+            {
+                cbs_dto.cbs_Benefits = cbs_BenifitsList;
             }
 
             return Json(cbs_dto, JsonRequestBehavior.AllowGet);
@@ -324,6 +340,45 @@ namespace _99X_CBS.Areas.Admin.Controllers
                             }
                             returnData = db.CBS_ValueInnovations.Where(x => x.Approved == false).ToList();
                             break;
+
+                        case "CBS_SalaryInformation":
+                            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_SalaryInformation_Manage"))
+                            {
+                                CBS_SalaryInformation cbs_salaryinformation = db.CBS_SalaryInformation.Find(ID.id);
+                                if (cbs_salaryinformation.Approved == false)
+                                {
+                                    db.CBS_SalaryInformation.Remove(cbs_salaryinformation);
+                                    db.SaveChanges();
+                                }
+                            }
+                            returnData = db.CBS_SalaryInformation.Where(x => x.Approved == false).ToList();
+                            break;
+
+                        case "CBS_AdditionalAccomplishments":
+                            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_AdditionalAccomplishments_Manage"))
+                            {
+                                CBS_AdditionalAccomplishments cbs_additionalaccomplishments = db.CBS_AdditionalAccomplishments.Find(ID.id);
+                                if (cbs_additionalaccomplishments.Approved == false)
+                                {
+                                    db.CBS_AdditionalAccomplishments.Remove(cbs_additionalaccomplishments);
+                                    db.SaveChanges();
+                                }
+                            }
+                            returnData = db.CBS_AdditionalAccomplishments.Where(x => x.Approved == false).ToList();
+                            break;
+
+                        case "CBS_Benefits":
+                            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Benefits_Manage"))
+                            {
+                                CBS_Benefits cbs_benifits = db.CBS_Benefits.Find(ID.id);
+                                if (cbs_benifits.Approved == false)
+                                {
+                                    db.CBS_Benefits.Remove(cbs_benifits);
+                                    db.SaveChanges();
+                                }
+                            }
+                            returnData = db.CBS_Benefits.Where(x => x.Approved == false).ToList();
+                            break;
                     }
                 }
                 return Json(returnData, JsonRequestBehavior.AllowGet);
@@ -347,8 +402,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
                     case "CBS_EmployeeBillingUtilization":
                         returnData = db.CBS_EmployeeBillingUtilization.Where(x => x.Approved == false).ToList();
                         break;
-
-                    case "CBS_Engagement":
+                   case "CBS_Engagement":
                         returnData = db.CBS_Engagement.Where(x => x.Approved == false).ToList();
                         break;
                     case "CBS_FuelAllowances":
@@ -363,7 +417,6 @@ namespace _99X_CBS.Areas.Admin.Controllers
                     case "CBS_Promotions":
                         returnData = db.CBS_Promotions.Where(x => x.Approved == false).ToList();
                         break;
-
                     case "CBS_PublicAppearences":
                         returnData = db.CBS_PublicAppearences.Where(x => x.Approved == false).ToList();
                         break;
@@ -379,9 +432,17 @@ namespace _99X_CBS.Areas.Admin.Controllers
                     case "CBS_UniversitySessions":
                         returnData = db.CBS_UniversitySessions.Where(x => x.Approved == false).ToList();
                         break;
-
                     case "CBS_ValueInnovations":
                         returnData = db.CBS_ValueInnovations.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_SalaryInformation":
+                        returnData = db.CBS_SalaryInformation.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_AdditionalAccomplishments":
+                        returnData = db.CBS_AdditionalAccomplishments.Where(x => x.Approved == false).ToList();
+                        break;
+                    case "CBS_Benefits":
+                        returnData = db.CBS_Benefits.Where(x => x.Approved == false).ToList();
                         break;
                 }
                 return Json(returnData, JsonRequestBehavior.AllowGet);

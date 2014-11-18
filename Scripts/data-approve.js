@@ -22,6 +22,7 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
     $scope.CBS_TravelsData = {};
     $scope.CBS_UniversitySessionsData = {};
     $scope.CBS_ValueInnovationsData = {};
+    $scope.CBS_SalaryInformation = {};
 
     $http.get('/Admin/DataApprove/GetInitialData/').
           success(function (data, status, headers, config) {
