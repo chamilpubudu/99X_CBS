@@ -17,7 +17,15 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // GET: /Profile/AdditionalAccomplishments/
         public ActionResult Index()
         {
-            return View(db.CBS_AdditionalAccomplishments.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_AdditionalAccomplishments_Manage"))
+            {
+                return View(db.CBS_AdditionalAccomplishments.ToList());
+            }
+            else
+            {
+                string userEmpId = CurrentUser.GetEmpID(this.Session, this.User);
+                return View(db.CBS_Attendances.Where(x => x.EmpID == userEmpId).ToList());
+            }           
         }
 
         // GET: /Profile/AdditionalAccomplishments/Details/5
@@ -31,6 +39,11 @@ namespace _99X_CBS.Areas.Profile.Controllers
             if (cbs_additionalaccomplishments == null)
             {
                 return HttpNotFound();
+            }
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_additionalaccomplishments.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_AdditionalAccomplishments_Manage"))))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             return View(cbs_additionalaccomplishments);
         }
@@ -50,9 +63,25 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Attendances_Manage"))
+                {
+                    cbs_additionalaccomplishments.Approved = true;
+                }
+                else
+                {
+                    cbs_additionalaccomplishments.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
+                    cbs_additionalaccomplishments.Approved = false;
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances");//needs to be changed
+                }
                 db.CBS_AdditionalAccomplishments.Add(cbs_additionalaccomplishments);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_additionalaccomplishments.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_AdditionalAccomplishments_Manage"))))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             return View(cbs_additionalaccomplishments);
@@ -70,6 +99,12 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
+
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_additionalaccomplishments.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_AdditionalAccomplishments_Manage"))))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
             return View(cbs_additionalaccomplishments);
         }
 
@@ -82,14 +117,36 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cbs_additionalaccomplishments).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Attendances_Manage"))
+                {
+                    cbs_additionalaccomplishments.Approved = true;
+                    db.Entry(cbs_additionalaccomplishments).State = EntityState.Modified;
+                }
+                else
+                {
+                    cbs_additionalaccomplishments.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
+                    cbs_additionalaccomplishments.Approved = false;
+                    cbs_additionalaccomplishments.TargetRowID = cbs_additionalaccomplishments.ID;
+                    cbs_additionalaccomplishments.EditedBy = User.Identity.Name;
+                    cbs_additionalaccomplishments.ID = 0;
+                    db.CBS_AdditionalAccomplishments.Add(cbs_additionalaccomplishments);
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances");//this else condition needs to be changed
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_additionalaccomplishments.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_AdditionalAccomplishments_Manage"))))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cbs_additionalaccomplishments);
         }
 
         // GET: /Profile/AdditionalAccomplishments/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_AdditionalAccomplishments_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -101,11 +158,18 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
+
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_additionalaccomplishments.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_AdditionalAccomplishments_Manage"))))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
             return View(cbs_additionalaccomplishments);
         }
 
         // POST: /Profile/AdditionalAccomplishments/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_AdditionalAccomplishments_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

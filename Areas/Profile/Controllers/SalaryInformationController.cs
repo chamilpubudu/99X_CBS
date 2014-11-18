@@ -44,8 +44,11 @@ namespace _99X_CBS.Areas.Profile.Controllers
             //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
             if (!(cbs_salaryinformation.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_SalaryInformation_Manage"))))
             {
-                return View(cbs_salaryinformation);
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
+
+            return View(cbs_salaryinformation);
+
         }
 
         // GET: /Profile/SalaryInformation/Create
@@ -117,14 +120,36 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cbs_salaryinformation).State = EntityState.Modified;
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_SalaryInformation_Manage"))
+                {
+                    cbs_salaryinformation.Approved = true;
+                    db.Entry(cbs_salaryinformation).State = EntityState.Modified;
+                }
+                else
+                {
+                    cbs_salaryinformation.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
+                    cbs_salaryinformation.Approved = false;
+                    cbs_salaryinformation.TargetRowID = cbs_salaryinformation.ID;
+                    cbs_salaryinformation.EditedBy = User.Identity.Name;
+                    cbs_salaryinformation.ID = 0;
+                    db.CBS_SalaryInformation.Add(cbs_salaryinformation);
+                    //NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances");
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_salaryinformation.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_SalaryInformation_Manage"))))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cbs_salaryinformation);
         }
 
         // GET: /Profile/SalaryInformation/Delete/5
+        [Authorize(Roles = "Admin, Manager, CBS_SalaryInformation_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -136,11 +161,19 @@ namespace _99X_CBS.Areas.Profile.Controllers
             {
                 return HttpNotFound();
             }
+
+            //Only the current user or the Admin or the Manager or the Manager with the relevent section priviledges can access the page
+            if (!(cbs_salaryinformation.EmpID == CurrentUser.GetEmpID(this.Session, this.User) || (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_SalaryInformation_Manage"))))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(cbs_salaryinformation);
         }
 
         // POST: /Profile/SalaryInformation/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager, CBS_SalaryInformation_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

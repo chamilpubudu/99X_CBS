@@ -89,10 +89,10 @@ namespace _99X_CBS.Migrations
             success = idManager.CreateRole("CBS_SalaryInformation_Manage");
             if (!success == true) return success;
 
-            success = idManager.CreateRole("CBS_AdditionalAccomplishments");
+            success = idManager.CreateRole("CBS_AdditionalAccomplishments_Manage");
             if (!success == true) return success;
 
-            success = idManager.CreateRole("CBS_Benefits");
+            success = idManager.CreateRole("CBS_Benefits_Manage");
             if (!success == true) return success;
 
             var newUser = new ApplicationUser()
