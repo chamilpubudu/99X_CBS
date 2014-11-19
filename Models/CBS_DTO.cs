@@ -22,9 +22,9 @@ namespace _99X_CBS.Models
         public List<CBS_Attendances> cbs_AttendancesList { get; set; }
         public List<CBS_FuelAllowances> cbs_FuelAllowancesList { get; set; }
         public List<CBS_ReportFormat> cbs_ReportFormatList { get; set; }
-        public List<CBS_SalaryInformation> cbs_SalaryInformation { get; set; }
-        public List<CBS_AdditionalAccomplishments> cbs_AdditionalAccomplishments { get; set; }
-        public List<CBS_Benefits> cbs_Benefits { get; set; }
+        public List<CBS_SalaryInformation> cbs_SalaryInformationList { get; set; }
+        public List<CBS_AdditionalAccomplishments> cbs_AdditionalAccomplishmentsList { get; set; }
+        public List<CBS_Benefits> cbs_BenefitsList { get; set; }
 
     }
 }

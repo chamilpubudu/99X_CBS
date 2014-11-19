@@ -22,7 +22,9 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
     $scope.CBS_TravelsData = {};
     $scope.CBS_UniversitySessionsData = {};
     $scope.CBS_ValueInnovationsData = {};
-    $scope.CBS_SalaryInformation = {};
+    $scope.CBS_SalaryInformationData = {};
+    $scope.CBS_AdditionalAccomplishmentsData = {};
+    $scope.CBS_BenefitsData = {};
 
     $http.get('/Admin/DataApprove/GetInitialData/').
           success(function (data, status, headers, config) {
@@ -49,6 +51,9 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
               $scope.CBS_TravelsData = data.cbs_TravelsList;
               $scope.CBS_UniversitySessionsData = data.cbs_UniversitySessionsList;
               $scope.CBS_ValueInnovationsData = data.cbs_ValueInnovationsList;
+              $scope.CBS_SalaryInformationData = data.CBS_SalaryInformationList;
+              $scope.CBS_AdditionalAccomplishmentsData = data.CBS_AdditionalAccomplishmentsList;
+              $scope.CBS_BenefitsData = data.CBS_BenefitsList;
           }).
           error(function (data, status, headers, config) {
               // called asynchronously if an error occurs
@@ -294,6 +299,7 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
         ]
 
     };
+
     $scope.CBS_ValueInnovationsGridOptions = {
         data: 'CBS_ValueInnovationsData',
         selectedItems: [],
@@ -303,6 +309,47 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
             { field: 'Employee_Name', displayName: 'Employee Name' },
             { field: 'Innovation_Date', displayName: 'Innovation Date' },
             { field: 'Value_Innovation', displayName: 'Value Innovation' }
+        ]
+
+    };
+
+    $scope.CBS_SalaryInformationsGridOptions = {
+        data: 'CBS_SalaryInformationData',
+        selectedItems: [],
+        multiSelect: true,
+        columnDefs: [
+            { field: 'EmpID', displayName: 'Employee ID' },
+            { field: 'Employee_Name', displayName: 'Employee Name' },
+            { field: 'CurrentSalaryAmount', displayName: 'Current Salary Amount' },
+            { field: 'Date', displayName: 'Date' },
+            { field: 'EPF', displayName: 'EPF' },
+            { field: 'ETF', displayName: 'ETF' }
+        ]
+
+    };
+
+    $scope.CBS_AdditionalAccomplishmentsGridOptions = {
+        data: 'CBS_AdditionalAccomplishmentsData',
+        selectedItems: [],
+        multiSelect: true,
+        columnDefs: [
+            { field: 'EmpID', displayName: 'Employee ID' },
+            { field: 'Employee_Name', displayName: 'Employee Name' },
+            { field: 'Accomplishment_Date', displayName: 'Accomplishments Date' },
+            { field: 'AccomplishmentName', displayName: 'Accomplishment Name' }
+        ]
+
+    };
+
+    $scope.CBS_BenefitsGridOptions = {
+        data: 'CBS_BenefitsData',
+        selectedItems: [],
+        multiSelect: true,
+        columnDefs: [
+            { field: 'EmpID', displayName: 'Employee ID' },
+            { field: 'Employee_Name', displayName: 'Employee Name' },
+            { field: 'Date', displayName: 'Benefitted Date' },
+            { field: 'Benefit_Name', displayName: 'Benefit Name' }
         ]
 
     };
@@ -390,6 +437,18 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
             case "CBS_ValueInnovations":
                 console.log("CBS_ValueInnovations");
                 selectedItems = $scope.CBS_ValueInnovationsGridOptions.selectedItems;
+                break;
+            case "CBS_SalaryInformation":
+                console.log("CBS_SalaryInformation");
+                selectedItems = $scope.CBS_SalaryInformationsGridOptions.selectedItems;
+                break;
+            case "CBS_AdditionalAccomplishments":
+                console.log("CBS_AdditionalAccomplishments");
+                selectedItems = $scope.CBS_AdditionalAccomplishmentsGridOptions.selectedItems;
+                break;
+            case "CBS_Benefits":
+                console.log("CBS_Benefits");
+                selectedItems = $scope.CBS_BenefitsGridOptions.selectedItems;
                 break;
         }
 
@@ -495,6 +554,21 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
                           $scope.CBS_ValueInnovationsData = data;
                           $scope.CBS_ValueInnovationsGridOptions.selectedItems.length = 0
                           break;
+                      case "CBS_SalaryInformation":
+                          console.log("CBS_SalaryInformation");
+                          $scope.CBS_SalaryInformationData = data;
+                          $scope.CBS_SalaryInformationsGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_AdditionalAccomplishments":
+                          console.log("CBS_AdditionalAccomplishments");
+                          $scope.CBS_AdditionalAccomplishmentsData = data;
+                          $scope.CBS_AdditionalAccomplishmentsGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_Benefits":
+                          console.log("CBS_Benefits");
+                          $scope.CBS_BenefitsData = data;
+                          $scope.CBS_BenefitsGridOptions.selectedItems.length = 0
+                          break;
                   }
               }).
               error(function (data, status, headers, config) {
@@ -586,6 +660,18 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
             case "CBS_ValueInnovations":
                 console.log("CBS_ValueInnovations");
                 selectedItems = $scope.CBS_ValueInnovationsGridOptions.selectedItems;
+                break;
+            case "CBS_SalaryInformation":
+                console.log("CBS_SalaryInformation");
+                selectedItems = $scope.CBS_SalaryInformationsGridOptions.selectedItems;
+                break;
+            case "CBS_AdditionalAccomplishments":
+                console.log("CBS_AdditionalAccomplishments");
+                selectedItems = $scope.CBS_AdditionalAccomplishmentsGridOptions.selectedItems;
+                break;
+            case "CBS_Benefits":
+                console.log("CBS_Benefits");
+                selectedItems = $scope.CBS_BenefitsGridOptions.selectedItems;
                 break;
         }
 
@@ -690,6 +776,21 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
                           console.log("CBS_ValueInnovations");
                           $scope.CBS_ValueInnovationsData = data;
                           $scope.CBS_ValueInnovationsGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_SalaryInformation":
+                          console.log("CBS_SalaryInformation");
+                          $scope.CBS_SalaryInformationData = data;
+                          $scope.CBS_SalaryInformationsGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_AdditionalAccomplishments":
+                          console.log("CBS_AdditionalAccomplishments");
+                          $scope.CBS_AdditionalAccomplishmentsData = data;
+                          $scope.CBS_AdditionalAccomplishmentsGridOptions.selectedItems.length = 0
+                          break;
+                      case "CBS_Benefits":
+                          console.log("CBS_Benefits");
+                          $scope.CBS_BenefitsData = data;
+                          $scope.CBS_BenefitsGridOptions.selectedItems.length = 0
                           break;
                   }
               }).
