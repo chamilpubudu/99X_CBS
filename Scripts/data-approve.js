@@ -26,6 +26,7 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
     $scope.CBS_AdditionalAccomplishmentsData = {};
     $scope.CBS_BenefitsData = {};
 
+    //Get the Json data from GetInitialData() where all the unapproved data . You get the data as a list from "data" 
     $http.get('/Admin/DataApprove/GetInitialData/').
           success(function (data, status, headers, config) {
               // this callback will be called asynchronously
@@ -60,6 +61,7 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
               // or server returns response with an error status.
           });
 
+    //The data got from GetInitialData will be sorted out and displayed in the Grid 
     $scope.CBS_AttendancesGridOptions = {
         data: 'CBS_AttendancesData',
         selectedItems: [],

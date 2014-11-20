@@ -59,7 +59,6 @@
                 @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Trainings_Manage")){
                     <li><a href="#CBS_Trainings">CBS_Trainings</a></li>
                 }
-
                 @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Travels_Manage")){
                     <li><a href="#CBS_Travels">CBS_Travels</a></li>
                 }
@@ -68,6 +67,15 @@
                 }
                 @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_ValueInnovations_Manage")){
                     <li><a href="#CBS_ValueInnovations">CBS_ValueInnovations</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_SalaryInformation_Manage")){
+                    <li><a href="#CBS_SalaryInformation">CBS_SalaryInformation</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_AdditionalAccomplishments_Manage")){
+                    <li><a href="#CBS_AdditionalAccomplishments">CBS_AdditionalAccomplishments</a></li>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Benefits_Manage")){
+                    <li><a href="#CBS_Benefits">CBS_Benefits</a></li>
                 }
             </ul>
         </div>
@@ -254,6 +262,39 @@
                         <button ng-click="Approve('CBS_ValueInnovations')">Approve</button>
                         <button ng-click="Discard('CBS_ValueInnovations')">Discard</button>
                         <div class="selectedItems">{{CBS_ValueInnovationsGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_SalaryInformation_Manage")){
+                <div class="tab-pane" id="CBS_SalaryInformation">
+                    <h4>CBS_SalaryInformation</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_SalaryInformationsGridOptions"></div>
+                        <button ng-click="Approve('CBS_SalaryInformation')">Approve</button>
+                        <button ng-click="Discard('CBS_SalaryInformation')">Discard</button>
+                        <div class="selectedItems">{{CBS_SalaryInformationsGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_AdditionalAccomplishments_Manage")){
+                <div class="tab-pane" id="CBS_AdditionalAccomplishments">
+                    <h4>CBS_AdditionalAccomplishments</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_AdditionalAccomplishmentsGridOptions"></div>
+                        <button ng-click="Approve('CBS_AdditionalAccomplishments')">Approve</button>
+                        <button ng-click="Discard('CBS_AdditionalAccomplishments')">Discard</button>
+                        <div class="selectedItems">{{CBS_AdditionalAccomplishmentsGridOptions.selectedItems}}</div>
+                    </div>
+                </div>
+                }
+                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")|| User.IsInRole("CBS_Benefits_Manage")){
+                <div class="tab-pane" id="CBS_Benefits">
+                    <h4>CBS_Benefits</h4>
+                    <div>
+                        <div class="gridStyle" ng-grid="CBS_BenefitsGridOptions"></div>
+                        <button ng-click="Approve('CBS_Benefits')">Approve</button>
+                        <button ng-click="Discard('CBS_Benefits')">Discard</button>
+                        <div class="selectedItems">{{CBS_BenefitsGridOptions.selectedItems}}</div>
                     </div>
                 </div>
                 }

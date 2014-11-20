@@ -46,7 +46,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
             List<CBS_ReportFormat> cbs_ReportFormatList = db.CBS_ReportFormat.Where(x => x.Approved == false ).ToList();
             List<CBS_SalaryInformation> cbs_SalaryInformationList = db.CBS_SalaryInformation.Where(x => x.Approved == false).ToList();
             List<CBS_AdditionalAccomplishments> cbs_AdditionalAccomplishmentsList = db.CBS_AdditionalAccomplishments.Where(x => x.Approved == false).ToList();
-            List<CBS_Benefits> cbs_BenifitsList = db.CBS_Benefits.Where(x => x.Approved == false).ToList();
+            List<CBS_Benefits> cbs_BenefitsList = db.CBS_Benefits.Where(x => x.Approved == false).ToList();
 
 
             CBS_DTO cbs_dto = new CBS_DTO();
@@ -129,7 +129,7 @@ namespace _99X_CBS.Areas.Admin.Controllers
             }
             if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Benefits_Manage"))
             {
-                cbs_dto.cbs_BenefitsList = cbs_BenifitsList;
+                cbs_dto.cbs_BenefitsList = cbs_BenefitsList;
             }
 
             return Json(cbs_dto, JsonRequestBehavior.AllowGet);
