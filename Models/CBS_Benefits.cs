@@ -9,7 +9,7 @@ namespace _99X_CBS.Models
     {
         public string Employee_Name { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public int Benefit_Name { get; set; }
+        public string Benefit_Name { get; set; }
         public string EmpID { get; set; }
         public int ID { get; set; }
         public bool Approved { get; set; }

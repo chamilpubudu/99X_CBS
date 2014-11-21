@@ -63,7 +63,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Attendances_Manage"))
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_AdditionalAccomplishments_Manage"))
                 {
                     cbs_additionalaccomplishments.Approved = true;
                 }
@@ -71,7 +71,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 {
                     cbs_additionalaccomplishments.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cbs_additionalaccomplishments.Approved = false;
-                    NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances");//needs to be changed
+                    NotificationHub.NotificationHub.GroupNotify("CBS_AdditionalAccomplishments_Manage", "Additional Accomplishments change requested", "Admin/DataApprove#CBS_AdditionalAccomplishments");
                 }
                 db.CBS_AdditionalAccomplishments.Add(cbs_additionalaccomplishments);
                 db.SaveChanges();
@@ -117,7 +117,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Attendances_Manage"))
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_AdditionalAccomplishments_Manage"))
                 {
                     cbs_additionalaccomplishments.Approved = true;
                     db.Entry(cbs_additionalaccomplishments).State = EntityState.Modified;
@@ -130,7 +130,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cbs_additionalaccomplishments.EditedBy = User.Identity.Name;
                     cbs_additionalaccomplishments.ID = 0;
                     db.CBS_AdditionalAccomplishments.Add(cbs_additionalaccomplishments);
-                    NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances");//this else condition needs to be changed
+                    NotificationHub.NotificationHub.GroupNotify("CBS_AdditionalAccomplishments_Manage", "Additional Accomplishments change requested", "Admin/DataApprove#CBS_AdditionalAccomplishments");
                 }
                 db.SaveChanges();
                 return RedirectToAction("Index");

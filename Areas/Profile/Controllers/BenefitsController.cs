@@ -73,7 +73,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 {
                     cbs_benefits.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cbs_benefits.Approved = false;
-                    NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances");//Need to change
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Benefits_Manage", "Benefits change requested", "Admin/DataApprove#CBS_Benefits");
                 }
                 db.CBS_Benefits.Add(cbs_benefits);
                 db.SaveChanges();
@@ -117,7 +117,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Employee_Name,Date,Name,EmpID,Approved,EditedBy,TargetRowID")] CBS_Benefits cbs_benefits)
+        public ActionResult Edit([Bind(Include="ID,Employee_Name,Date,Benefit_Name,EmpID,Approved,EditedBy,TargetRowID")] CBS_Benefits cbs_benefits)
         {
             if (ModelState.IsValid)
             {
@@ -134,7 +134,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cbs_benefits.EditedBy = User.Identity.Name;
                     cbs_benefits.ID = 0;
                     db.CBS_Benefits.Add(cbs_benefits);
-                    NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances"); // need to change the entire else block
+                    NotificationHub.NotificationHub.GroupNotify("CBS_Benefits_Manage", "Benefits change requested", "Admin/DataApprove#CBS_Benefits"); 
                 }
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -150,7 +150,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         }
 
         // GET: /Profile/Benefits/Delete/5
-        [Authorize(Roles = "Admin, Manager, CBS_Attendances_Manage")]
+        [Authorize(Roles = "Admin, Manager, CBS_Benefits_Manage")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -175,7 +175,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
 
         // POST: /Profile/Benefits/Delete/5
         [HttpPost, ActionName("Delete")]
-        [Authorize(Roles = "Admin, Manager, CBS_Attendances_Manage")]
+        [Authorize(Roles = "Admin, Manager, CBS_Benefits_Manage")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

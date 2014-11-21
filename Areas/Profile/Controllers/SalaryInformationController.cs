@@ -66,7 +66,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Attendances_Manage"))
+                if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_SalaryInformation_Manage"))
                 {
                     cbs_salaryinformation.Approved = true;
                 }
@@ -75,7 +75,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                 {
                     cbs_salaryinformation.EmpID = CurrentUser.GetEmpID(this.Session, this.User);
                     cbs_salaryinformation.Approved = false;
-                    NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances"); //Need to change here
+                    NotificationHub.NotificationHub.GroupNotify("CBS_SalaryInformation_Manage", "Salary information change requested", "Admin/DataApprove#CBS_SalaryInformation"); //Need to change here
                 }
                 db.CBS_SalaryInformation.Add(cbs_salaryinformation);
                 db.SaveChanges();
@@ -133,7 +133,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
                     cbs_salaryinformation.EditedBy = User.Identity.Name;
                     cbs_salaryinformation.ID = 0;
                     db.CBS_SalaryInformation.Add(cbs_salaryinformation);
-                    //NotificationHub.NotificationHub.GroupNotify("CBS_Attendances_Manage", "Attendance change requested", "Admin/DataApprove#CBS_Attendances");
+                    NotificationHub.NotificationHub.GroupNotify("CBS_SalaryInformation_Manage", "Salary information change requested", "Admin/DataApprove#CBS_SalaryInformation");
                 }
                 db.SaveChanges();
                 return RedirectToAction("Index");
