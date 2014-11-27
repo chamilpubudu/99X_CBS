@@ -1,115 +1,96 @@
-﻿@model _99X_CBS.Models.CBS_DTO
+@model _99X_CBS.Models.CBS_DTO
 
 @{
     ViewBag.Title = "Career Balance Sheet";
 }
 <link href="~/Content/CBS.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<div id="devcbsDropdown" >
-    <select id="cbsDropdown" class="form-control" >
-      <option value="">Select a year to generate</option>
-      <option value="2012">2012</option>
-      <option value="2013">2013</option>
-      <option value="2014">2014</option>
-      <option value="2015">2015</option>
-    </select>
-</div>
+
 <div id="cbs_data">
     @{
         List<string> summary = new List<string>();  
     }
-    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Employees")).Enabled){
+    
+
+        <div class="row detailsheader">
+            <div class="col-md-3">
+                @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Employees")).Enabled){
     var  GlobalAppLogo = "/Content/Images/"+@App._GlobalAppLogo ;
-    <div class="noBreak">
-        <div id="dimg1" style="position: relative; left: 3px; z-index: -1; width: 155px; height: 32px;">
-            <img src=@GlobalAppLogo id="img1" style="width: 155px; height: 32px;">
-        </div>
-        <br />
-        @{
+                <img src=@GlobalAppLogo id="img1" style="width: 155px; height: 32px;">
+                }
+            </div>
+            <div class="col-md-6 title">
+                @{
             @*When the forst time the page loads there are no "year" in query string. It is handled in below code*@
             var selectedYear= Request.QueryString["year"] ;
             if(selectedYear==null)
             {
                 selectedYear = @DateTime.Now.Year.ToString(); ;
             }
-            
-        <p class="p0 ft0">Career Balance Sheet - @Html.Raw(selectedYear)  </p> 
-
+        <p>Career Balance Sheet - @Html.Raw(selectedYear)  </p> 
         }
-        <br />
-        <br />
+            </div>
+            <div class="col-md-3">
+                <div id="devcbsDropdown" >
+                    <select id="cbsDropdown" class="form-control" >
+                      <option value="">Select a year to generate</option>
+                      <option value="2012">2012</option>
+                      <option value="2013">2013</option>
+                      <option value="2014">2014</option>
+                      <option value="2015">2015</option>
+                    </select>
+                </div>                                  
+            </div>
+        </div>
+        
         <!-- Employee Details Start -->
-        <p class="p2 ft1"><b>Employee Details</b></p>
+        <div class="report-title">Employee Details</div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="employee">
+                    <span class="details">Employee Name</span>
+                    <span class="data">@Html.DisplayFor(model => model.cbs_employee.Employee_Name)</span>
+                </div>
+                <div class="employee">
+                    <span class="details">Designation</span>
+                    <span class="data">@Html.DisplayFor(model => model.cbs_employee.Designation)</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="employee">
+                    <span class="details">Date Joined</span>
+                    <span class="data">@Html.DisplayFor(model => model.cbs_employee.Date_Joined)</span>
+                </div>
+                <div class="employee">
+                    <span class="details">Total Years at 99XTechnology</span>
+                    <span class="data">
+                         @{
+                            int joinedYear = Model.cbs_employee.Date_Joined.Value.Year;
+                            int startedYear = Model.cbs_employee.Career_Started_On.Value.Year;
+                            int currentYear = @DateTime.Now.Year;
+                            int total99Xperiance = currentYear - joinedYear ;
+                            int totalXperiance = currentYear  - startedYear ;              
+                        }
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="employee">
+                    <span class="details">Total Experience in Years</span>
+                    <span class="data">@totalXperiance</span>
+                </div>
+                <div class="employee">
+                    <span class="details">Appraisal Score</span>
+                    <span class="data">@Html.DisplayFor(model => model.cbs_employee.Appraisal_Score)/100</span>
+                </div>
+            </div>
+        </div>
         <br />
-        <table >
-            <tr>
-                <td class="tr0 td1">
-                    <p class="ft2"><b>Employee Name</b></p>
-                </td>
-                <td class="tr0 td1">
-                    <p class=" ft3">:@Html.DisplayFor(model => model.cbs_employee.Employee_Name)</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="tr0 td1">
-                    <p class=" ft2"><b>Designation</b></p>
-                </td>
-                <td class="tr0 td1">
-                    <p class=" ft3">:@Html.DisplayFor(model => model.cbs_employee.Designation)</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="tr0 td1">
-                    <p class=" ft2"><b>Date Joined</b></p>
-                </td>
-                <td class="tr0 td1">
-                    <p class=" ft3">
-                        :
-                        <nobr>@Html.DisplayFor(model => model.cbs_employee.Date_Joined)</nobr>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td class="tr0 td1">
-                    <p class=" ft2"><b>Total Years at 99XTechnology </b></p>
-                </td>
-                @{
-                    int joinedYear = Model.cbs_employee.Date_Joined.Value.Year;
-                    int startedYear = Model.cbs_employee.Career_Started_On.Value.Year;
-                    int currentYear = @DateTime.Now.Year;
-                    int total99Xperiance = currentYear - joinedYear ;
-                    int totalXperiance = currentYear  - startedYear ;              
-                }
-                <td class="tr0 td1">
-                    <p class=" ft3">:@total99Xperiance</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="tr0 td1">
-                    <p class=" ft2"><b>Total Experience in Years </b></p>
-                </td>
-                <td class="tr0 td1">
-                    <p class=" ft3">:@totalXperiance</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="tr1 td1">
-                    <p class=" ft2"><b>Appraisal Score</b></p>
-                </td>
-                <td class="tr1 td1">
-                    <p class=" ft3">:@Html.DisplayFor(model => model.cbs_employee.Appraisal_Score)/100</p>
-                </td>
-            </tr>
-        </table>
-        <!-- Employee Details End -->
-        <br />
-        <br />
-    </div>
-    }
+
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Promotions")).Enabled||Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Increments")).Enabled){
-    <div class="noBreak">
+    <div class="noBreak promotion">
         <!-- Promotion and Increments Details Start -->
-        <p class="ft1"><b>Promotion and Increments</b></p>
+        <div class="report-title"><i class="icon glyphicon glyphicon-star"></i> Promotion and Increments</div>
         <br />
         @{
         if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Promotions")).Enabled){
@@ -117,7 +98,11 @@
         foreach (var promotion in Model.cbs_PromotionsList)
         {
 
-            <p class="ft2">You have been promoted to <b>@Html.Raw(promotion.Promoted_To)</b> from <b>@Html.Raw(promotion.Previous_Designation)</b> on <b>@Html.Raw(promotion.Date)</b>.</p>
+        <span>
+            You have been promoted to <b>@Html.Raw(promotion.Promoted_To)</b>
+            from <b>@Html.Raw(promotion.Previous_Designation)</b>
+            on <b>@Html.Raw(promotion.Date)</b>.
+        </span>
         }
         <!-- Repeat -->
         }
@@ -130,184 +115,146 @@
         <!-- Repeat -->
         }
     }
-        <!-- Promotion and Increments Details Start -->
-        <br />
-        <br />
-    </div>
-    }
-    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Bonuses")).Enabled){
-    <div class="noBreak">
-        <!-- Bonus Details Start -->
-        <p class="ft1"><b>Bonus Details</b></p>
-        <br/>
-        <table class="gridtable">
-            @{
-            float totalBonusAmount = 0;
-            <tr>
-                <th class="tr1 ">
-                    <p class=" ft2">Bonus Date</p>
-                </th>
-                <th class="tr1 ">
-                    <p class=" ft2">Bonus Type</p>
-                </th>
-                <th class="tr1 ">
-                    <p class=" ft2">Bonus Amount</p>
-                </th>
-            </tr>
-            <!-- Repeat -->
-            foreach (var bonus in Model.cbs_BonusesList)
-            {
-            totalBonusAmount = totalBonusAmount + @Html.Raw(bonus.Bonus_Amount).ToHtmlString().AsFloat();
-            <tr>
-                <td class="tr2 ">
-                    <p class=" ft2">
-                        <nobr>@Html.Raw(bonus.Date)</nobr>
-                    </p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(bonus.Bonus_Type)</p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(bonus.Bonus_Amount)</p>
-                </td>
-            </tr>
-            }
-            <!-- Repeat -->
-            }
-        </table>
-        <br />
-        <p class="ft2">You were entitled to got a bonus of <b>@totalBonusAmount. Rs</b></p>
-        @{
-            summary.Add("You were entitled to got a bonus of <b>"+totalBonusAmount+". Rs</b>");
-        
-        }
-        <!-- Bonus Details End -->
-        <br />
+
         <br />
     </div>
     }
-    @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Awards")).Enabled){
+
+<div class="row">
+    <div class="col-md-6">
+        @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Bonuses")).Enabled){
+        <div class="noBreak">
+            <!-- Bonus Details Start -->
+            <div class="report-title">
+                <i class="icon glyphicon glyphicon-gift"></i>
+                Bonus Details
+            </div>
+            <br/>
+            <table class="table table-bordered">
+                
+                @{float totalBonusAmount = 0;
+                <thead>
+                <tr>
+                    <th>Bonus Date</th>
+                    <th>Bonus Type</th>
+                    <th>Bonus Amount</th>
+                    </tr>
+                </thead>
+                <!-- Repeat -->
+                foreach (var bonus in Model.cbs_BonusesList)
+                {
+                totalBonusAmount = totalBonusAmount + @Html.Raw(bonus.Bonus_Amount).ToHtmlString().AsFloat();
+                <tbody>
+                <tr>
+                    <td>@Html.Raw(bonus.Date)</td>
+                    <td>@Html.Raw(bonus.Bonus_Type)</td>
+                    <td>@Html.Raw(bonus.Bonus_Amount)</td>
+                </tr>
+                </tbody>
+                }
+                <!-- Repeat -->
+                }
+            </table>
+            <span class="details-summary">
+            You were entitled to got a bonus of Rs. <b>@totalBonusAmount</b>
+                @{
+                summary.Add("You were entitled to get a bonus of Rs. <b>"+totalBonusAmount+"</b>");
+                }
+            </span>
+            <br /><br />
+        </div>
+        }    
+    </div>
+    <div class="col-md-6">
+        @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Awards")).Enabled){
     <div class="noBreak">
         <!-- Awards Start -->
-        <p class="ft1"><b>Awards</b></p>
+        <div class="report-title">
+            <i class="icon glyphicon glyphicon-tower"></i>
+            Awards
+        </div>
         <br />
-        <table class="gridtable">
-            <tr>
-                <th class="tr0 ">
-                    <p class=" ft2">Date</p>
-                </th>
-                <th class="tr0 ">
-                    <p class=" ft2">Award</p>
-                </th>
-            </tr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Award</th>
+                </tr>
+            </thead>
             <!-- Repeat -->
-            @foreach (var award in Model.cbs_AwardsList)
-            {
-            <tr>
-                <td class="tr3 ">
-                    <p class=" ft2">
-                        <nobr>@Html.Raw(award.Award_Date)</nobr>
-                    </p>
-                </td>
-                <td class="tr3 ">
-                    <p class=" ft2">@Html.Raw(award.Award)</p>
-                </td>
-
-            </tr>
-            }
-            <!-- Repeat -->
+            <tbody>
+                @foreach (var award in Model.cbs_AwardsList)
+                {
+                <tr>
+                    <td >@Html.Raw(award.Award_Date)</td>
+                    <td >@Html.Raw(award.Award)</td>
+                </tr>
+                }
+                <!-- Repeat -->
+            </tbody>
         </table>
         <!-- Awards End -->
-        <br />
-        <br />
     </div>
     }
+    </div>
+</div>
+    
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_EmployeeBillingUtilization")).Enabled){
     <div class="noBreak">
         <!-- Billing Utilization - Summary Start -->
-        <p class="ft1"><b>Billing Utilization - Summary</b></p>
+        <div class="report-title">Billing Utilization - Summary</div>
         <br />
-        <table class="gridtable">
-            <tr>
-                <th class="tr2 ">
-                    <p class=" ft2">From</p>
-                </th>
-                <th class="tr2 ">
-                    <p class=" ft2">To</p>
-                </th>
-                <th class="tr2 ">
-                    <p class=" ft2">Project</p>
-                </th>
-                <th class="tr2 ">
-                    <p class=" ft2">Billing Utilization</p>
-                </th>
-            </tr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Project</th>
+                    <th>Billing Utilization</th>
+                </tr>
+            </thead>
             <!-- Repeat -->
             @foreach (var bill in Model.cbs_EmployeeBillingUtilizationList)
             {
-            <tr>
-                <td class="tr2 ">
-                    <p class=" ft2">
-                        <nobr>@Html.Raw(bill.From_Date)</nobr>
-                    </p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">
-                        <nobr>@Html.Raw(bill.To_Date)</nobr>
-                    </p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(bill.Project)</p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(bill.Billing_Utilization)</p>
-                </td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td>@Html.Raw(bill.From_Date)</td>
+                    <td>@Html.Raw(bill.To_Date)</td>
+                    <td>@Html.Raw(bill.Project)</td>
+                    <td>@Html.Raw(bill.Billing_Utilization)</td>
+                </tr>
+            </tbody>
             }
             <!-- Repeat -->
         </table>
-        <!-- Billing Utilization - Summary End -->
-        <!-- Performance Details End -->
-        <br />
-        <br />
     </div>
     }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_CustomerFeedbackScore")).Enabled){
     <div class="noBreak">
         <!-- Project Work Results Details Start -->
-        <p class=" ft1"><b>Project Work Results</b></p>
+        <div class="report-title">Project Work Results</div>
         <br />
         <!-- Customer Feedback Start -->
-        <p class=" ft2">Customer Feedback</p>
+        <p >Customer Feedback</p>
         <br />
-        <table cellpadding="0" cellspacing="0" class="gridtable">
-            <tr>
-                <th class="tr1 ">
-                    <p class=" ft2">Date</p>
-                </th>
-                <th class="tr1 ">
-                    <p class=" ft2">Rating</p>
-                </th>
-                <th class="tr1 ">
-                    <p class=" ft2">Comments</p>
-                </th>
-            </tr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Rating</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
             <!-- Repeat -->
             @foreach (var feedback in Model.cbs_CustomerFeedbackScoreList)
             {
-            <tr>
-                <td class="tr2 ">
-                    <p class=" ft2">
-                        <nobr>@Html.Raw(feedback.Feedback_Date)</nobr>
-                    </p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(feedback.Score)/5</p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(feedback.Comments)</p>
-                </td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td>@Html.Raw(feedback.Feedback_Date)</td>
+                    <td>@Html.Raw(feedback.Score)/5</td>
+                    <td>@Html.Raw(feedback.Comments)</td>
+                </tr>
+            </tbody>
             }
             <!-- Repeat -->
         </table>
@@ -320,36 +267,23 @@
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Trainings")).Enabled){
     <div class="noBreak" >
         <!-- Career Development-Skills Start -->
-        <p class=" ft1">
-            <b>Career
-            <nobr>Development-Skills</nobr>
-            </b>
-        </p>
+        <div class="report-title">
+            <i class="icon glyphicon glyphicon-file"></i>
+            Career Development-Skills
+        </div>
         <br />
-        <table cellpadding="0" cellspacing="0" class="gridtable">
-            <tr>
-                <th class="tr1 ">
-                    <p class=" ft2">Training Month</p>
-                </th>
-                <th class="tr1 ">
-                    <p class=" ft2">Course Name</p>
-                </th>
-                <th class="tr1 ">
-                    <p class=" ft2">Training Provider</p>
-                </th>
-                <th class="tr1 ">
-                    <p class=" ft2">Training Category</p>
-                </th>
-                <th class="tr1 ">
-                    <p class=" ft2">External/Internal</p>
-                </th>
-                <th class="tr1 ">
-                    <p class=" ft2">Cost (Money Rs.)</p>
-                </th>
-                <th class="tr1 ">
-                    <p class=" ft2">Cost (Time Hrs)</p>
-                </th>
-            </tr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Training Month</th>
+                    <th>Course Name</th>
+                    <th>Training Provider</th>
+                    <th>Training Category</th>
+                    <th>External/Internal</th>
+                    <th>Cost (Money Rs.)</th>
+                    <th>Cost (Time Hrs)</th>
+                </tr>
+            </thead>
             <!-- Repeat -->
             @{
             int totalHours = 0 ;
@@ -358,69 +292,52 @@
             {
                 totalHours = totalHours + @Html.Raw(training.Time_Duration).ToHtmlString().AsInt() ;
                 totalCost  = totalCost  + @Html.Raw(training.Cost_Money).ToHtmlString().AsFloat() ;
-            <tr>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(training.Training_Month)</p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(training.Course_Name)</p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(training.Training_Provider)</p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(training.Category)</p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(training.External)</p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(training.Cost_Money)</p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(training.Time_Duration)</p>
-                </td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td>@Html.Raw(training.Training_Month)</td>
+                    <td>@Html.Raw(training.Course_Name)</td>
+                    <td>@Html.Raw(training.Training_Provider)</td>
+                    <td>@Html.Raw(training.Category)</td>
+                    <td>@Html.Raw(training.External)</td>
+                    <td >@Html.Raw(training.Cost_Money)</td>
+                    <td >@Html.Raw(training.Time_Duration)</td>
+                </tr>
+            </tbody>
             }
             <!-- Repeat -->
             }
         </table>
-        <br />
-        <p class="ft2">You have participated <b>@totalHours</b> hours of Trainings Sessions with a cost of Rs. <b>@totalCost</b> </p>
-
+        
+        <span class="details-summary">
+            You have participated <b>@totalHours</b> hours of Trainings Sessions with a cost of Rs. <b>@totalCost</b>
         @{
             summary.Add("You have participated <b>"+totalHours+"</b> hours of Trainings Sessions with a cost of Rs. <b>"+totalCost+"</b>");
-        
         }
-        <!-- Training Details End -->
-        <br />
-        <br />
+        </span>
+        <br /><br />
+        
     </div>
+    <div class="maintitle">None</div>
+    
     }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Travels")).Enabled){
     <div class="noBreak">
         <!-- Travel Details Start -->
-        <p class=" ft1"><b>Travel Details</b></p>
+        <div class="report-title">
+            <i class="icon glyphicon glyphicon-plane"></i>
+            Travel Details
+        </div>
         <br />
-        <table cellpadding="0" cellspacing="0" class="gridtable">
-
-            <tr>
-                <th class="tr2 ">
-                    <p class=" ft2">Started Date</p>
-                </th>
-                <th class="tr2 ">
-                    <p class=" ft2">Number of Days</p>
-                </th>
-                <th class="tr2 ">
-                    <p class=" ft2">Country</p>
-                </th>
-                <th class="tr2 ">
-                    <p class=" ft2">City</p>
-                </th>
-                <th class="tr2 ">
-                    <p class=" ft2">Purpose</p>
-                </th>
-            </tr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Started Date</th>
+                    <th>Number of Days</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
             @{
                 int numberOfTravelledTimes = 0 ;
                 int numberOfDays = 0 ;
@@ -429,142 +346,105 @@
                 {
                  numberOfTravelledTimes ++ ;
                  numberOfDays = numberOfDays + @Html.Raw(travel.Number_Of_Days).ToHtmlString().AsInt() ;
+            <tbody>
                 <tr>
-                    <td class="tr2 ">
-                        <p class=" ft2">
-                            <nobr>@Html.Raw(travel.Started_Date)</nobr>
-                        </p>
-                    </td>
-                    <td class="tr2 ">
-                        <p class=" ft2">@Html.Raw(travel.Number_Of_Days)</p>
-                    </td>
-                    <td class="tr2 ">
-                        <p class=" ft2">@Html.Raw(travel.Country)</p>
-                    </td>
-                    <td class="tr2 ">
-                        <p class=" ft2">@Html.Raw(travel.City)</p>
-                    </td>
-                    <td class="tr2 ">
-                        <p class=" ft2">@Html.Raw(travel.Purpose)</p>
-                    </td>
+                    <td>@Html.Raw(travel.Started_Date)</td>
+                    <td>@Html.Raw(travel.Number_Of_Days)</td>
+                    <td>@Html.Raw(travel.Country)</td>
+                    <td>@Html.Raw(travel.City)</td>
+                    <td>@Html.Raw(travel.Purpose)</td>
                 </tr>
+            </tbody>
             }
             <!-- Repeat -->
             }
         </table>
-        <br />
-        <p class=" ft2">You have Travelled <b>@numberOfTravelledTimes</b> time(s) for <b>@numberOfDays</b> days.</p>
+        <span class="details-summary">
+            You have Travelled <b>@numberOfTravelledTimes</b> time(s) for <b>@numberOfDays</b> days.
          @{
             summary.Add("You have Travelled <b>"+numberOfTravelledTimes+"</b> time(s) for <b>"+numberOfDays+"</b> days.");
         
         }
-        <!-- Travel Details End -->
-        <br />
-        <br />
+        </span>
+        <br /><br />
+        
     </div>
     }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_TechnologyExposure")).Enabled){
     <div class="noBreak">
         <!-- Technology Exposure Start -->
-        <p class=" ft1"><b>Technology Exposure</b></p>
+        <div class="report-title">Technology Exposure</div>
         <br />
-        <table cellpadding="0" cellspacing="0" class="gridtable">
-            <tr>
-                <th class="tr0 ">
-                    <p class=" ft2">Engagement</p>
-                </th>
-                <th class="tr0 ">
-                    <p class=" ft2">Technologies</p>
-                </th>
-            </tr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Engagement</th>
+                    <th>Technologies</th>
+                </tr>
+            </thead>
             <!-- Repeat -->
             @foreach (var technologyExposure in Model.cbs_TechnologyExposureList)
             {
-            <tr>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(technologyExposure.Engagement)</p>
-                </td>
-                <td class="tr2 ">
-                    <p class=" ft2">@Html.Raw(technologyExposure.Technologies)</p>
-                </td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td>@Html.Raw(technologyExposure.Engagement)</td>
+                    <td>@Html.Raw(technologyExposure.Technologies)</td>
+                </tr>
+            </tbody>
             }
             <!-- Repeat -->
         </table>
-        <!-- Engagements End -->
-        <!-- Career Development-Skills End -->
-        <br />
-        <br />
     </div>
     }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_MentorBuddy")).Enabled){
     <div class="noBreak">
         <!-- Career Development-Team Building Start -->
-        <p class=" ft1">
-            <b>Career
-            <nobr>Development-Team</nobr>
-                Building</b>
-        </p>
+        <div class="report-title">
+            <i class="icon glyphicon glyphicon-file"></i>
+            Career Development-Team Building
+        </div>
         <br />
-        <!-- Mentor or Buddy Details Start -->
-        <p class=" ft2">Mentor or Buddy Details</p>
+        <div class="report-title-sub">Mentor or Buddy Details</div>
         <br />
-        <table cellpadding="0" cellspacing="0" class="gridtable">
-            <tr>
-                <th class="tr0 ">
-                    <p class=" ft2">Type</p>
-                </th>
-                <th class="tr0 ">
-                    <p class=" ft2">For</p>
-                </th>
-            </tr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>For</th>
+                </tr>
+            </thead>
             <!-- Repeat -->
             @foreach (var mentorBuddy in Model.cbs_MentorBuddyList)
             {
-            <tr>
-                <td class="tr3 ">
-                    <p class="ft2">@Html.Raw(mentorBuddy.Mentor_or_Buddy_Type)</p>
-                </td>
-                <td class="tr3 ">
-                    <p class="ft2">@Html.Raw(mentorBuddy.Mentor_or_Buddy)</p>
-                </td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td>@Html.Raw(mentorBuddy.Mentor_or_Buddy_Type)</td>
+                    <td>@Html.Raw(mentorBuddy.Mentor_or_Buddy)</td>
+                </tr>
+            </tbody>
             }
             <!-- Repeat -->
         </table>
-        <!-- Mentor or Buddy Details End -->
-        <!-- Career Development-Team Building End -->
-        <br />
-        <br />
     </div>
     }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_PublicAppearences")).Enabled){
     <div class="noBreak">
         <!-- Career Development-PR Start -->
-        <p class="ft1">
-            <b>Career
-            <nobr>Development-PR</nobr>
-            </b>
-        </p>
+        <div class="report-title">
+            <i class="icon glyphicon glyphicon-file"></i>
+            Career Development-PR
+        </div>
         <br />
-        <table cellpadding="0" cellspacing="0" class="gridtable">
-            <tr>
-                <th class="tr0 ">
-                    <p class=" ft2">Date</p>
-                </th>
-                <th class="tr0 ">
-                    <p class=" ft2">Location</p>
-                </th>
-                <th class="tr0 ">
-                    <p class=" ft2">Event Name</p>
-                </th>
-                <th class="tr0 ">
-                    <p class=" ft2">Session Topic</p>
-                </th>
-                <th class="tr0 ">
-                    <p class=" ft2">Number of Participants</p>
-                </th>
-            </tr>
+        <table class="table table-bordered">
+            <thead >
+                <tr>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Event Name</th>
+                    <th>Session Topic</th>
+                    <th>Number of Participants</th>
+                </tr>
+            </thead>
             @{
                 int numberOfSessions = 0 ;
                 int numberOfParticipants = 0 ;
@@ -574,72 +454,55 @@
                    
                    numberOfSessions ++ ;
                    numberOfParticipants = numberOfParticipants + @Html.Raw(publicAppearence.Number_Of_Participants).ToHtmlString().AsInt() ;
+            <tbody>
                 <tr>
-                    <td class="tr3">
-                        <p class=" ft2">
-                            <nobr>@Html.Raw(publicAppearence.Appearance_Date)</nobr>
-                        </p>
-                    </td>
-                    <td class="tr3">
-                        <p class=" ft2">@Html.Raw(publicAppearence.Location)</p>
-                    </td>
-                    <td class="tr3">
-                        <p class=" ft2">@Html.Raw(publicAppearence.Event_Name)</p>
-                    </td>
-                    <td class="tr3">
-                        <p class=" ft2">@Html.Raw(publicAppearence.Session_Topic)</p>
-                    </td>
-                    <td class="tr3">
-                        <p class=" ft2">@Html.Raw(publicAppearence.Number_Of_Participants)</p>
-                    </td>
+                    <td>@Html.Raw(publicAppearence.Appearance_Date)</td>
+                    <td>@Html.Raw(publicAppearence.Location)</td>
+                    <td>@Html.Raw(publicAppearence.Event_Name)</td>
+                    <td>@Html.Raw(publicAppearence.Session_Topic)</td>
+                    <td>@Html.Raw(publicAppearence.Number_Of_Participants)</td>
                 </tr>
+            </tbody>
             }
                 <!-- Repeat -->
             }
         </table>
-        <br />
-        <p class="ft2">You have conducted <b>@numberOfSessions </b>session(s) to the public covering <b>@numberOfParticipants</b> of participants.</p>
+        <span class="details-summary">
+        You have conducted <b>@numberOfSessions </b>session(s) to the public covering <b>@numberOfParticipants</b> of participants.
         @{
             summary.Add("You have conducted <b>"+numberOfSessions+" </b>session(s) to the public covering <b>"+numberOfParticipants+"</b> of participants.");
         
-        }
-        <!-- Public Appearence Details End -->
-        <br />
-        <br />
+        }    
+        </span>
+        <br /><br />
+        
     </div>
+    
+    <div class="maintitle">None</div>
+    
+    
     }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_UniversitySessions")).Enabled){
     <div class="noBreak">
         <!-- University Sessions Details Start -->
-        <p class="ft1"><b>University Sessions Details</b></p>
+        <div class="report-title">
+            <i class="icon glyphicon glyphicon-bullhorn"></i>
+            University Sessions Details
+        </div>
         <br />
-        <table cellpadding="0" cellspacing="0" class="gridtable">
-            <tr>
-                <th class="tr0 ">
-                    <p class=" ft2">Session Date</p>
-                </th>
-                <th class="tr15 ">
-                    <p class=" ft2">Location</p>
-                </th>
-                <th class="tr0 ">
-                    <p class=" ft2">Session Type</p>
-                </th>
-                <th class="tr0 ">
-                    <p class=" ft2">Session Initiated By</p>
-                </th>
-                <th class="tr15 ">
-                    <p class=" ft2">Session Name</p>
-                </th>
-                <th class="tr0 ">
-                    <p class=" ft2">Session Participants</p>
-                </th>
-                <th class="tr0 ">
-                    <p class="ft2">Number of Participants</p>
-                </th>
-                <th class="tr0">
-                    <p class="ft2">Time Duration</p>
-                </th>
-            </tr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Session Date</th>
+                    <th>Location</th>
+                    <th>Session Type</th>
+                    <th>Session Initiated By</th>
+                    <th>Session Name</th>
+                    <th>Session Participants</th>
+                    <th>Number of Participants</th>
+                    <th>Time Duration</th>
+                </tr>
+            </thead>
             @{
                 int numberOfHours = 0 ;
                 int numberOfParticipantsForUniSessions = 0 ;
@@ -648,221 +511,132 @@
                 {
                     numberOfHours = numberOfHours + @Html.Raw(universitySession.Time_Duration).ToHtmlString().AsInt() ;
                     numberOfParticipantsForUniSessions = numberOfParticipantsForUniSessions + @Html.Raw(universitySession.Number_Of_Participants).ToHtmlString().AsInt();
+            <tbody>
                 <tr>
-                    <td class="tr3">
-                        <p class=" ft2">
-                            <nobr>@Html.Raw(universitySession.Session_Date)</nobr>
-                        </p>
-                    </td>
-                    <td class="tr3">
-                        <p class=" ft2">@Html.Raw(universitySession.Location)</p>
-                    </td>
-                    <td class="tr3">
-                        <p class=" ft2">@Html.Raw(universitySession.Session_Type)</p>
-                    </td>
-                    <td class="tr3">
-                        <p class=" ft2">@Html.Raw(universitySession.Initiated_By)</p>
-                    </td>
-                    <td class="tr3">
-                        <p class=" ft2">@Html.Raw(universitySession.Topic)</p>
-                    </td>
-                    <td class="tr3">
-                        <p class=" ft2">@Html.Raw(universitySession.Participants)</p>
-                    </td>
-                    <td class="tr3">
-                        <p class=" ft2">@Html.Raw(universitySession.Number_Of_Participants)</p>
-                    </td>
-                    <td class="tr3">
-                        <p class=" ft2">@Html.Raw(universitySession.Time_Duration)</p>
-                    </td>
+                    <td>@Html.Raw(universitySession.Session_Date)</td>
+                    <td>@Html.Raw(universitySession.Location)</td>
+                    <td>@Html.Raw(universitySession.Session_Type)</td>
+                    <td>@Html.Raw(universitySession.Initiated_By)</td>
+                    <td>@Html.Raw(universitySession.Topic)</td>
+                    <td>@Html.Raw(universitySession.Participants)</td>
+                    <td>@Html.Raw(universitySession.Number_Of_Participants)</td>
+                    <td>@Html.Raw(universitySession.Time_Duration)</td>
                 </tr>
+            </tbody>
             }
                 <!-- Repeat -->
             }
         </table>
-        <br />
-        <p class="ft2">You have conducted <b>@numberOfHours</b> hours of University Sessions covering <b>@numberOfParticipantsForUniSessions</b> of students.</p>
+        <span class="details-summary">
+            You have conducted <b>@numberOfHours</b> hours of University Sessions covering <b>@numberOfParticipantsForUniSessions</b> of students.
         @{
             summary.Add("You have conducted <b>"+numberOfHours+"</b> hours of University Sessions covering <b>"+numberOfParticipantsForUniSessions+"</b> of students.");
         
         }
-        <!-- University Sessions Details End -->
-        <br />
-        <br />
+        </span>
+        <br /><br />
     </div>
     }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Engagement")).Enabled){
     <div class="noBreak">
         <!-- Engagements Start -->
-        <p class="ft1"><b>Engagements</b></p>
+        <div class="report-title">Engagements</div>
         <br />
-        <table cellpadding="0" cellspacing="0" class="gridtable">
-            <tr>
-                <th class="tr0">
-                    <p class="ft2">Date</p>
-                </th>
-                <th class="tr0">
-                    <p class="ft2">Event</p>
-                </th>
-            </tr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
             <!-- Repeat -->
             @foreach (var engagement in Model.cbs_EngagementList)
             {
-            <tr>
-                <td class="tr3">
-                    <p class="ft2">
-                        <nobr>@Html.Raw(engagement.Date)</nobr>
-                    </p>
-                </td>
-                <td class="tr3">
-                    <p class="ft2">@Html.Raw(engagement.Event)</p>
-                </td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td>@Html.Raw(engagement.Date)</td>
+                    <td>@Html.Raw(engagement.Event)</td>
+                </tr>
+            </tbody>
             }
             <!-- Repeat -->
         </table>
-        <!-- Engagements End -->
-        <!-- Career Development-PR End -->
-        <br />
-        <br />
     </div>
     }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_ValueInnovations")).Enabled){
     <div class="noBreak">
         <!-- Career Development-Value Innovations Start -->
-        <p class="ft1">
-            <b>Career
-            <nobr>Development-Value Innovations</nobr>
-            </b>
-        </p>
-        <br />
+        <div class="report-title">Career Development-Value Innovations</div>
         <!-- Value Innovations Start -->
-        <p class="ft2">Value Innovations</p>
         <br />
-        <table cellpadding="0" cellspacing="0" class="gridtable">
-            <tr>
-                <th class="tr0">
-                    <p class="ft2">Date</p>
-                </th>
-                <th class="tr0">
-                    <p class="ft2">Innovation </p>
-                </th>
-            </tr>
+        <div class="report-title-sub">Value Innovations</div>
+        <br />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Innovation</th>
+                </tr>
+            </thead>
             @{
                 int numberOfInnovations = 0 ;
                 <!-- Repeat -->
             foreach (var valueInovation in Model.cbs_ValueInnovationsList)
                 {
                     numberOfInnovations ++ ;
-                    <tr>
-                        <td class="tr3">
-                            <p class="ft2">
-                                <nobr>@Html.Raw(valueInovation.Innovation_Date)</nobr>
-                            </p>
-                        </td>
-                        <td class="tr3">
-                            <p class="ft2">@Html.Raw(valueInovation.Value_Innovation)</p>
-                        </td>
-                    </tr>
+            <tbody>
+                <tr>
+                    <td>@Html.Raw(valueInovation.Innovation_Date)</td>
+                    <td>@Html.Raw(valueInovation.Value_Innovation)</td>
+                </tr>
+            </tbody>
             }
                 <!-- Repeat -->
             }
         </table>
-        <br />
-        <p class="ft2">You have made <b>@numberOfInnovations</b> Value Innovations.</p>
+        
+        <span class="details-summary">
+            You have made <b>@numberOfInnovations</b> Value Innovations.
         @{
             summary.Add("You have made <b>"+numberOfInnovations+"</b> Value Innovations.");
         
         }
-        <!-- Value Innovations End -->
-        <!-- Career Development-Value Innovations End -->
-        <br />
-        <br />
+        </span>
+        <br /><br />
     </div>
     }
     @if(Model.cbs_ReportFormatList.Find(x=> x.SectionCode.Equals("CBS_Attendances")).Enabled){
     <div class="noBreak" >
         <!-- Process Compliance Start -->
-        <p class="ft1">
-            <b>Career
-            <nobr>Process Compliance </nobr>
-            </b>
-        </p>
+        <div class="report-title">Career Process Compliance</div>
         <br />
-        <!-- Attendance Details Start -->
-        <p class="ft2">Attendance Details</p>
+        <div class="report-title-sub">Attendance Details</div>
         <br />
-        <table cellpadding="0" cellspacing="0" class="gridtable">
-            <tr>
-                <th class="tr0">
-                    <p class="ft2">Average In Time</p>
-                </th>
-                <th class="tr0">
-                    <p class="ft2">Average Out Time</p>
-                </th>
-                <th class="tr0">
-                    <p class="ft2">Weekends Worked</p>
-                </th>
-                <th class="tr0">
-                    <p class="ft2">Medical Leaves Taken</p>
-                </th>
-                <th class="tr0">
-                    <p class="ft2">Annual Leaves Taken</p>
-                </th>
-                <th class="tr0">
-                    <p class="ft2">Casual Leaves Taken</p>
-                </th>
-                <th class="tr0">
-                    <p class="ft2">Lieu Leaves Taken</p>
-                </th>
-                <th class="tr0">
-                    <p class="ft2">Days Reported to Work</p>
-                </th>
-            </tr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Average In Time</th>
+                    <th>Average Out Time</th>
+                    <th>Weekends Worked</th>
+                    <th>Medical Leaves Taken</th>
+                    <th>Annual Leaves Taken</th>
+                    <th>Casual Leaves Taken</th>
+                    <th>Lieu Leaves Taken</th>
+                    <th>Days Reported to Work</th>
+                </tr>
+            </thead>
             <!-- Repeat -->
             @foreach (var attendance in Model.cbs_AttendancesList)
             {
                 <tr>
-                    <td class="tr3">
-                        <p class="ft2">
-                            <nobr>@Html.Raw(attendance.Average_InTime)</nobr>
-                        </p>
-                    </td>
-                    <td class="tr3">
-                        <p class="ft2">
-                            <nobr>@Html.Raw(attendance.Average_OutTime)</nobr>
-                        </p>
-                    </td>
-                    <td class="tr3">
-                        <p class="ft2">
-                            <nobr>@Html.Raw(attendance.Weekends_Worked)</nobr>
-                        </p>
-                    </td>
-                    <td class="tr3">
-                        <p class="ft2">
-                            <nobr>@Html.Raw(attendance.Medical_Leaves_Taken)</nobr>
-                        </p>
-                    </td>
-                    <td class="tr3">
-                        <p class="ft2">
-                            <nobr>@Html.Raw(attendance.Annual_Leaves_Taken)</nobr>
-                        </p>
-                    </td>
-                    <td class="tr3">
-                        <p class="ft2">
-                            <nobr>@Html.Raw(attendance.Casual_Leaves_Taken)</nobr>
-                        </p>
-                    </td>
-                    <td class="tr3">
-                        <p class="ft2">
-                            <nobr>@Html.Raw(attendance.Lieu_Leaves_Taken)</nobr>
-                        </p>
-                    </td>
-                    <td class="tr3">
-                        <p class="ft2">
-                            <nobr>@Html.Raw(attendance.Number_of_Days_Reported_to_Work)</nobr>
-                        </p>
-                    </td>
+                    <td>@Html.Raw(attendance.Average_InTime)</td>
+                    <td>@Html.Raw(attendance.Average_OutTime)</td>
+                    <td>@Html.Raw(attendance.Weekends_Worked)</td>
+                    <td>@Html.Raw(attendance.Medical_Leaves_Taken)</td>
+                    <td>@Html.Raw(attendance.Annual_Leaves_Taken)</td>
+                    <td>@Html.Raw(attendance.Casual_Leaves_Taken)</td>
+                    <td>@Html.Raw(attendance.Lieu_Leaves_Taken)</td>
+                    <td>@Html.Raw(attendance.Number_of_Days_Reported_to_Work)</td>
                 </tr>
             }
             <!-- Repeat -->
@@ -874,32 +648,35 @@
     </div>
     }
     <div class="noBreak" >
-        <p class="ft1">
-            <b>Summary</b>
-        </p>
-        <br />
+        <div class="report-title">Summary</div>
         @foreach(var item in summary){
-             <p class="ft2">@Html.Raw(item)</p>
+        <div class="finalsummary">@Html.Raw(item)</div>
         }
         <br />
     </div>
 </div>
-<input id="printbtn" type="button" onclick="window.print();" value="Print" />
+    <div class="row">
+        <div class="col-md-10">
+            <input id="printbtn" type="button" class="btn-print" onclick="window.print();" value="Print" />
 
-@{
+            @{
+            var selectedYearForPDF= Request.QueryString["year"] ;
+            var pdfUrl = "window.open('/CBS/Employee/GeneratePDF/"+Model.cbs_employee.ID+"?year="+Html.Raw(selectedYearForPDF)+"');";
+            <input id="pdfbtn" type="button" class="btn-print" onclick='@pdfUrl' value="PDF" />
+            }
 
-var selectedYearForPDF= Request.QueryString["year"] ;
+            <input id="emialbtn" type="button" class="btn-print" value="EMAIL" />
+        </div>
+        <div class="col-md-2">
+            <p id="naviglinks">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.cbs_employee.ID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
 
-var pdfUrl = "window.open('/CBS/Employee/GeneratePDF/"+Model.cbs_employee.ID+"?year="+Html.Raw(selectedYearForPDF)+"');";
-
-<input id="pdfbtn" type="button" onclick='@pdfUrl' value="PDF" />
-
-}
-
-<input id="emialbtn" type="button" value="EMAIL" />
 
 <div class="menu" style="display: none;">
-
     <input id="emailsubject" type="text" size="25" value="Enter your name here!"> <br>
     <input id="emailaddress" type="text" size="25" value="Enter your name here!"> <br>
     <input id="emailmessage" type="text" size="25" value="Enter your name here!"> <br>
@@ -909,11 +686,7 @@ var pdfUrl = "window.open('/CBS/Employee/GeneratePDF/"+Model.cbs_employee.ID+"?y
 
 <!--<a href="mailto:user@example.com?subject=MessageTitle&amp;body=Message Content">Email this !</a>-->
 
-<p id="naviglinks">
-    @Html.ActionLink("Edit", "Edit", new { id = Model.cbs_employee.ID }) |
-    @Html.ActionLink("Back to List", "Index")
 
-</p>
 @{
 var id = Model.cbs_employee.ID ;
 <script type="text/javascript">

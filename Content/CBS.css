@@ -1,4 +1,4 @@
-﻿.ft0 {
+.ft0 {
     font: 16px 'Meiryo';
     line-height: 24px;
 }
@@ -163,7 +163,7 @@ p {
 
 .noBreak 
 { 
-    page-break-inside: avoid; 
+    /* page-break-inside: avoid; */ 
 }
 
 
@@ -208,11 +208,4 @@ table.gridtable td {
 	background-color: #ffffff;
 }
 
-
-#devcbsDropdown {
-    padding-top: 60px;
-    padding-bottom: 15px;
-    padding-left: 450px;
-    padding-right: 250px;
-}
 

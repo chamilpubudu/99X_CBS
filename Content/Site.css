@@ -1,6 +1,7 @@
-﻿body {
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    height: 100% !important;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -13,7 +14,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    width: 100%;
 }
 
 /* styles for validation helpers */
@@ -39,4 +40,165 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}
+
+/*Custom Css*/
+
+footer{
+    width:100%;
+	height:50px;
+	bottom:0;
+	left:0;
+    text-align: center;
+    border-top:1px solid #ccc;
+    padding-top: 16px;
+    color: #999;
+    margin-top: 23px;
+}
+
+.navbar-right > li > a {
+    color: #fff !important;
+    font-size: 13px;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #ffffff !important;
+}
+.notificationsBody{
+    background: none !important;
+}
+
+#notificationsBody .notification{
+    background: #fff !important;
+    border-bottom: 1px solid #b2d6ff !important;
+    border-radius: 0px !important;
+    line-height: 20px;
+    padding: 8px !important;
+}
+#notificationsBody .notification:hover{
+    background: #ddedff !important;
+}
+#notificationTitle {
+    z-index: 1000;
+    font-weight: bold;
+    padding: 16px 0px 5px 15px !important;
+    font-size: 15px !important;
+    background-color: #2881e3 !important;
+    width: 398px !important;
+    border-bottom: 1px solid #dddddd;
+    color: #fff !important;
+}
+.table a:not(.btn), .table a:not(.btn){
+    font-size: 14px !important;
+    text-decoration: none !important;
+    color: #999;
+}
+.report-title{
+    font-size: 20px;
+    color: #222;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.report-title-sub{
+    font-size: 17px;
+    color: #222;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+    background: #fff ;
+}
+.employee{
+    font-size: 14px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 10px;
+}
+.employee .details{
+    color: #999;
+     font-size: 13px;
+}
+.employee .data{
+    color: #222;
+    padding-left: 25px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.detailsheader{
+    padding: 45px 0;
+}
+.detailsheader .title{
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+.promotion{
+    background:#e6ffeb !important;
+    border: 1px solid #beffca !important;
+    padding: 15px 0 15px 0;
+    text-align: center;
+    margin: 0 0 30px 0;
+    font-size: 16px;
+}
+.details-summary{
+    font-size: 16px;
+    background:#21ac81;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+}
+.finalsummary{
+    margin: 5px 0;
+    font-size: 16px;
+    padding: 10px;
+    color: #222;
+    border-bottom: 1px solid #d6e9ff ;
+}
+.noBreak{
+    padding-bottom: 40px;
+    border: 1px solid #f1f7fe;
+    margin: 20px 0;
+    background: #f7fafd;
+    padding: 10px;
+}
+.btn-print{
+    padding: 5px 10px;
+    background: #2881e3;
+    color: #fff;
+    border: none;
+    width: 100px;
+}
+.btn-print:hover{
+    background: #1363bc;
+}
+.btn-create{
+    padding: 5px 10px;
+    background: #21ac81;
+    color: #fff;
+    border: none;
+    width: 100px;
+}
+input{
+    border: 1px solid #89b4e3;
+    height: 35px;
+    padding-left: 10px;
+}
+.form-group {
+    border-bottom: 1px solid #e9e9e9;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+.backlink{
+    text-align: right;
+}
+.maintitle{
+    background:#2780e3;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px 0;
+    margin-bottom: 25px;
 }

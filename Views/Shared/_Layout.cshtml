@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -78,11 +78,11 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - @App._GlobalAppName Application</p>
-        </footer>
+        
     </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - @App._GlobalAppName Application</p>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jquery-ui")
@@ -141,7 +141,7 @@
                 }
                     
                 $('#notificationsBody').append("<div class='notification message hasClick animateIn  " + highlight + " ' onclick=\"checkNotification('" + link + "'," + notificationID + "," + viewed + ");\">" +
-                        "<span class='icon'></span>"+
+                        
                         "<span class='notifyText'>"+
                             "<span class='notifyTitle'>"+ htmlEncode('Notification')+"</span>"+
                             "<span class='notifyMessage'>" + htmlEncode(message) + "</span>" +

@@ -1,4 +1,4 @@
-﻿@model _99X_CBS.Models.CBS_Attendances
+@model _99X_CBS.Models.CBS_Attendances
 
 @{
     ViewBag.Title = "Create";
@@ -14,89 +14,80 @@
         <h4>CBS_Attendances</h4>
         <hr />
         @Html.ValidationSummary(true)
-        <div class="form-group">
-            @Html.LabelFor(model => model.Employee_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Employee_Name, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.Employee_Name)
-                @Html.ValidationMessageFor(model => model.Employee_Name)
+                @Html.ValidationMessageFor(model => model.Employee_Name )
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10 datepicker">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-3 datepicker">
                 @Html.EditorFor(model => model.Date)
                 @Html.ValidationMessageFor(model => model.Date)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Average_InTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.Average_InTime, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-1">
                 @Html.EditorFor(model => model.Average_InTime)
                 @Html.ValidationMessageFor(model => model.Average_InTime)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Average_OutTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            
+            @Html.LabelFor(model => model.Average_OutTime, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-1">
                 @Html.EditorFor(model => model.Average_OutTime)
                 @Html.ValidationMessageFor(model => model.Average_OutTime)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Weekends_Worked, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            
+             @Html.LabelFor(model => model.Weekends_Worked, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-1">
                 @Html.EditorFor(model => model.Weekends_Worked)
                 @Html.ValidationMessageFor(model => model.Weekends_Worked)
             </div>
+            
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Medical_Leaves_Taken, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.Medical_Leaves_Taken, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-1">
                 @Html.EditorFor(model => model.Medical_Leaves_Taken)
                 @Html.ValidationMessageFor(model => model.Medical_Leaves_Taken)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Casual_Leaves_Taken, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            
+            @Html.LabelFor(model => model.Casual_Leaves_Taken, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-1">
                 @Html.EditorFor(model => model.Casual_Leaves_Taken)
                 @Html.ValidationMessageFor(model => model.Casual_Leaves_Taken)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Annual_Leaves_Taken, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            
+            @Html.LabelFor(model => model.Annual_Leaves_Taken, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-1">
                 @Html.EditorFor(model => model.Annual_Leaves_Taken)
                 @Html.ValidationMessageFor(model => model.Annual_Leaves_Taken)
             </div>
+            
         </div>
 
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Lieu_Leaves_Taken, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.Lieu_Leaves_Taken, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-1">
                 @Html.EditorFor(model => model.Lieu_Leaves_Taken)
                 @Html.ValidationMessageFor(model => model.Lieu_Leaves_Taken)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Number_of_Days_Reported_to_Work, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            
+            @Html.LabelFor(model => model.Number_of_Days_Reported_to_Work, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-1">
                 @Html.EditorFor(model => model.Number_of_Days_Reported_to_Work)
                 @Html.ValidationMessageFor(model => model.Number_of_Days_Reported_to_Work)
             </div>
-        </div>
-
-       <div class="form-group">
-            @Html.LabelFor(model => model.EmpID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            
+            @Html.LabelFor(model => model.EmpID, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-1">
                 @if ( User.IsInRole("Admin") || User.IsInRole("Manager")||User.IsInRole("CBS_Attendances_Manage")){
                     @Html.EditorFor(model => model.EmpID)
                 }else{
@@ -131,13 +122,12 @@
         </div>-->
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-10">
+                <input type="submit" value="Create" class="btn btn-default btn-create" />
+            </div>
+            <div class="col-md-2 backlink">
+                 @Html.ActionLink("Back to List", "Index")
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
