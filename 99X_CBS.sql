@@ -336,12 +336,14 @@ CREATE TABLE [dbo].[CBS_Trainings](
 	[Year] [varchar](20) NULL,
 	[Course Name] [varchar](50) NULL,
 	[Training Provider] [varchar](50) NULL,
-	[External] [varchar](50) NULL,
+	[Training Type] [varchar](50) NULL,
 	[Category] [varchar](50) NULL,
 	[Training Month] [varchar](50) NULL,
 	[Time Duration] [varchar](50) NULL,
-	[Cost Money] [varchar](50) NULL,
+	[Investment] [varchar](50) NULL,
 	[EmpID] [varchar](30) NULL,
+	[Training Focus][varchar](50) NULL,
+	[ForeignOrLocal][varchar](50) NULL,
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (

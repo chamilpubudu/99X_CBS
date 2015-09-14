@@ -44,11 +44,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.External)
+            @Html.DisplayNameFor(model => model.Training_Type)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.External)
+            @Html.DisplayFor(model => model.Training_Type)
         </dd>
 
         <dt>
@@ -76,11 +76,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Cost_Money)
+            @Html.DisplayNameFor(model => model.Investment)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Cost_Money)
+            @Html.DisplayFor(model => model.Investment)
         </dd>
 
         <dt>
@@ -90,7 +90,20 @@
         <dd>
             @Html.DisplayFor(model => model.EmpID)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Training_Focus)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Training_Focus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ForeignOrLocal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForeignOrLocal)
+        </dd>
         <!--<dt>
             @Html.DisplayNameFor(model => model.Approved)
         </dt>
@@ -114,10 +127,10 @@
         <dd>
             @Html.DisplayFor(model => model.TargetRowID)
         </dd>-->
-
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

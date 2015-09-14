@@ -17,8 +17,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44300</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -37,6 +37,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AspNet.SignalR.Core">
@@ -246,6 +247,11 @@
     <Compile Include="Models\SystemSettings.cs" />
     <Compile Include="NotificationHub\NotificationHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -419,7 +425,6 @@
     <Content Include="Areas\Profile\Views\Trainings\Delete.cshtml" />
     <Content Include="Areas\Profile\Views\Trainings\Details.cshtml" />
     <Content Include="Areas\Profile\Views\Trainings\Edit.cshtml" />
-    <Content Include="Areas\Profile\Views\Trainings\Index.cshtml" />
     <Content Include="Areas\Profile\Views\Travels\Create.cshtml" />
     <Content Include="Areas\Profile\Views\Travels\Delete.cshtml" />
     <Content Include="Areas\Profile\Views\Travels\Details.cshtml" />
@@ -450,7 +455,12 @@
     <Content Include="Areas\Profile\Views\Benefits\Details.cshtml" />
     <Content Include="Areas\Profile\Views\Benefits\Edit.cshtml" />
     <Content Include="Areas\Profile\Views\Benefits\Index.cshtml" />
+    <Content Include="Areas\Profile\Views\Trainings\Index.cshtml" />
     <None Include="Properties\PublishProfiles\CBS.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\data-approve.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
@@ -836,7 +846,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49699</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49534/</IISUrl>
+          <IISUrl>http://localhost:49699/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
