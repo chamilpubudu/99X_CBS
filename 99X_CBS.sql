@@ -110,6 +110,8 @@ CREATE TABLE [dbo].[CBS_EmployeeBillingUtilization](
 	[To Date] [date] NULL,
 	[Project] [varchar](50) NULL,
 	[Billing Utilization] [varchar](50) NULL,
+	[Com_ini_utilization] [varchar](50) NULL,
+	[UtilizationOnSelf] [varchar](50) NULL,
 	[EmpID] [varchar](30) NULL,
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 PRIMARY KEY CLUSTERED 

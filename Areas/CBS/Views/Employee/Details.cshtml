@@ -217,6 +217,9 @@
                         <th>To</th>
                         <th>Project</th>
                         <th>Billing Utilization</th>
+                        <th>Company/initiative Utilization</th>
+                        <th>Utilization on self</th>
+
                     </tr>
                 </thead>
                 <!-- Repeat -->
@@ -228,6 +231,8 @@
                             <td>@Html.Raw(bill.To_Date)</td>
                             <td>@Html.Raw(bill.Project)</td>
                             <td>@Html.Raw(bill.Billing_Utilization)</td>
+                            <th>@Html.Raw(bill.Com_ini_utilization)</th>
+                            <td>@Html.Raw(bill.UtilizationOnSelf)</td>
                         </tr>
                     </tbody>
                 }

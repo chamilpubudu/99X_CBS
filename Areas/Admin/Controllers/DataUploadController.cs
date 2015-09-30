@@ -234,7 +234,10 @@ namespace _99X_CBS.Areas.Admin.Controllers
 								cbs_employeebillingutilization.To_Date = Convert.ToDateTime(ds.Tables[0].Rows[i][2].ToString());
 								cbs_employeebillingutilization.Project = ds.Tables[0].Rows[i][3].ToString();
 								cbs_employeebillingutilization.Billing_Utilization = ds.Tables[0].Rows[i][4].ToString();
-								cbs_employeebillingutilization.EmpID = ds.Tables[0].Rows[i][5].ToString();
+								cbs_employeebillingutilization.Com_ini_utilization = ds.Tables[0].Rows[i][5].ToString();
+								cbs_employeebillingutilization.UtilizationOnSelf = ds.Tables[0].Rows[i][6].ToString();
+								cbs_employeebillingutilization.EmpID = ds.Tables[0].Rows[i][7].ToString();
+								
 								cbs_employeebillingutilization.Approved = true;
 
 								if (ModelState.IsValid)

@@ -57,6 +57,22 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Com_ini_utilization, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Com_ini_utilization)
+                @Html.ValidationMessageFor(model => model.Com_ini_utilization)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UtilizationOnSelf, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UtilizationOnSelf)
+                @Html.ValidationMessageFor(model => model.UtilizationOnSelf)
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.EmpID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @if ( User.IsInRole("Admin") || User.IsInRole("Manager")||User.IsInRole("CBS_EmployeeBillingUtilization_Manage")){
