@@ -160,9 +160,9 @@
                         }
                     </table>
                     <span class="details-summary">
-                        You were entitled to got a bonus of Rs. <b>@totalBonusAmount</b>
+                        You are entitled to get a bonus of Rs. <b>@totalBonusAmount</b>
                         @{
-                summary.Add("You were entitled to get a bonus of Rs. <b>" + totalBonusAmount + "</b>");
+                summary.Add("You are entitled to get a bonus of Rs. <b>" + totalBonusAmount + "</b>");
                         }
                     </span>
                     <br /><br />
@@ -216,9 +216,9 @@
                         <th>From</th>
                         <th>To</th>
                         <th>Project</th>
-                        <th>Billing Utilization</th>
-                        <th>Company/initiative Utilization</th>
-                        <th>Utilization on self</th>
+                        <th>Billing Utilization(%)</th>
+                        <th>Company/initiative Utilization(%)</th>
+                        <th>Utilization on self(%)</th>
 
                     </tr>
                 </thead>
@@ -230,9 +230,9 @@
                             <td>@Html.Raw(bill.From_Date)</td>
                             <td>@Html.Raw(bill.To_Date)</td>
                             <td>@Html.Raw(bill.Project)</td>
-                            <td>@Html.Raw(bill.Billing_Utilization)</td>
-                            <th>@Html.Raw(bill.Com_ini_utilization)</th>
-                            <td>@Html.Raw(bill.UtilizationOnSelf)</td>
+                            <td>@Html.Raw(Math.Round(Convert.ToDouble(bill.Billing_Utilization) * 100,2))</td>
+                            <td>@Html.Raw(Math.Round(Convert.ToDouble(bill.Com_ini_utilization) * 100, 2))</td>
+                            <td>@Html.Raw(Math.Round(Convert.ToDouble(bill.UtilizationOnSelf) * 100,2))</td>
                         </tr>
                     </tbody>
                 }
@@ -302,11 +302,11 @@
                 </thead>
                 <!-- Repeat -->
                 @{
-        int totalHours = 0;
+        float totalHours = 0;
         float totalCost = 0;
         foreach (var training in Model.cbs_TrainingsList)
         {
-            totalHours = totalHours + @Html.Raw(training.Time_Duration).ToHtmlString().AsInt();
+            totalHours = totalHours + @Html.Raw(training.Time_Duration).ToHtmlString().AsFloat();
             totalCost = totalCost + @Html.Raw(training.Investment).ToHtmlString().AsFloat();
             <tbody>
                 <tr>
@@ -317,6 +317,9 @@
                     <td>@Html.Raw(training.Training_Type)</td>
                     <td>@Html.Raw(training.Investment)</td>
                     <td>@Html.Raw(training.Time_Duration)</td>
+                    <td>@Html.Raw(training.Training_Focus)</td>
+                    <td>@Html.Raw(training.ForeignOrLocal)</td>
+                    <td>@Html.Raw(training.Training_Type)</td>
                 </tr>
             </tbody>
         }
@@ -352,16 +355,20 @@
                         <th>Country</th>
                         <th>City</th>
                         <th>Purpose</th>
+                        <th>Allowance(Rs.)</th>
+
                     </tr>
                 </thead>
                 @{
         int numberOfTravelledTimes = 0;
         int numberOfDays = 0;
+        float totalAllowance = 0;
                 <!-- Repeat -->
         foreach (var travel in Model.cbs_TravelsList)
         {
             numberOfTravelledTimes++;
             numberOfDays = numberOfDays + @Html.Raw(travel.Number_Of_Days).ToHtmlString().AsInt();
+            totalAllowance = totalAllowance + @Html.Raw(travel.Allowance_In_SLR).ToHtmlString().AsFloat();
             <tbody>
                 <tr>
                     <td>@Html.Raw(travel.Started_Date)</td>
@@ -369,6 +376,7 @@
                     <td>@Html.Raw(travel.Country)</td>
                     <td>@Html.Raw(travel.City)</td>
                     <td>@Html.Raw(travel.Purpose)</td>
+                    <td>@Html.Raw(travel.Allowance_In_SLR)</td>
                 </tr>
             </tbody>
         }
@@ -376,9 +384,9 @@
                 }
             </table>
             <span class="details-summary">
-                You have Travelled <b>@numberOfTravelledTimes</b> time(s) for <b>@numberOfDays</b> days.
+                You have Travelled <b>@numberOfTravelledTimes</b> time(s) for <b>@numberOfDays</b> days with a cost of Rs. <b>@totalAllowance</b>
                 @{
-        summary.Add("You have Travelled <b>" + numberOfTravelledTimes + "</b> time(s) for <b>" + numberOfDays + "</b> days.");
+        summary.Add("You have Travelled <b>" + numberOfTravelledTimes + "</b> time(s) for <b>" + numberOfDays + "</b> days with a cost of Rs. <b>" +totalAllowance+ "</b>");
 
                 }
             </span>
@@ -521,12 +529,12 @@
                     </tr>
                 </thead>
                 @{
-        int numberOfHours = 0;
+        float numberOfHours = 0;
         int numberOfParticipantsForUniSessions = 0;
                 <!-- Repeat -->
         foreach (var universitySession in Model.cbs_UniversitySessionsList)
         {
-            numberOfHours = numberOfHours + @Html.Raw(universitySession.Time_Duration).ToHtmlString().AsInt();
+            numberOfHours = numberOfHours + @Html.Raw(universitySession.Time_Duration).ToHtmlString().AsFloat();
             numberOfParticipantsForUniSessions = numberOfParticipantsForUniSessions + @Html.Raw(universitySession.Number_Of_Participants).ToHtmlString().AsInt();
             <tbody>
                 <tr>

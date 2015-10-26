@@ -262,7 +262,7 @@ app.controller('DataApproveCtrl', function ($scope, $http) {
             { field: 'Category', displayName: 'Category' },
             { field: 'Training_Month', displayName: 'Training Month' },
             { field: 'Time_Duration', displayName: 'Time Duration' },
-            { field: 'Cost_Money', displayName: 'Cost' }
+            { field: 'Investment', displayName: 'Cost' }
         ]
 
     };
