@@ -134,7 +134,6 @@ namespace _99X_CBS.Areas.Admin.Controllers
 							for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
 							{
 								cbs_attendances.Employee_Name = ds.Tables[0].Rows[i][0].ToString();
-								cbs_attendances.Date = Convert.ToDateTime(ds.Tables[0].Rows[i][1].ToString());
 								cbs_attendances.Average_InTime = ds.Tables[0].Rows[i][2].ToString();
 								cbs_attendances.Average_OutTime = ds.Tables[0].Rows[i][3].ToString();
 								cbs_attendances.Weekends_Worked = ds.Tables[0].Rows[i][4].ToString();

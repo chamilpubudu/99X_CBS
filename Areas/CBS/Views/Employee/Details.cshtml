@@ -63,14 +63,17 @@
             </div>
             <div class="employee">
                 <span class="details">Total Years at 99XTechnology</span>
-                <span class="data">
-                    @{
+                <span class="data"> 
+                                      
+                     @{
+                        
                         int joinedYear = Model.cbs_employee.Date_Joined.Value.Year;
                         int startedYear = Model.cbs_employee.Career_Started_On.Value.Year;
                         int currentYear = @DateTime.Now.Year;
                         int total99Xperiance = currentYear - joinedYear;
                         int totalXperiance = currentYear - startedYear;
                     }
+                    @total99Xperiance
                 </span>
             </div>
         </div>
@@ -657,8 +660,8 @@
                 @foreach (var attendance in Model.cbs_AttendancesList)
                 {
                     <tr>
-                        <td>@Html.Raw(attendance.Average_InTime)</td>
-                        <td>@Html.Raw(attendance.Average_OutTime)</td>
+                        <td>@Html.Raw(Convert.ToDateTime(attendance.Average_InTime).TimeOfDay)</td>
+                        <td>@Html.Raw(Convert.ToDateTime(attendance.Average_OutTime).TimeOfDay)</td>
                         <td>@Html.Raw(attendance.Weekends_Worked)</td>
                         <td>@Html.Raw(attendance.Medical_Leaves_Taken)</td>
                         <td>@Html.Raw(attendance.Annual_Leaves_Taken)</td>
