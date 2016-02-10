@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>CBS_Trainings</h4>
         <hr />
@@ -49,10 +49,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.External, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Training_Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.External)
-                @Html.ValidationMessageFor(model => model.External)
+                @Html.EditorFor(model => model.Training_Type)
+                @Html.ValidationMessageFor(model => model.Training_Type)
             </div>
         </div>
 
@@ -81,25 +81,41 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Cost_Money, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Investment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Cost_Money)
-                @Html.ValidationMessageFor(model => model.Cost_Money)
+                @Html.EditorFor(model => model.Investment)
+                @Html.ValidationMessageFor(model => model.Investment)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.EmpID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @if ( User.IsInRole("Admin") || User.IsInRole("Manager")||User.IsInRole("CBS_Trainings_Manage")){
+                @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Trainings_Manage"))
+                {
                     @Html.EditorFor(model => model.EmpID)
-                }else{
-                    @Html.TextBox("EmpID", _99X_CBS.Models.CurrentUser.GetEmpID(Session,User),new { disabled = "disabled", @readonly = "readonly" })
+                }
+                else
+                {
+                    @Html.TextBox("EmpID", _99X_CBS.Models.CurrentUser.GetEmpID(Session, User), new { disabled = "disabled", @readonly = "readonly" })
                 }
                 @Html.ValidationMessageFor(model => model.EmpID)
             </div>
         </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.Training_Focus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Training_Focus)
+                @Html.ValidationMessageFor(model => model.Training_Focus)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ForeignOrLocal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ForeignOrLocal)
+                @Html.ValidationMessageFor(model => model.ForeignOrLocal)
+            </div>
+        </div>
         <!--<div class="form-group">
             @Html.LabelFor(model => model.Approved, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

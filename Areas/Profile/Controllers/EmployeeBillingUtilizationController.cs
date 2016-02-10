@@ -63,7 +63,7 @@ namespace _99X_CBS.Areas.Profile.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Employee_Name,From_Date,To_Date,Project,Billing_Utilization,EmpID,Approved,EditedBy,TargetRowID")] CBS_EmployeeBillingUtilization cBS_EmployeeBillingUtilization)
+		  public ActionResult Create([Bind(Include = "ID,Employee_Name,From_Date,To_Date,Project,Billing_Utilization,Com_ini_utilization,UtilizationOnSelf,EmpID,Approved,EditedBy,TargetRowID")] CBS_EmployeeBillingUtilization cBS_EmployeeBillingUtilization)
         {
             if (ModelState.IsValid)
             {

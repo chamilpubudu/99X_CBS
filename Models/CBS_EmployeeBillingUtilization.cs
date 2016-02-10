@@ -19,6 +19,8 @@ namespace _99X_CBS.Models
         public Nullable<System.DateTime> To_Date { get; set; }
         public string Project { get; set; }
         public string Billing_Utilization { get; set; }
+		  public string Com_ini_utilization { get; set; }
+		  public string UtilizationOnSelf { get; set; }
         public string EmpID { get; set; }
         public bool Approved { get; set; }
         public string EditedBy { get; set; }

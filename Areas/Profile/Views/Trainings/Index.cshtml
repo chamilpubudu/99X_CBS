@@ -5,7 +5,6 @@
 }
 <link href="../../../../Content/Profile.css" rel="stylesheet" />
 <h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -24,7 +23,7 @@
             @Html.DisplayNameFor(model => model.Training_Provider)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.External)
+            @Html.DisplayNameFor(model => model.Training_Type)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Category)
@@ -36,28 +35,27 @@
             @Html.DisplayNameFor(model => model.Time_Duration)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cost_Money)
+            @Html.DisplayNameFor(model => model.Investment)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EmpID)
         </th>
-        <!--<th>
-            @Html.DisplayNameFor(model => model.Approved)
+        <th>
+            @Html.DisplayNameFor(model => model.Training_Focus)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EditedBy)
+            @Html.DisplayNameFor(model => model.ForeignOrLocal)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TargetRowID)
-        </th>-->
+        
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    if(@Html.Raw(item.Approved).ToString() == "False")
-     {
-        @: <tr class="approvedraw">
-     }
+    @foreach (var item in Model)
+    {
+        if (@Html.Raw(item.Approved).ToString() == "False")
+        {
+            @:<tr class="approvedraw">
+        }
         <td>
             @Html.DisplayFor(modelItem => item.Employee_Name)
         </td>
@@ -71,7 +69,7 @@
             @Html.DisplayFor(modelItem => item.Training_Provider)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.External)
+            @Html.DisplayFor(modelItem => item.Training_Type)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Category)
@@ -83,29 +81,27 @@
             @Html.DisplayFor(modelItem => item.Time_Duration)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Cost_Money)
+            @Html.DisplayFor(modelItem => item.Investment)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EmpID)
         </td>
-       <!-- <td>
-            @Html.DisplayFor(modelItem => item.Approved)
+        <td>
+            @Html.DisplayFor(modelItem => item.Training_Focus)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EditedBy)
+            @Html.DisplayFor(modelItem => item.ForeignOrLocal)
         </td>
+        
         <td>
-            @Html.DisplayFor(modelItem => item.TargetRowID)
-        </td>-->
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) 
-            @if(User.IsInRole("Admin") || User.IsInRole("Manager")||User.IsInRole("CBS_Trainings_Manage")){
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
+            @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("CBS_Trainings_Manage"))
+            {
                 @Html.Raw("|")
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
             }
         </td>
-    @:</tr>
-}
-
+        @:</tr>
+    }
 </table>
