@@ -180,8 +180,20 @@ p {
         display :  none;
     }
 
+    #emialbtn {
+        display : none;
+    }
+
+    .collapsed-content {
+        display : none;
+    }
+
     .form-control {
         display: none !important;
+    }
+
+    .panel-group {
+        page-break-inside: avoid;
     }
 }
 
@@ -207,5 +219,7 @@ table.gridtable td {
 	border-color: #666666;
 	background-color: #ffffff;
 }
+
+
 
 

@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -257,7 +258,7 @@
     <Content Include="Content\cosmobootstrap.css" />
     <Content Include="Content\cosmobootstrap.min.css" />
     <Content Include="Content\Images\CBS_Logo.jpg" />
-    <Content Include="Content\Images\logo-black.png" />
+    <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\Slider\1.jpg" />
     <Content Include="Content\Images\Slider\2.jpg" />
     <Content Include="Content\Images\Slider\3.jpg" />

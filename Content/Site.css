@@ -98,6 +98,7 @@ footer{
     color: #222;
     text-transform: uppercase;
     font-weight: bold;
+    cursor : pointer;
 }
 .report-title-sub{
     font-size: 17px;
@@ -201,4 +202,9 @@ input{
     text-align: center;
     padding: 8px 0;
     margin-bottom: 25px;
+}
+
+.cbs-footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
